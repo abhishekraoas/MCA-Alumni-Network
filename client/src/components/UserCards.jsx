@@ -3,7 +3,7 @@ import SocialMedia from './SocialMedia';
 
 const UserCard = ({ user }) => {
   return (
-    <div className="max-w-sm mx-auto px-10 bg-white shadow-lg rounded-lg overflow-hidden">
+    <div className="max-w-sm mx-auto pr-14 pl-14 bg-white shadow-lg rounded-lg overflow-hidden">
       <div className="flex justify-center mt-2">
         <img
           className="h-32 w-32 rounded-full border-4 border-indigo-500"
