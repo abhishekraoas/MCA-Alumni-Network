@@ -9,7 +9,7 @@ const Header = () => {
         <div className="container px-6 py-4 mx-auto flex justify-between items-center">
           <div>
             <a href="#" className="text-lg font-bold">
-              Brand
+              MCA Alumni Network
             </a>
           </div>
 
