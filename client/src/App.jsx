@@ -4,6 +4,7 @@ import UserCard from "./components/UserCards";
 import Footer from "./components/Footer"
 import Header from "./components/Header";
 import Profile from "./components/Profile";
+import SignUp from "./components/SignUp";
 
 export default function App() {
   const user = {
@@ -20,6 +21,7 @@ export default function App() {
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
         <UserCard user={user} />
       </div>
+      <SignUp/>
      <Footer/>
      </>
   );
