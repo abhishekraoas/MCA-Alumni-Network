@@ -3,8 +3,8 @@ import "./index.css";
 import UserCard from "./components/UserCards";
 import Footer from "./components/Footer"
 import Header from "./components/Header";
-import Profile from "./components/Profile";
 import SignUp from "./components/SignUp";
+import Login from "./components/Login";
 
 export default function App() {
   const user = {
@@ -22,6 +22,7 @@ export default function App() {
         <UserCard user={user} />
       </div>
       <SignUp/>
+      <Login/>
      <Footer/>
      </>
   );
