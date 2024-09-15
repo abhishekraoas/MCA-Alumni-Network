@@ -22,7 +22,7 @@ const Header = () => {
               About
             </a>
             <a href="#" className="hover:text-gray-300">
-              Services
+              Our Alumni
             </a>
             <a href="#" className="hover:text-gray-300">
               Contact

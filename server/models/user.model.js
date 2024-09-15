@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const validator = require("validator");
 const userSchema = new mongoose.Schema({
 
     fullName : {
@@ -11,16 +11,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-      },
+        },
     
     password:{
         type: String,
         required: true,
-    },
-
-    gender: {
-      type: String,
-      required: true,
+        minlength: 6,
     },
 
     linkedin: {
@@ -31,7 +27,18 @@ const userSchema = new mongoose.Schema({
     github: {
         type: String,
       },
+
+      passOutYear: {
+        type: Number,
+        required: true,
+      },
     
+      rollNo: {
+        type: Number,
+        required: true,
+        unique: true,
+    },
+
     jobRole: {
       type: String,
     },
@@ -40,15 +47,14 @@ const userSchema = new mongoose.Schema({
       type: String,
     },
 
-    passOutYear: {
-        type: Number,
-        required: true,
-      },
+    gender: {
+      type: String,
+      required: true,
+    },
 
-    rollNo: {
-        type: Number,
-        required: true,
-        unique: true,
+    city: {
+      type: String,
+      required: true,
     },
 
     state: {
@@ -56,16 +62,11 @@ const userSchema = new mongoose.Schema({
       required: true,
     },
 
-    district: {
-      type: String,
-      required: true,
-    },
-
-    profilePhoto: {
-      type: String,
-      required: true,
-      default: '/images/avatar.png',     
-    }
+    // profilePhoto: {
+    //   type: String,
+    //   required: true,
+    //   default: '/images/avatar.png',     
+    // }
 
 })
 

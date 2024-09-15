@@ -47,7 +47,7 @@ const SignUp = () => {
               id="fullname"
               value={formData.fullname}
               onChange={handleChange}
-              className="w-full bg-white mt-2 px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+              className="w-full text-black bg-white mt-2 px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
               placeholder="Enter your Full Name"
               required
             />
@@ -62,7 +62,7 @@ const SignUp = () => {
               id="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full mt-2 bg-white px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+              className="w-full mt-2 text-black bg-white px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
               placeholder="Enter your email"
               required
             />
@@ -78,7 +78,7 @@ const SignUp = () => {
               id="password"
               value={formData.password}
               onChange={handleChange}
-              className="w-full mt-2 bg-white px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+              className="w-full mt-2 text-black bg-white px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
               placeholder="Enter your password"
               required
             />
@@ -93,7 +93,7 @@ const SignUp = () => {
               id="linkedin"
               value={formData.linkedin}
               onChange={handleChange}
-              className="w-full mt-2 bg-white px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+              className="w-full mt-2 text-black bg-white px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
               placeholder="Enter your LinkedIn"
               required
             />
@@ -108,7 +108,7 @@ const SignUp = () => {
               id="github"
               value={formData.github}
               onChange={handleChange}
-              className="w-full mt-2 bg-white px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+              className="w-full mt-2 text-black bg-white px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
               placeholder="Enter your Github"
             />
           </div>
@@ -123,10 +123,10 @@ const SignUp = () => {
               type="number"
               name="passOut"
               id="passOut"
-              value={formData.github}
+              value={formData.passout}
               onChange={handleChange}
-              className="w-full bg-white mt-2 px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-              placeholder="Enter your Github"
+              className="w-full text-black bg-white mt-2 px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+              placeholder="Enter your Pass Out Year"
               required
             />
           </div>
@@ -139,9 +139,9 @@ const SignUp = () => {
               type="number"
               name="rollNo"
               id="rollNo"
-              value={formData.github}
+              value={formData.rollno}
               onChange={handleChange}
-              className="w-full mt-2 bg-white px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+              className="w-full mt-2 text-black bg-white px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
               placeholder="Enter your University Roll No"
               required
             />
@@ -155,10 +155,26 @@ const SignUp = () => {
               type="text"
               name="jobRole"
               id="jobRole"
-              value={formData.github}
+              value={formData.jobrole}
               onChange={handleChange}
-              className="w-full mt-2 bg-white px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-              placeholder="Enter your Github"
+              className="w-full mt-2 text-black bg-white px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+              placeholder="Enter your Job Role"
+              required
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-gray-700" htmlFor="currentcompany">
+              Current Company
+            </label>
+            <input
+              type="text"
+              name="currentcompany"
+              id="currentcompany"
+              value={formData.currentcompany}
+              onChange={handleChange}
+              className="w-full mt-2 text-black bg-white px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+              placeholder="Enter your Current Company"
               required
             />
           </div>
@@ -177,17 +193,17 @@ const SignUp = () => {
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700" htmlFor="district">
-              District
+            <label className="block text-gray-700" htmlFor="city">
+              City
             </label>
             <input
               type="text"
-              name="district"
-              id="district"
-              value={formData.github}
+              name="city"
+              id="city"
+              value={formData.city}
               onChange={handleChange}
-              className="w-full mt-2 bg-white px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-              placeholder="Enter your District"
+              className="w-full mt-2 text-black bg-white px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+              placeholder="Enter your City"
               required
             />
           </div>
@@ -200,9 +216,9 @@ const SignUp = () => {
               type="text"
               name="state"
               id="state"
-              value={formData.github}
+              value={formData.state}
               onChange={handleChange}
-              className="w-full mt-2 bg-white px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+              className="w-full mt-2 text-black bg-white px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
               placeholder="Enter your State"
               required
             />
