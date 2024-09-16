@@ -1,5 +1,5 @@
 const express = require("express");
-const userRoute = require("./routes/user.routes");
+const userRouter = require("./routes/user.routes");
 const { connectToMongoDB } = require("./connectionDB");
 // const bodyParser = require("body-parser");
 
@@ -17,7 +17,7 @@ app.use(express.json());
 // Database Connection
 connectToMongoDB("mongodb://localhost:27017/mca-alumni");
 
-app.use("/", userRoute);
+app.use("/", userRouter);
 
 app.listen(PORT, () => {
     console.log(`app listening on port ${PORT}`);

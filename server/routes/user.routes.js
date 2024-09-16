@@ -48,10 +48,14 @@ router.get("/alumni/:id", async(req, res) => {
 router.patch("/alumni/:id", async(req, res) => {
     try {
         const _id = req.params.id;
-        const user = await userModel.findByIdAndUpdate(_id);
+        const user = await userModel.findByIdAndUpdate(_id, req.body,{
+            new: true
+        });
         res.send(user);
+        console.log("user updated successfully");
+        
     } catch(err){
-        res.send(err)
+        res.status(404).send(err);
     }
 });
 
