@@ -1,46 +1,81 @@
-const { log } = require("console");
 const express = require("express");
 const router = express.Router();
-const path = require("path");
 const userModel = require("../models/user.model");
 
-console.log(path.join(__dirname, ".."));
-
-const home = path.join(__dirname);
-
-router.get("/", (req, res)=>{
-    res.send("Welcome to MCA Alumni Network");
+router.get("/", (req, res) => {
+  res.send("Welcome to MCA Alumni Network");
 });
 
-router.post("/api/users", (req, res)=>{
-    console.log(req.body);
-    
-    res.send("Data received");
+// Creating User Account
+router.post("/alumni/signup", async (req, res) => {
+    const user = new userModel(req.body);
+    try {
+      await user.save();
+      res.status(201).send(user);
+      console.log("User Account Created Successfully");
+    } catch (err) {
+      res.send(err);
+      res.status(400).send("Unable to save data");
+    }
+  });
+
+// Get Alumni Data
+router.get("/alumni", async(req, res) => {
+    try {
+        const users = await userModel.find();
+        res.send(users);
+    } catch (err) {
+        res.status(404).send("Data Not Found");
+    }
 });
 
-router.get("/api/users", (req, res)=>{
-    res.send("Data sent");
+// Get Alumni Data by ID
+router.get("/alumni/:id", async(req, res) => {
+    try {
+        const _id = req.params.id;
+        const user = await userModel.findById(_id);
+        if (!user) {
+            return res.status(404).send("user doesn't exists");
+        } else {
+            res.send(user);
+        }
+    } catch(err){
+        res.status(404).send(err);
+    }
 });
 
-router.get("/about", (req, res)=>{
-    res.send("About MCA Alumni Network");
+// Update Alumni Data
+router.patch("/alumni/:id", async(req, res) => {
+    try {
+        const _id = req.params.id;
+        const user = await userModel.findByIdAndUpdate(_id);
+        res.send(user);
+    } catch(err){
+        res.send(err)
+    }
 });
 
-router.get("/contact", (req, res)=>{
-    res.send("Contact MCA Alumni Network");
+// Delete Alumni Data
+router.delete("/alumni/:id", async(req, res) => {
+    try {
+        // const _id = req.params.id;
+        const user = await userModel.findByIdAndDelete(req.params.id);
+        if (!user) {
+            return res.status(404).send("user doesn't exists");
+        } else {
+            res.send(user);
+            console.log("user deleted successfully");
+            
+        }
+    } catch(err){
+        res.status(404).send(err);
+    }
+});;
+
+router.get("/alumni/login", (req, res) => {
+  res.send("Login to MCA Alumni Network");
 });
 
-router.get("/services", (req, res)=>{
-    res.send("Services of MCA Alumni Network");
-});
-
-router.get("/login", (req, res)=>{
-    res.send("Login to MCA Alumni Network");
-})
-
-// router.get("/register", (req, res)=>{
-//     res.send("Register to MCA Alumni Network");
-// })
 
 
 module.exports = router;

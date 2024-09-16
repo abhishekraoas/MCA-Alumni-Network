@@ -1,76 +1,79 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
+
 const userSchema = new mongoose.Schema({
+  fullName: {
+    type: String,
+    required: true,
+  },
 
-    fullName : {
-        type: String,
-        required: true,
+  email: {
+    type: String,
+    required: true,
+    unique: [true, "Email already exist"],
+    validate(value) {
+      if (!validator.isEmail(value)) {
+        throw new Error("Invalid Email");
+      }
     },
+  },
 
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-        },
-    
-    password:{
-        type: String,
-        required: true,
-        minlength: 6,
-    },
+  password: {
+    type: String,
+    required: true,
+    minlength: 6,
+  },
 
-    linkedin: {
-      type: String,
-      required: true,
-    },
+  linkedin: {
+    type: String,
+    required: true,
+  },
 
-    github: {
-        type: String,
-      },
+  github: {
+    type: String,
+  },
 
-      passOutYear: {
-        type: Number,
-        required: true,
-      },
-    
-      rollNo: {
-        type: Number,
-        required: true,
-        unique: true,
-    },
+  passOutYear: {
+    type: Number,
+    required: true,
+  },
 
-    jobRole: {
-      type: String,
-    },
+  rollNo: {
+    type: Number,
+    required: true,
+    unique: true,
+  },
 
-    currentCompany: {
-      type: String,
-    },
+  jobRole: {
+    type: String,
+  },
 
-    gender: {
-      type: String,
-      required: true,
-    },
+  currentCompany: {
+    type: String,
+  },
 
-    city: {
-      type: String,
-      required: true,
-    },
+  gender: {
+    type: String,
+    required: true,
+  },
 
-    state: {
-      type: String,
-      required: true,
-    },
+  city: {
+    type: String,
+    required: true,
+  },
 
-    // profilePhoto: {
-    //   type: String,
-    //   required: true,
-    //   default: '/images/avatar.png',     
-    // }
+  state: {
+    type: String,
+    required: true,
+  },
 
-})
-
+  // profilePhoto: {
+  //   type: String,
+  //   required: true,
+  //   default: '/images/avatar.png',
+  // }
+});
 
 //Model
-const User = mongoose.model("user", userSchema);
+const User = mongoose.model("User", userSchema);
 module.exports = User;
