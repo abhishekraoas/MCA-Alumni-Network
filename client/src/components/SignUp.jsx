@@ -19,6 +19,7 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission logic here
+
     console.log("Form Data Submitted:", formData);
   };
 

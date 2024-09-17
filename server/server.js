@@ -17,7 +17,7 @@ app.use(express.json());
 // Database Connection
 connectToMongoDB("mongodb://localhost:27017/mca-alumni");
 
-app.use("/", userRouter);
+app.use(userRouter);
 
 app.listen(PORT, () => {
     console.log(`app listening on port ${PORT}`);

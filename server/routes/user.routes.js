@@ -8,9 +8,25 @@ router.get("/", (req, res) => {
 
 // Creating User Account
 router.post("/alumni/signup", async (req, res) => {
-    const user = new userModel(req.body);
+    
     try {
-      await user.save();
+      
+        const user = new userModel({
+        fullname: req.body.fullname,
+        email: req.body.email,
+        password: req.body.password,
+        linkedin: req.body.linkedin,
+        github: req.body.github,
+        passOutYear: req.body.passOutYear,
+        rollNo: req.body.rollNo,
+        jobRole: req.body.jobRole,
+        currentCompany: req.body.currentCompany,
+        gender: req.body.gender,
+        city: req.body.city,
+        state: req.body.state,
+        });
+
+      const userData = await user.save();
       res.status(201).send(user);
       console.log("User Account Created Successfully");
     } catch (err) {
@@ -22,7 +38,7 @@ router.post("/alumni/signup", async (req, res) => {
 // Get Alumni Data
 router.get("/alumni", async(req, res) => {
     try {
-        const users = await userModel.find();
+        const users = await userModel.find().sort({"rollNo":1});
         res.send(users);
     } catch (err) {
         res.status(404).send("Data Not Found");
@@ -32,8 +48,8 @@ router.get("/alumni", async(req, res) => {
 // Get Alumni Data by ID
 router.get("/alumni/:id", async(req, res) => {
     try {
-        const _id = req.params.id;
-        const user = await userModel.findById(_id);
+        const rollNo = req.params.id;
+        const user = await userModel.findOne({rollNo:rollNo});
         if (!user) {
             return res.status(404).send("user doesn't exists");
         } else {
