@@ -1,10 +1,38 @@
 import React from "react";
 import image from "../assets/image.png";
+import { useState } from "react";
+
+const logIn = ()=>{
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+}
+
+const handleLogin = async (e) =>{
+  e.preventDefault();
+  console.log("Login Successfull");
+  try {
+    const response = await fetch(`http://127.0.0.1:3000/alumni/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+} catch (err) {
+    console.log(err);
+  }
+};
+
+
+
 
 const Login = () => {
   return (
     <>
       <section className="bg-black">
+      
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <a
             href="#"
@@ -23,10 +51,10 @@ const Login = () => {
           </a>
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <form className="space-y-4 md:space-y-6" action="#">
+              <form className="space-y-4 md:space-y-6" action="#" onSubmit={handleLogin}>
                 <div>
                   <label
-                    for="email"
+                    htmlFor="email"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Your email
@@ -34,7 +62,7 @@ const Login = () => {
                   <input
                     type="email"
                     name="email"
-                    id="email"
+                    id="loginEmail"
                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
                     required=""
@@ -42,7 +70,7 @@ const Login = () => {
                 </div>
                 <div>
                   <label
-                    for="password"
+                    htmlFor="password"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Password
@@ -50,7 +78,7 @@ const Login = () => {
                   <input
                     type="password"
                     name="password"
-                    id="password"
+                    id="loginPassword"
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required=""
@@ -69,7 +97,7 @@ const Login = () => {
                     </div>
                     <div className="ml-3 text-sm">
                       <label
-                        for="remember"
+                        htmlFor="remember"
                         className="text-gray-500 dark:text-gray-300"
                       >
                         Remember me
@@ -102,6 +130,7 @@ const Login = () => {
             </div>
           </div>
         </div>
+      
       </section>
     </>
   );

@@ -4,9 +4,17 @@ import image from "../assets/image.png";
 const SignUp = () => {
   const [formData, setFormData] = useState({
     fullname: "",
-    linkedin: "",
+    email: "",
     password: "",
-    confirmPassword: "",
+    linkedin: "",
+    github: "",
+    passOutYear: "",
+    rollNo: "",
+    jobRole: "",
+    currentCompany:"",
+    gender:"",
+    city:"",
+    state:"",
   });
 
   const handleChange = (e) => {
@@ -16,15 +24,31 @@ const SignUp = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
+    console.log(formData);
+    try{
+
+       // Handle form submission logic here
+    const response = await fetch(`http://127.0.0.1:3000/alumni/signup`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
 
     console.log("Form Data Submitted:", formData);
+
+    }catch(err){
+      console.log(err);
+      
+    }
+
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center bg-gray-100">
       <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
         <h2 className="text-2xl font-semibold text-gray-800 text-center">
           Register as a Alumni
@@ -227,6 +251,7 @@ const SignUp = () => {
 
           <button
             type="submit"
+            onSubmit={handleSubmit}
             className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition-colors"
           >
             Sign Up

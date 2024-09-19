@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const userModel = require("../models/user.model");
+const bcrypt = require("bcryptjs");
+
+
 
 router.get("/", (req, res) => {
   res.send("Welcome to MCA Alumni Network");
@@ -23,7 +26,7 @@ router.post("/alumni/signup", async (req, res) => {
       city: req.body.city,
       state: req.body.state,
     });
-
+ 
     const userData = await user.save();
     res.status(201).send(user);
     console.log("User Account Created Successfully");
@@ -33,19 +36,24 @@ router.post("/alumni/signup", async (req, res) => {
   }
 });
 
+
 // Login User Account
 router.post("/alumni/login", async (req, res) => {
   try {
     const email = req.body.email;
     const password = req.body.password;
     const user = await userModel.findOne({ email: email });
-    if (user.password === password) {
+    const isMatch = await bcrypt.compare(password, user.password);
+    
+    if (isMatch) {
       res.send("Login Successfull");
+      console.log(user);
+      
     } else { 
-      res.send("Invalid Credentials");
+      res.send("Password Invalid");
     }
   } catch (err) {
-    res.send(err);
+    res.status(400).send("Invalid Credentials");
   }
 });
 
