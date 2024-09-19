@@ -11,10 +11,10 @@ const SignUp = () => {
     passOutYear: "",
     rollNo: "",
     jobRole: "",
-    currentCompany:"",
-    gender:"",
-    city:"",
-    state:"",
+    currentCompany: "",
+    gender: "",
+    city: "",
+    state: "",
   });
 
   const handleChange = (e) => {
@@ -27,24 +27,20 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
-    try{
+    try {
+      // Handle form submission logic here
+      const response = await fetch(`http://127.0.0.1:3000/alumni/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-       // Handle form submission logic here
-    const response = await fetch(`http://127.0.0.1:3000/alumni/signup`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-
-    console.log("Form Data Submitted:", formData);
-
-    }catch(err){
+      console.log("Form Data Submitted:", formData);
+    } catch (err) {
       console.log(err);
-      
     }
-
   };
 
   return (
@@ -138,8 +134,6 @@ const SignUp = () => {
             />
           </div>
 
-          
-
           <div className="mb-4">
             <label className="block text-gray-700" htmlFor="passOut">
               Pass Out Year
@@ -208,7 +202,10 @@ const SignUp = () => {
             <label className="block text-gray-700" htmlFor="gender">
               Gender
             </label>
-            <select name="gender" className="w-full bg-white mt-2 px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300 text-black">
+            <select
+              name="gender"
+              className="w-full bg-white mt-2 px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300 text-black"
+            >
               <option value="">Please select one…</option>
               <option value="female">Female</option>
               <option value="male">Male</option>

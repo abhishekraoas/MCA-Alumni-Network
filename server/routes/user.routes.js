@@ -2,6 +2,17 @@ const express = require("express");
 const router = express.Router();
 const userModel = require("../models/user.model");
 const bcrypt = require("bcryptjs");
+const {handleUserSignUp, handleUserLogin, updateUserById, deleteUserById} = require("../controllers/user.controllers");
+const jwt = require("jsonwebtoken");
+
+const creatToken = async ()=>{
+  const token = await jwt.sign({ _id: '66e7477faca79561d3fc4e10'}, 'hello',{
+    expiresIn: '2 minute'
+  });
+  console.log(token);
+  const userVerify = await jwt.verify(token, "hello");
+  console.log(userVerify);
+}
 
 
 
@@ -10,52 +21,16 @@ router.get("/", (req, res) => {
 });
 
 // Creating User Account
-router.post("/alumni/signup", async (req, res) => {
-  try {
-    const user = new userModel({
-      fullname: req.body.fullname,
-      email: req.body.email,
-      password: req.body.password,
-      linkedin: req.body.linkedin,
-      github: req.body.github,
-      passOutYear: req.body.passOutYear,
-      rollNo: req.body.rollNo,
-      jobRole: req.body.jobRole,
-      currentCompany: req.body.currentCompany,
-      gender: req.body.gender,
-      city: req.body.city,
-      state: req.body.state,
-    });
- 
-    const userData = await user.save();
-    res.status(201).send(user);
-    console.log("User Account Created Successfully");
-  } catch (err) {
-    res.send(err);
-    res.status(400).send("Unable to save data");
-  }
-});
-
+router.post("/alumni/signup", handleUserSignUp);
 
 // Login User Account
-router.post("/alumni/login", async (req, res) => {
-  try {
-    const email = req.body.email;
-    const password = req.body.password;
-    const user = await userModel.findOne({ email: email });
-    const isMatch = await bcrypt.compare(password, user.password);
-    
-    if (isMatch) {
-      res.send("Login Successfull");
-      console.log(user);
-      
-    } else { 
-      res.send("Password Invalid");
-    }
-  } catch (err) {
-    res.status(400).send("Invalid Credentials");
-  }
-});
+router.post("/alumni/login", handleUserLogin);
+
+// Update Alumni Data
+router.patch("/alumni/:id", updateUserById)
+
+// Delete Alumni Data
+router.delete("/alumni/:id", deleteUserById);
 
 // Get Alumni Data
 router.get("/alumni", async (req, res) => {
@@ -82,34 +57,5 @@ router.get("/alumni/:id", async (req, res) => {
   }
 });
 
-// Update Alumni Data
-router.patch("/alumni/:id", async (req, res) => {
-  try {
-    const _id = req.params.id;
-    const user = await userModel.findByIdAndUpdate(_id, req.body, {
-      new: true,
-    });
-    res.send(user);
-    console.log("user updated successfully");
-  } catch (err) {
-    res.status(404).send(err);
-  }
-});
-
-// Delete Alumni Data
-router.delete("/alumni/:id", async (req, res) => {
-  try {
-    // const _id = req.params.id;
-    const user = await userModel.findByIdAndDelete(req.params.id);
-    if (!user) {
-      return res.status(404).send("user doesn't exists");
-    } else {
-      res.send(user);
-      console.log("user deleted successfully");
-    }
-  } catch (err) {
-    res.status(404).send(err);
-  }
-});
 
 module.exports = router;

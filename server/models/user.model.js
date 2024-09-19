@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
 
 const userSchema = new mongoose.Schema({
   fullName: {
@@ -73,10 +75,34 @@ const userSchema = new mongoose.Schema({
   //   required: true,
   //   default: '/images/avatar.png',
   // }
+
+  tokens: [{
+    token: {
+      type: String,
+      required: true
+    }
+  }]
 });
 
+//Generating Token
+userSchema.methods.generateAuthToken = async function () {
+  try {
+    
+    const token = jwt.sign({ _id: this._id.toString()}, process.env.SECRET_KEY);
+    this.tokens = this.tokens.concat({ token: token });
+    await this.save();
+    return token;
+    
+  } catch (err) {
+    res.send(err);
+    console.log(err);
+    
+  }
+  
+}
+
+//Hashing Password
 userSchema.pre("save", async function (next) {
-     //Password Hashing
      if (this.isModified('password')) {
     //  const hashPassword = await bcrypt.hash(password, 10);
      this.password = await bcrypt.hash(this.password, 10);

@@ -2,6 +2,7 @@ const express = require("express");
 const userRouter = require("./routes/user.routes");
 const { connectToMongoDB } = require("./connectionDB");
 const cors = require("cors");
+
 // const bodyParser = require("body-parser");
 
 const app = express();
