@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import Header from "./components/Header";
+// import Profile from "./components/Profile";
 
 export default function App() {
   const user = {
@@ -23,6 +24,7 @@ export default function App() {
       </div>
       <SignUp />
       <Login />
+      {/* <Profile/> */}
       <Footer />
     </>
   );
