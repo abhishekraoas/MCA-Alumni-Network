@@ -12,14 +12,7 @@ Welcome to the **MMMUT MCA Alumni Network**, an exclusive platform that connects
 - **Search Functionality**: Easily search for alumni based on location, industry, and skills.
 
 ## UI Ideas
-![alt text]({E7BA2580-8745-4598-B5B6-A64232E4BA11}.png)
-![alt text]({827B82B7-0149-4A1D-BB86-8FA9172F1513}.png)
-![alt text]({BFF6A733-42F1-4A4C-96B3-D5AD83FBC1E7}.png)
-![alt text]({D7706ED1-5B65-46E7-AF96-5EEECDDD1994}.png)
-![alt text]({9FE2AD2C-4897-41CF-BD0A-E9C4B1575C31}.png)
-![alt text]({E25BF180-0895-4F74-8221-CFD205BBD096}.png)
-![alt text]({13F3773B-A592-417D-B017-2EF2CBA4ABB9}.png)
-![alt text]({39DFA7E4-F840-4A2B-BD8E-F409E1E2D7B1}.png)
+![alt text](<MCA ALumni Network.png>)
 
 ## Technologies Used
 
