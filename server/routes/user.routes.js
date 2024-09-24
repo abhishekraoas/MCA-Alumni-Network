@@ -5,16 +5,14 @@ const bcrypt = require("bcryptjs");
 const {handleUserSignUp, handleUserLogin, updateUserById, deleteUserById} = require("../controllers/user.controllers");
 const jwt = require("jsonwebtoken");
 
-const creatToken = async ()=>{
-  const token = await jwt.sign({ _id: '66e7477faca79561d3fc4e10'}, 'hello',{
-    expiresIn: '2 minute'
-  });
-  console.log(token);
-  const userVerify = await jwt.verify(token, "hello");
-  console.log(userVerify);
-}
-
-
+// const creatToken = async ()=>{
+//   const token = await jwt.sign({ _id: '66e7477faca79561d3fc4e10'}, 'hello',{
+//     expiresIn: '2 minute'
+//   });
+//   console.log(token);
+//   const userVerify = await jwt.verify(token, "hello");
+//   console.log(userVerify);
+// }
 
 router.get("/", (req, res) => {
   res.send("Welcome to MCA Alumni Network");

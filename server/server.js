@@ -9,14 +9,14 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const corsOption={
-    origin:'http://localhost:5173',
-    credentials:true
-};
-app.use(cors(corsOption));
+// const corsOption={
+//     origin:'http://localhost:5173',
+//     credentials:true
+// };
+// app.use(cors(corsOption));
 
 // Middleware for parsing application/json
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.urlencoded({ extended: true }));
 
 
 // app.use(bodyParser.json());

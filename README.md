@@ -52,7 +52,7 @@ Before you begin, make sure you have the following installed:
 
 2. **Navigate to the project directory:**
    ```bash
-   cd MMMUT-MCA-Alumni-Network
+   cd MCA-Alumni-Network
    ```
 
 3. **Install backend dependencies:**
@@ -63,7 +63,7 @@ Before you begin, make sure you have the following installed:
 
 4. **Install frontend dependencies:**
    ```bash
-   cd ../frontend
+   cd ../client
    npm install
    ```
 
@@ -78,43 +78,45 @@ Before you begin, make sure you have the following installed:
 2. **Configure environment variables:**
    - In the backend folder, create a `.env` file and add the following:
      ```
-     PORT=5000
-     MONGO_URI=<your_mongodb_connection_string>
-     JWT_SECRET=<your_jwt_secret>
+     PORT=3000
+     URL_DB=<your_mongodb_connection_string>
+     SECRET_KEY=<your_jwt_secret>
      ```
 
 3. **Start the backend server:**
    ```bash
    cd backend
-   npm start
+   npm run dev
    ```
 
 4. **Start the frontend development server:**
    ```bash
-   cd frontend
-   npm start
+   cd client
+   npm run dev
    ```
 
-   The frontend should now be running at `http://localhost:3000`, and the backend at `http://localhost:5000`.
+   The frontend should now be running at `http://localhost:5173`, and the backend at `http://localhost:3000`.
 
 ### Directory Structure
 
 The project is divided into two main directories: `frontend` and `backend`.
 
 ```
-MMMUT-MCA-Alumni-Network/
+MCA-Alumni-Network/
 │
 ├── backend/                 # Node.js server and API
-│   ├── config/              # Database and JWT configurations
 │   ├── controllers/         # Request handling and business logic
+│   ├── middlewares/         # Database and JWT configurations
 │   ├── models/              # MongoDB schemas and models
 │   ├── routes/              # API endpoints
 │   └── server.js            # Main server file
+│   ├── connectionDB.js      
+
 │
 ├── frontend/                # React.js frontend
 │   ├── src/
 │   │   ├── components/      # Reusable UI components
-│   │   ├── pages/           # Different views like Home, Profile, Login
+│   │   ├── assets/           # images
 │   │   ├── context/         # Context API for state management
 │   │   └── App.js           # Main entry point for the frontend
 │   └── public/

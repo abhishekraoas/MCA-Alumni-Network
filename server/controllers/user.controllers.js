@@ -1,5 +1,6 @@
-const user = require("../models/user.model");
+const userModel = require("../models/user.model");
 const jwt = require('jsonwebtoken');
+const auth = require("../middlewares/auth.middlewares");
 
 
 
@@ -7,20 +8,23 @@ const jwt = require('jsonwebtoken');
 async function handleUserSignUp(req, res) {
     try {
 
-        const user = new userModel({
-          fullname: req.body.fullname,
-          email: req.body.email,
-          password: req.body.password,
-          linkedin: req.body.linkedin,
-          github: req.body.github,
-          passOutYear: req.body.passOutYear,
-          rollNo: req.body.rollNo,
-          jobRole: req.body.jobRole,
-          currentCompany: req.body.currentCompany,
-          gender: req.body.gender,
-          city: req.body.city,
-          state: req.body.state,
-        });
+        const user = new userModel(req.body);
+
+        //   {
+          
+        //   fullname: req.body.fullname,
+        //   email: req.body.email,
+        //   password: req.body.password,
+        //   linkedin: req.body.linkedin,
+        //   github: req.body.github,
+        //   passOutYear: req.body.passOutYear,
+        //   rollNo: req.body.rollNo,
+        //   jobRole: req.body.jobRole,
+        //   currentCompany: req.body.currentCompany,
+        //   gender: req.body.gender,
+        //   city: req.body.city,
+        //   state: req.body.state,
+        // });
      
         const token = await user.generateAuthToken();
         const userData = await user.save();
@@ -35,9 +39,8 @@ async function handleUserSignUp(req, res) {
 // Login User Account
 async function handleUserLogin(req, res) {
     try {
-        const email = req.body.email;
-        const password = req.body.password;
-        const user = await userModel.findOne({ email: email });
+        const {email,password} = req.body;
+        const user = await userModel.findOne({email});
         const isMatch = await bcrypt.compare(password, user.password);
         const token = await user.generateAuthToken();
         
