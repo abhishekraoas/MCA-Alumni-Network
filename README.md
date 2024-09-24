@@ -146,12 +146,7 @@ We welcome contributions! If you would like to contribute to this project, pleas
    git push origin feature/your-feature-name
    ```
 5. Open a pull request to the main branch.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
+\
 
 **Contact Information**
 
