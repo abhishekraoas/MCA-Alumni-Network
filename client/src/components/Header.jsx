@@ -27,9 +27,19 @@ const Header = () => {
             <a href="#" className="hover:text-gray-300">
               Contact
             </a>
+            <a href="#" className="hover:text-gray-300">
+              Sign Up
+            </a>
+            <a href="#" className="hover:text-gray-300">
+              Log In
+            </a>
+            
           </nav>
 
-          <label className="flex cursor-pointer place-items-center">
+
+          {/* For Dark theme */}
+
+          {/* <label className="flex cursor-pointer place-items-center">
             <input
               type="checkbox"
               value="synthwave"
@@ -64,7 +74,7 @@ const Header = () => {
             >
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
-          </label>
+          </label> */}
 
           {/* Mobile Menu Button */}
           <button
@@ -116,6 +126,19 @@ const Header = () => {
                 className="block text-sm font-semibold hover:text-gray-300"
               >
                 Contact
+              </a>
+              <a
+                href="#"
+                className="block text-sm font-semibold hover:text-gray-300"
+              >
+                Sign Up
+              </a>
+
+              <a
+                href="#"
+                className="block text-sm font-semibold hover:text-gray-300"
+              >
+                Log In
               </a>
             </div>
           </nav>

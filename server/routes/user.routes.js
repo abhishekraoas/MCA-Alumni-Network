@@ -55,5 +55,18 @@ router.get("/alumni/:id", async (req, res) => {
   }
 });
 
+//Log Out
+router.get("/alumni/logout", (req, res) => {
+  try {
+    res.clearCookie("jwt");
+    res.send("Logged Out");
+    
+  } catch (err) {
+    res.status(500).send(err);
+  }
+  
+  
+});
+
 
 module.exports = router;

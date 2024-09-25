@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.6.0",
     "@heroicons/react": "^2.1.5",
+    "mdb-react-ui-kit": "^9.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

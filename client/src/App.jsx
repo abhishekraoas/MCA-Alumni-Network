@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import Header from "./components/Header";
+import Register from "./components/Register";
 // import Profile from "./components/Profile";
 
 export default function App() {
@@ -22,8 +23,9 @@ export default function App() {
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
         <UserCard user={user} />
       </div>
-      <SignUp />
-      <Login />
+      <Register />
+      <SignUp/>
+      {/* <Login /> */}
       {/* <Profile/> */}
       <Footer />
     </>
