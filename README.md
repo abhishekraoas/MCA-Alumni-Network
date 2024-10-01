@@ -15,10 +15,10 @@ Welcome to the **MMMUT MCA Alumni Network**, an exclusive platform that connects
 ![alt text](<MCA ALumni Network.png>)
 
 ## Important Instructions
-1- Before any updation in the code of your editor you must have to first use "git pull" command for the code updation or syncing.
-2- Backend is already done. You have to only design the Modern UI of this project. You don't need to do the backend.
-3- You can use any UI library or framework you want.
-4- Please make sure the UI is responsive and looks good on all devices.
+- Before any updation in the code of your editor you must have to first use "git pull" command for the code updation or syncing.
+- Backend is already done. You have to only design the Modern UI of this project. You don't need to do the backend.
+- You can use any UI library or framework you want.
+- Please make sure the UI is responsive and looks good on all devices.
 
 ## Technologies Used
 
