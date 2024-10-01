@@ -53,7 +53,7 @@ const Register = () => {
       state: user.state,
     }
 
-    console.log(formUserData);
+    // console.log(formUserData);
 
   };
 
