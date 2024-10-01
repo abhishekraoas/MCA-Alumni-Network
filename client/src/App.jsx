@@ -20,11 +20,9 @@ export default function App() {
   return (
     <>
       <Header />
-      <div className="flex items-center justify-center min-h-screen bg-gray-100">
-        <UserCard user={user} />
-      </div>
+      
       <Register />
-      <SignUp/>
+      {/* <SignUp/> */}
       {/* <Login /> */}
       {/* <Profile/> */}
       <Footer />
