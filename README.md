@@ -14,7 +14,7 @@ Welcome to the **MMMUT MCA Alumni Network**, an exclusive platform that connects
 ## UI Ideas
 ![alt text](<MCA ALumni Network.png>)
 
-## Important Intructions
+## Important Instructions
 Backend is already done. You have to only design the Modern UI of this project. You don't need to do the backend.
 
 
