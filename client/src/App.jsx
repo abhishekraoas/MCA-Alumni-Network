@@ -1,5 +1,5 @@
 import React from "react";
-import "./index.css";
+import './index.css';
 import UserCard from "./components/UserCards";
 import Footer from "./components/Footer";
 import SignUp from "./components/SignUp";
@@ -19,6 +19,12 @@ export default function App() {
   };
   return (
     <>
+    <div style={{
+      height: '100vh',
+      overflowY: 'scroll',
+      scrollbarWidth: 'thin',
+      scrollbarColor: '#d3d3d3 #f1f1f1',
+      }}>
       <Header />
       
       <Register />
@@ -26,6 +32,7 @@ export default function App() {
       {/* <Login /> */}
       {/* <Profile/> */}
       <Footer />
+    </div>
     </>
   );
 }
