@@ -6,6 +6,7 @@ import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import Header from "./components/Header";
 import Register from "./components/Register";
+import Contact from "./components/Contact"
 // import Profile from "./components/Profile";
 
 export default function App() {
@@ -25,6 +26,7 @@ export default function App() {
       {/* <SignUp/> */}
       {/* <Login /> */}
       {/* <Profile/> */}
+      <Contact />
       <Footer />
     </>
   );
