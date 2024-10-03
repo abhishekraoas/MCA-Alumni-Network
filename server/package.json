@@ -18,7 +18,10 @@
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.5.2",
+
     "server": "file:",
     "validator": "^13.12.0"
+    "express-rate-limit": "^7.4.0"
+
   }
 }
