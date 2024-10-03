@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Database Connection
-connectToMongoDB(process.env.URL);
+connectToMongoDB(process.env.URL_DB);
 
 app.use(userRouter);
 
