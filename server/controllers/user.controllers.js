@@ -15,7 +15,7 @@ const handleUserSignUp = async (req, res) => {
     }
 
     // Check if roll number already exists
-    const existingRollNo = await userModel.findOne({ rollNo });
+    const existingRollNo = await userModel.findOne({ rollNo: { $eq: rollNo } });
     if (existingRollNo) {
       return res.status(400).json({ message: "Roll number already exists" });
     }
