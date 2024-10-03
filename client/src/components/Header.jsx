@@ -29,6 +29,9 @@ const Header = () => {
             <Link to="/contact" className="hover:text-gray-300">
               Contact Us
             </Link>
+            <Link to="/admin" className="hover:text-gray-300">
+              Admin Dashboard
+            </Link>
             <Link to="/register" className="hover:text-gray-300">
               Register as Alumni
             </Link>
@@ -66,22 +69,40 @@ const Header = () => {
         {isOpen && (
           <nav className="md:hidden">
             <div className="px-6 pt-4 pb-2 space-y-2">
-              <Link to="/" className="block text-sm font-semibold hover:text-gray-300">
+              <Link
+                to="/"
+                className="block text-sm font-semibold hover:text-gray-300"
+              >
                 Home
               </Link>
-              <Link to="/about" className="block text-sm font-semibold hover:text-gray-300">
+              <Link
+                to="/about"
+                className="block text-sm font-semibold hover:text-gray-300"
+              >
                 About
               </Link>
-              <Link to="/alumni" className="block text-sm font-semibold hover:text-gray-300">
-                 Alumni
+              <Link
+                to="/alumni"
+                className="block text-sm font-semibold hover:text-gray-300"
+              >
+                Alumni
               </Link>
-              <Link to="/contact" className="block text-sm font-semibold hover:text-gray-300">
+              <Link
+                to="/contact"
+                className="block text-sm font-semibold hover:text-gray-300"
+              >
                 Contact
               </Link>
-              <Link to="/register" className="block text-sm font-semibold hover:text-gray-300">
+              <Link
+                to="/register"
+                className="block text-sm font-semibold hover:text-gray-300"
+              >
                 Register as Alumni
               </Link>
-              <Link to="/login" className="block text-sm font-semibold hover:text-gray-300">
+              <Link
+                to="/login"
+                className="block text-sm font-semibold hover:text-gray-300"
+              >
                 Log In
               </Link>
             </div>
