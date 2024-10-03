@@ -14,14 +14,16 @@ import {
   MDBIcon,
   MDBCheckbox,
 } from "mdb-react-ui-kit";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     fullName: "",
     email: "",
     password: "",
     github: "",
-    linkedIn: "",
+    linkedin: "",
     passOutYear: "",
     rollNo: "",
     jobRole: "",
@@ -30,20 +32,23 @@ const Register = () => {
     city: "",
     state: "",
   });
+  const [error, setError] = useState("");
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setUser({ ...user, [id]: value });
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+  
     const formUserData = {
       fullName: user.fullName,
       email: user.email,
       password: user.password,
       github: user.github,
-      linkedIn: user.linkedIn,
+      linkedin: user.linkedIn,
       passOutYear: user.passOutYear,
       rollNo: user.rollNo,
       jobRole: user.jobRole,
@@ -51,10 +56,31 @@ const Register = () => {
       gender: user.gender,
       city: user.city,
       state: user.state,
+    };
+  
+    try {
+      const response = await fetch("http://localhost:3000/alumni/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formUserData),
+      });
+  
+      if (response.ok) {
+        const result = await response.json();
+        console.log("User signed up successfully", result);
+        navigate("/login");
+      } else {
+        // Handling non-2xx responses (like 400, 500)
+        const errorResponse = await response.json();
+        setError(errorResponse.message || "Registration failed");
+        console.error("Failed to sign up:", errorResponse);
+      }
+    } catch (error) {
+      setError("Registration failed. Please try again.");
+      console.error("Error in signing up:", error);
     }
-
-    // console.log(formUserData);
-
   };
 
 
@@ -74,6 +100,7 @@ const Register = () => {
               <p className="text-center h3 fw-bold mx-1 mx-md-4 mt-4 text-black font-bold">
                 Register As Alumni
               </p>
+              {error && <div className="text-red-500 text-center">{error}</div>}
 
               <div className="avatar mx-auto">
                 <div className=" ring-primary ring-offset-base-100 w-24 rounded-full ring ring-offset-2 mb-4">
@@ -130,8 +157,8 @@ const Register = () => {
                 <MDBIcon fab icon="linkedin me-3" size="lg" />
                 <MDBInput
                   label="LinkedIn URL"
-                  id="linkedin"
-                  type="linkedin"
+                  id="linkedIn"
+                  type="linkedIn"
                   required={true}
                   value={user.linkedIn}
                 />
