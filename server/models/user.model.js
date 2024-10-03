@@ -101,14 +101,7 @@ userSchema.methods.generateAuthToken = async function () {
   
 }
 
-//Hashing Password
-userSchema.pre("save", async function (next) {
-     if (this.isModified('password')) {
-    //  const hashPassword = await bcrypt.hash(password, 10);
-     this.password = await bcrypt.hash(this.password, 10);
-    }
-    next();
-})
+
 
 //Model
 const User = mongoose.model("User", userSchema);
