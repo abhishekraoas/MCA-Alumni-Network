@@ -7,10 +7,14 @@ import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import Header from "./components/Header";
 import Register from "./components/Register";
+
 import ScrollTop from "./components/ScrollTop";
 import About from "./components/About";
 import OurAlumni from "./components/OurAlumni";
 import Contact from "./components/Contact";
+
+import Contact from "./components/Contact"
+
 // import Profile from "./components/Profile";
 
 export default function App() {
@@ -31,6 +35,7 @@ export default function App() {
       scrollbarColor: '#d3d3d3 #f1f1f1',
       }}> */}
       
+
       <Header />
       <ScrollTop/>  
       <Routes>
@@ -42,7 +47,14 @@ export default function App() {
           <Route path="/our-alumni" element={<OurAlumni />} />
           <Route path="/contact" element={<Contact />} />
           {/* <Route path="/profile" element={<UserProfile />} /> */}
-        </Routes>
+       </Routes>
+
+      <Register />
+      {/* <SignUp/> */}
+      {/* <Login /> */}
+      {/* <Profile/> */}
+      <Contact />
+
       <Footer />
     {/* </div> */}
     </BrowserRouter>
