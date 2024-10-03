@@ -10,7 +10,7 @@ const Header = () => {
 
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    navigate("/login");
   };
 
   return (
@@ -34,7 +34,7 @@ const Header = () => {
             Home
           </Link>
           <Link
-            to="/about"
+            to="/about-us"
             className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
           >
             About Us
@@ -46,7 +46,7 @@ const Header = () => {
             Our Alumni
           </Link>
           <Link
-            to="/contact"
+            to="/contact-us"
             className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
           >
             Contact Us
@@ -65,7 +65,7 @@ const Header = () => {
                 to="/register"
                 className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
               >
-                Register
+                Register as Alumni
               </Link>
               <Link
                 to="/login"
@@ -131,7 +131,7 @@ const Header = () => {
               Home
             </Link>
             <Link
-              to="/about"
+              to="/about-us"
               className="block hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300"
             >
               About Us
@@ -143,7 +143,7 @@ const Header = () => {
               Our Alumni
             </Link>
             <Link
-              to="/contact"
+              to="/contact-us"
               className="block hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300"
             >
               Contact Us
@@ -154,7 +154,7 @@ const Header = () => {
                   to="/register"
                   className="block hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300"
                 >
-                  Register
+                  Register as Alumni
                 </Link>
                 <Link
                   to="/login"
