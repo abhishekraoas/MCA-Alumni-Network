@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
 });
 
 // Creating User Account
-router.post("/alumni/signup", handleUserSignUp);
+router.post("/alumni/register", handleUserSignUp);
 
 // Login User Account
 router.post("/alumni/login", handleUserLogin);

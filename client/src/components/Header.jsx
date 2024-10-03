@@ -28,13 +28,13 @@ const Header = () => {
             <Link to="/" className="hover:text-gray-300">
               Home
             </Link>
-            <Link to="/about" className="hover:text-gray-300">
+            <Link to="/about-us" className="hover:text-gray-300">
               About Us
             </Link>
             <Link to="/alumni" className="hover:text-gray-300">
               Our Alumni
             </Link>
-            <Link to="/contact" className="hover:text-gray-300">
+            <Link to="/contact-us" className="hover:text-gray-300">
               Contact Us
             </Link>
             

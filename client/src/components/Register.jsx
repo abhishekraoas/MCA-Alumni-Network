@@ -59,7 +59,7 @@ const Register = () => {
     };
   
     try {
-      const response = await fetch("http://localhost:3000/alumni/signup", {
+      const response = await fetch("http://localhost:3000/alumni/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
