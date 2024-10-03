@@ -27,7 +27,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 // Database Connection
-connectToMongoDB("mongodb://127.0.0.1:27017/mca-alumni1");
+connectToMongoDB(process.env.URL_DB);
 
 app.use(userRouter);
 
