@@ -27,7 +27,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 // Database Connection
-connectToMongoDB("mongodb://localhost:27017/mca-alumni");
+connectToMongoDB(process.env.url);
 
 app.use(userRouter);
 
