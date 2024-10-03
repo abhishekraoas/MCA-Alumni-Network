@@ -9,7 +9,7 @@ const handleUserSignUp = async (req, res) => {
     const { email, rollNo } = req.body;
 
     // Check if email already exists
-    const existingEmail = await userModel.findOne({ email });
+    const existingEmail = await userModel.findOne({ email: { $eq: email } });
     if (existingEmail) {
       return res.status(400).json({ message: "Email already exists" });
     }
