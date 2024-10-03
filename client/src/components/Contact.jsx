@@ -1,3 +1,16 @@
+
+import React from 'react'
+
+const Contact = () => {
+  return (
+    <div>
+      Contact Page Component
+    </div>
+  )
+}
+
+export default Contact
+
 import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
 import wave from "../assets/wave.png";

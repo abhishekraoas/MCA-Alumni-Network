@@ -1,6 +1,7 @@
 import React from "react";
 import image from "../assets/image.png";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const logIn = ()=>{
   const [formData, setFormData] = useState({
@@ -24,7 +25,6 @@ const handleLogin = async (e) =>{
     console.log(err);
   }
 };
-
 
 
 
@@ -119,12 +119,7 @@ const Login = () => {
                 </button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Don’t have an account yet?{" "}
-                  <a
-                    href="#"
-                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                  >
-                    Sign up
-                  </a>
+                  <Link to='/signup' className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign Up</Link>
                 </p>
               </form>
             </div>
@@ -137,3 +132,4 @@ const Login = () => {
 };
 
 export default Login;
+

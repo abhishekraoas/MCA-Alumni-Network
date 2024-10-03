@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
@@ -9,37 +10,34 @@ const Header = () => {
       <header className="bg-white-900 text-black">
         <div className="container px-6 py-4 mx-auto flex justify-between items-center">
           <div>
-            <a href="#" className="text-lg font-bold">
+            <Link to="/" className="text-lg font-bold">
               MCA Alumni Network
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Menu */}
           <nav className="hidden md:flex space-x-4 text-sm">
-            <a href="#" className="hover:text-gray-300">
+            <Link to="/" className="hover:text-gray-300">
               Home
-            </a>
-            <a href="#" className="hover:text-gray-300">
+            </Link>
+            <Link to="/about" className="hover:text-gray-300">
               About
-            </a>
-            <a href="#" className="hover:text-gray-300">
+            </Link>
+            <Link to="/our-alumni" className="hover:text-gray-300">
               Our Alumni
-            </a>
-            <a href="#" className="hover:text-gray-300">
+            </Link>
+            <Link to="/contact" className="hover:text-gray-300">
               Contact
-            </a>
-            <a href="#" className="hover:text-gray-300">
+            </Link>
+            <Link to="/signup" className="hover:text-gray-300">
               Sign Up
-            </a>
-            <a href="#" className="hover:text-gray-300">
+            </Link>
+            <Link to="/login" className="hover:text-gray-300">
               Log In
-            </a>
-            
+            </Link>
           </nav>
 
           <ThemeToggle />
-
-          
 
           {/* Mobile Menu Button */}
           <button
@@ -68,43 +66,24 @@ const Header = () => {
         {isOpen && (
           <nav className="md:hidden">
             <div className="px-6 pt-4 pb-2 space-y-2">
-              <a
-                href="#"
-                className="block text-sm font-semibold hover:text-gray-300"
-              >
+              <Link to="/" className="block text-sm font-semibold hover:text-gray-300">
                 Home
-              </a>
-              <a
-                href="#"
-                className="block text-sm font-semibold hover:text-gray-300"
-              >
+              </Link>
+              <Link to="/about" className="block text-sm font-semibold hover:text-gray-300">
                 About
-              </a>
-              <a
-                href="#"
-                className="block text-sm font-semibold hover:text-gray-300"
-              >
-                Services
-              </a>
-              <a
-                href="#"
-                className="block text-sm font-semibold hover:text-gray-300"
-              >
+              </Link>
+              <Link to="/our-alumni" className="block text-sm font-semibold hover:text-gray-300">
+                Our Alumni
+              </Link>
+              <Link to="/contact" className="block text-sm font-semibold hover:text-gray-300">
                 Contact
-              </a>
-              <a
-                href="#"
-                className="block text-sm font-semibold hover:text-gray-300"
-              >
+              </Link>
+              <Link to="/signup" className="block text-sm font-semibold hover:text-gray-300">
                 Sign Up
-              </a>
-
-              <a
-                href="#"
-                className="block text-sm font-semibold hover:text-gray-300"
-              >
+              </Link>
+              <Link to="/login" className="block text-sm font-semibold hover:text-gray-300">
                 Log In
-              </a>
+              </Link>
             </div>
           </nav>
         )}

@@ -15,7 +15,8 @@
     "@heroicons/react": "^2.1.5",
     "mdb-react-ui-kit": "^9.0.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",

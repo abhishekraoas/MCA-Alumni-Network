@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import image from "../assets/image.png";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -257,9 +258,7 @@ const SignUp = () => {
         <div className="mt-6 text-center">
           <p className="text-gray-600 text-sm">
             Already have an account?{" "}
-            <a href="#" className="text-blue-500 hover:underline">
-              Sign In
-            </a>
+            <Link to='/login' className="text-blue-500 hover:underline">Sign in</Link>
           </p>
         </div>
       </div>
