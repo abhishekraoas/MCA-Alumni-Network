@@ -1,9 +1,17 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { Link ,useNavigate} from "react-router-dom"; // Import Link from react-router-dom
+import { useAuth } from "../middleware/AuthContext";
 import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
 
   return (
     <div>
@@ -29,15 +37,34 @@ const Header = () => {
             <Link to="/contact" className="hover:text-gray-300">
               Contact Us
             </Link>
-            <Link to="/admin" className="hover:text-gray-300">
-              Admin Dashboard
-            </Link>
-            <Link to="/register" className="hover:text-gray-300">
-              Register as Alumni
-            </Link>
-            <Link to="/login" className="hover:text-gray-300">
-              Log In
-            </Link>
+            
+            
+
+            {!user ? (
+              <>
+                <Link to="/register" className="hover:text-gray-300">
+                Register as Alumni
+                </Link>
+                <Link to="/login" className="hover:text-gray-300">
+                  Log In
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link to="/admin" className="hover:text-gray-300">
+                  Dashboard
+                </Link>
+                <Link to="/profile" className="hover:text-gray-300">
+                  Profile
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="hover:text-gray-300 focus:outline-none"
+                >
+                  Logout
+                </button>
+              </>
+            )}
           </nav>
 
           <ThemeToggle />
