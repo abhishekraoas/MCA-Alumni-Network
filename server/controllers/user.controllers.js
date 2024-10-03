@@ -1,60 +1,72 @@
 const userModel = require("../models/user.model");
 const jwt = require('jsonwebtoken');
 const auth = require("../middlewares/auth.middlewares");
-
-
+const bcrypt = require("bcryptjs");
 
 // Creating User Account
-async function handleUserSignUp(req, res) {
-    try {
+const handleUserSignUp = async (req, res) => {
+  try {
+    const { email, rollNo } = req.body;
 
-        const user = new userModel(req.body);
+    // Check if email already exists
+    const existingEmail = await userModel.findOne({ email: { $eq: email } });
+    if (existingEmail) {
+      return res.status(400).json({ message: "Email already exists" });
+    }
 
-        //   {
-          
-        //   fullname: req.body.fullname,
-        //   email: req.body.email,
-        //   password: req.body.password,
-        //   linkedin: req.body.linkedin,
-        //   github: req.body.github,
-        //   passOutYear: req.body.passOutYear,
-        //   rollNo: req.body.rollNo,
-        //   jobRole: req.body.jobRole,
-        //   currentCompany: req.body.currentCompany,
-        //   gender: req.body.gender,
-        //   city: req.body.city,
-        //   state: req.body.state,
-        // });
-     
-        const token = await user.generateAuthToken();
-        const userData = await user.save();
-        res.status(201).send(user);
-        console.log("User Account Created Successfully");
-      } catch (err) {
-        res.send(err);
-        res.status(400).send("Unable to save data");
-      }
-}
+    // Check if roll number already exists
+    const existingRollNo = await userModel.findOne({ rollNo: { $eq: rollNo } });
+    if (existingRollNo) {
+      return res.status(400).json({ message: "Roll number already exists" });
+    }
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
+    // Create new user
+    const user = new userModel({ ...req.body, password: hashedPassword });
+    await user.save();
+
+    // Send success response
+    res.status(201).json({ message: "User registered successfully", user });
+  } catch (err) {
+    console.error("Error during registration:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
 
 // Login User Account
-async function handleUserLogin(req, res) {
-    try {
-        const {email,password} = req.body;
-        const user = await userModel.findOne({email});
-        const isMatch = await bcrypt.compare(password, user.password);
-        const token = await user.generateAuthToken();
-        
-        if (isMatch) {
-          res.send("Login Successfull");
-          console.log(user);
-          
-        } else { 
-          res.send("Password Invalid");
-        }
-      } catch (err) {
-        res.status(400).send("Invalid Credentials");
-      }
-}
+const handleUserLogin = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    
+    // Validate email and password
+    if (!email || !password) {
+      return res.status(400).json({ message: "Missing credentials" });
+    }
+
+    // Find user by email
+    const user = await userModel.findOne({ email: { $eq: email } });
+    if (!user) {
+      return res.status(400).json({ message: "User not found " });
+    }
+
+    // Compare passwords
+    const isMatch = await bcrypt.compare(password, user.password);
+  
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
+
+    // Generate token (if applicable)
+    const token = await user.generateAuthToken();
+    res.status(200).json({ message: "Login successful", token, user });
+  } catch (err) {
+    console.error("Error during login:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
 
 // Update Alumni Data
 async function updateUserById(req, res) {

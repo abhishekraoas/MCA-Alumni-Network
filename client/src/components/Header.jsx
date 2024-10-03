@@ -1,15 +1,26 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; 
+import { Link, useNavigate } from "react-router-dom"; // Single import for Link
+import { useAuth } from "../middleware/AuthContext";
 import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
 
   return (
     <header className="bg-gray-900 text-white shadow-lg">
       <div className="container mx-auto flex justify-between items-center px-6 py-4">
         <div>
-          <Link to="/" className="text-2xl font-extrabold text-white tracking-wider transition transform hover:scale-105 hover:text-gray-300">
+          <Link
+            to="/"
+            className="text-2xl font-extrabold text-white tracking-wider transition transform hover:scale-105 hover:text-gray-300"
+          >
             MCA Alumni Network
           </Link>
         </div>
@@ -21,50 +32,64 @@ const Header = () => {
             className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
           >
             Home
-            <span className="absolute inset-0 rounded-lg border-2 border-transparent hover:border-blue-400 transition-all duration-300 ease-in-out"></span>
           </Link>
           <Link
             to="/about"
             className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
           >
             About Us
-            <span className="absolute inset-0 rounded-lg border-2 border-transparent hover:border-blue-400 transition-all duration-300 ease-in-out"></span>
           </Link>
           <Link
             to="/alumni"
             className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
           >
             Our Alumni
-            <span className="absolute inset-0 rounded-lg border-2 border-transparent hover:border-blue-400 transition-all duration-300 ease-in-out"></span>
           </Link>
           <Link
             to="/contact"
             className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
           >
             Contact Us
-            <span className="absolute inset-0 rounded-lg border-2 border-transparent hover:border-blue-400 transition-all duration-300 ease-in-out"></span>
           </Link>
-          <Link
-            to="/admin"
-            className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
-          >
-            Admin Dashboard
-            <span className="absolute inset-0 rounded-lg border-2 border-transparent hover:border-blue-400 transition-all duration-300 ease-in-out"></span>
-          </Link>
-          <Link
-            to="/register"
-            className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
-          >
-            Register
-            <span className="absolute inset-0 rounded-lg border-2 border-transparent hover:border-blue-400 transition-all duration-300 ease-in-out"></span>
-          </Link>
-          <Link
-            to="/login"
-            className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
-          >
-            Log In
-            <span className="absolute inset-0 rounded-lg border-2 border-transparent hover:border-blue-400 transition-all duration-300 ease-in-out"></span>
-          </Link>
+          {user && (
+            <Link
+              to="/admin"
+              className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+            >
+              Admin Dashboard
+            </Link>
+          )}
+          {!user ? (
+            <>
+              <Link
+                to="/register"
+                className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+              >
+                Register
+              </Link>
+              <Link
+                to="/login"
+                className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+              >
+                Log In
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/profile"
+                className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+              >
+                Profile
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+              >
+                Logout
+              </button>
+            </>
+          )}
         </nav>
 
         {/* Theme Toggle */}
@@ -123,18 +148,37 @@ const Header = () => {
             >
               Contact Us
             </Link>
-            <Link
-              to="/register"
-              className="block hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300"
-            >
-              Register
-            </Link>
-            <Link
-              to="/login"
-              className="block hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300"
-            >
-              Log In
-            </Link>
+            {!user ? (
+              <>
+                <Link
+                  to="/register"
+                  className="block hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300"
+                >
+                  Register
+                </Link>
+                <Link
+                  to="/login"
+                  className="block hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300"
+                >
+                  Log In
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/profile"
+                  className="block hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300"
+                >
+                  Profile
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="block w-full text-left hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300"
+                >
+                  Logout
+                </button>
+              </>
+            )}
           </div>
         </nav>
       )}
