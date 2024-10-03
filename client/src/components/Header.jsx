@@ -21,13 +21,13 @@ const Header = () => {
               Home
             </Link>
             <Link to="/about" className="hover:text-gray-300">
-              About
+              About Us
             </Link>
             <Link to="/alumni" className="hover:text-gray-300">
               Our Alumni
             </Link>
             <Link to="/contact" className="hover:text-gray-300">
-              Contact
+              Contact Us
             </Link>
             <Link to="/register" className="hover:text-gray-300">
               Register as Alumni
