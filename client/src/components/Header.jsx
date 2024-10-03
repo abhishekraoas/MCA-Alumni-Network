@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Single import for Link
+import { Link, useNavigate } from "react-router-dom"; // Single import for Link and useNavigate
 import { useAuth } from "../middleware/AuthContext";
 import ThemeToggle from "./ThemeToggle";
 
