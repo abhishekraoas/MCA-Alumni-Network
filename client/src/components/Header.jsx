@@ -23,14 +23,14 @@ const Header = () => {
             <Link to="/about" className="hover:text-gray-300">
               About
             </Link>
-            <Link to="/our-alumni" className="hover:text-gray-300">
+            <Link to="/alumni" className="hover:text-gray-300">
               Our Alumni
             </Link>
             <Link to="/contact" className="hover:text-gray-300">
               Contact
             </Link>
-            <Link to="/signup" className="hover:text-gray-300">
-              Sign Up
+            <Link to="/register" className="hover:text-gray-300">
+              Register as Alumni
             </Link>
             <Link to="/login" className="hover:text-gray-300">
               Log In
@@ -72,14 +72,14 @@ const Header = () => {
               <Link to="/about" className="block text-sm font-semibold hover:text-gray-300">
                 About
               </Link>
-              <Link to="/our-alumni" className="block text-sm font-semibold hover:text-gray-300">
-                Our Alumni
+              <Link to="/alumni" className="block text-sm font-semibold hover:text-gray-300">
+                 Alumni
               </Link>
               <Link to="/contact" className="block text-sm font-semibold hover:text-gray-300">
                 Contact
               </Link>
-              <Link to="/signup" className="block text-sm font-semibold hover:text-gray-300">
-                Sign Up
+              <Link to="/register" className="block text-sm font-semibold hover:text-gray-300">
+                Register as Alumni
               </Link>
               <Link to="/login" className="block text-sm font-semibold hover:text-gray-300">
                 Log In
