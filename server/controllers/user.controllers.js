@@ -47,7 +47,7 @@ const handleUserLogin = async (req, res) => {
     }
 
     // Find user by email
-    const user = await userModel.findOne({ email });
+    const user = await userModel.findOne({ email: { $eq: email } });
     if (!user) {
       return res.status(400).json({ message: "User not found " });
     }
