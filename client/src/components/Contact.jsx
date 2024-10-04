@@ -7,7 +7,6 @@ import avatar from "../assets/avatar.svg";
 const Contact = () => {
   const form = useRef();
 
-
   // used EmailJs
   // npm i @emailjs/browser
   const sendEmail = (e) => {
