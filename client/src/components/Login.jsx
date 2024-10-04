@@ -35,7 +35,7 @@ const Login = () => {
 
       if (response.ok) {
         login(data.user, data.token);
-        navigate("/admin"); // Redirect to dashboard or home page
+        navigate("/user/Dashboard"); // Redirect to dashboard or home page
       } else {
         setError(data.message || "Login failed");
       }
