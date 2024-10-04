@@ -1,16 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const userModel = require("../models/user.model");
-const bcrypt = require("bcryptjs");
+// const bcrypt = require("bcryptjs");
 const {handleUserSignUp, handleUserLogin, updateUserById, deleteUserById} = require("../controllers/user.controllers");
-const jwt = require("jsonwebtoken");
-const rateLimit = require("express-rate-limit");
+// const jwt = require("jsonwebtoken");
 
-// Rate limiter middleware
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // limit each IP to 100 requests per windowMs
-});
 
 // const creatToken = async ()=>{
 //   const token = await jwt.sign({ _id: '66e7477faca79561d3fc4e10'}, 'hello',{
@@ -26,7 +20,7 @@ router.get("/", (req, res) => {
 });
 
 // Creating User Account
-router.post("/alumni/register", limiter, handleUserSignUp);
+router.post("/alumni/register", handleUserSignUp);
 
 // Login User Account
 router.post("/alumni/login", handleUserLogin);
