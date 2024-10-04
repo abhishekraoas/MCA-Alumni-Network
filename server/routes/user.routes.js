@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const userModel = require("../models/user.model");
 // const bcrypt = require("bcryptjs");
-const {handleUserSignUp, handleUserLogin, updateUserById, deleteUserById} = require("../controllers/user.controllers");
+const {handleUserSignUp, handleUserLogin, updateUserById, deleteUserById, logoutUser, getAlumniById} = require("../controllers/user.controllers");
 // const jwt = require("jsonwebtoken");
 
 
@@ -42,32 +42,10 @@ router.get("/alumni", async (req, res) => {
 });
 
 // Get Alumni Data by ID
-router.get("/alumni/:id", async (req, res) => {
-  try {
-    const rollNo = req.params.id;
-    const user = await userModel.findOne({ rollNo: rollNo });
-    if (!user) {
-      return res.status(404).send("user doesn't exists");
-    } else {
-      res.send(user);
-    }
-  } catch (err) {
-    res.status(404).send(err);
-  }
-});
+router.get("/alumni/:id", getAlumniById);
 
 //Log Out
-router.get("/alumni/logout", (req, res) => {
-  try {
-    res.clearCookie("jwt");
-    res.send("Logged Out");
-    
-  } catch (err) {
-    res.status(500).send(err);
-  }
-  
-  
-});
+router.get("/alumni/logout", logoutUser);
 
 
 module.exports = router;
