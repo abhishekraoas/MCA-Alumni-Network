@@ -98,11 +98,37 @@ async function deleteUserById(req, res) {
       }
 }
 
+async function getAlumniById(req, res){
+  try {
+    const rollNo = req.params.id;
+    const user = await userModel.findOne({ rollNo: rollNo });
+    if (!user) {
+      return res.status(404).send("user doesn't exists");
+    } else {
+      res.send(user);
+    }
+  } catch (err) {
+    res.status(404).send(err);
+  }
+}
+
+async function logoutUser(req, res){
+  try {
+    res.clearCookie("jwt");
+    res.send("Logged Out");
+    
+  } catch (err) {
+    res.status(500).send(err);
+  }
+}
+
 
 
 module.exports = {
     handleUserSignUp,
     handleUserLogin,
     updateUserById,
-    deleteUserById
+    deleteUserById,
+    getAlumniById,
+    logoutUser
 }
