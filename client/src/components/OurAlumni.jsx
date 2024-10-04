@@ -2,7 +2,6 @@ import React from "react";
 import UserCards from "./UserCards";
 
 const OurAlumni = () => {
-
   const user = {
     name: "AbhiShek Rao",
     email: "johndoe@example.com",
@@ -16,8 +15,10 @@ const OurAlumni = () => {
     <>
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap -mx-4">
-        <div className="w-full md:w-1/2 xl:w-1/3 p
-        x-4 mb-8">
+          <div
+            className="w-full md:w-1/2 xl:w-1/3 p
+        x-4 mb-8"
+          >
             <UserCards user={user} />
           </div>
           <div className="w-full md:w-1/2 xl:w-1/3 px-4 mb-8">
@@ -25,13 +26,10 @@ const OurAlumni = () => {
           </div>
           <div className="w-full md:w-1/2 xl:w-1/3 px-4 mb-8">
             <UserCards user={user} />
-  
           </div>
-          </div>
-
-    </div>
-</>
-   
+        </div>
+      </div>
+    </>
   );
 };
 
