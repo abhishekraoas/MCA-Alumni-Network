@@ -40,27 +40,29 @@ const handleUserLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Validate email and password
-    if (!email || !password) {
-      return res.status(400).json({ message: "Missing credentials" });
-    }
-
     // Find user by email
     const user = await userModel.findOne({ email: { $eq: email } });
     if (!user) {
-      return res.status(400).json({ message: "User not found " });
+      return res.status(400).json({ message: "Invalid credentials" });
     }
 
-    // Compare passwords
+    // Compare password
     const isMatch = await bcrypt.compare(password, user.password);
-
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
-    // Generate token (if applicable)
-    const token = await user.generateAuthToken();
-    res.status(200).json({ message: "Login successful", token, user });
+    // Generate JWT token
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
+    // Send success response
+    res.cookie("jwt", token, {
+      httpOnly: true,
+      maxAge: 3600000,
+    });
+    res.status(200).json({ message: "Logged in successfully", user, token });
   } catch (err) {
     console.error("Error during login:", err);
     res.status(500).json({ message: "Server error" });

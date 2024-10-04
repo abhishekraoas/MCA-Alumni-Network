@@ -65,7 +65,6 @@ const Register = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formUserData),
-        credentials: 'include'
       });
   
       if (response.ok) {
@@ -76,7 +75,7 @@ const Register = () => {
         // Handling non-2xx responses (like 400, 500)
         const errorResponse = await response.json();
         setError(errorResponse.message || "Registration failed");
-        console.error("Failed to sign up:", errorResponse);
+        alert("Failed to sign up:", errorResponse.message);
       }
     } catch (error) {
       setError("Registration failed. Please try again.");
