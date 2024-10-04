@@ -18,30 +18,27 @@ import AdminDashboard from "./components/AdminDashboard";
 export default function App() {
   return (
     <AuthProvider>
-    <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/about-us" element={<About />} />
-        <Route path="/alumni" element={<OurAlumni />} />
-        <Route path="/contact-us" element={<Contact />} />
-        <Route path="/admin" 
-        
-        element={
-          <ProtectedRoute>
-
-            <AdminDashboard />
-
-          </ProtectedRoute>
-
-      }
-         />
-        {/* <Route path="/profile" element={<UserProfile />} /> */}
-      </Routes>
-      <Footer />
-    </Router>
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/about-us" element={<About />} />
+          <Route path="/alumni" element={<OurAlumni />} />
+          <Route path="/contact-us" element={<Contact />} />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <AdminDashboard />
+              </ProtectedRoute>
+            }
+          />
+          {/* <Route path="/profile" element={<UserProfile />} /> */}
+        </Routes>
+        <Footer />
+      </Router>
     </AuthProvider>
   );
 }

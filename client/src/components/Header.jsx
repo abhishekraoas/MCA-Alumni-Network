@@ -8,14 +8,12 @@ const Header = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
-
   const handleLogout = () => {
     logout();
     navigate("/login");
   };
 
   return (
-
     <header className="bg-gray-900 text-white shadow-lg">
       <div className="container mx-auto flex justify-between items-center px-6 py-4">
         <div>
@@ -185,6 +183,7 @@ const Header = () => {
         </nav>
       )}
     </header>
-  )};
+  );
+};
 
 export default Header;

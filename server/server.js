@@ -41,7 +41,6 @@ app.use(express.json());
  */
 connectToMongoDB(process.env.URL_DB);
 
-
 app.use(userRouter);
 app.listen(PORT, () => {
   console.log(`App is listening on port ${PORT}`);
