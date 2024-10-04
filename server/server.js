@@ -16,7 +16,8 @@ const PORT = process.env.PORT || 3000;
 // Allow requests from localhost:5173 (development environment)
 // In production, update the origin to the deployed URL
 const corsOption = {
-  origin: process.env.CLIENT_URL || "http://localhost:5173",
+  origin: process.env.CLIENT_URL || "http://127.0.0.1:5173",
+  methods:'GET, POST, PUT, PATCH, DELETE',
   credentials: true,
 };
 

@@ -48,7 +48,7 @@ const Register = () => {
       email: user.email,
       password: user.password,
       github: user.github,
-      linkedin: user.linkedIn,
+      linkedin: user.linkedin,
       passOutYear: user.passOutYear,
       rollNo: user.rollNo,
       jobRole: user.jobRole,
@@ -65,6 +65,7 @@ const Register = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formUserData),
+        credentials: 'include'
       });
   
       if (response.ok) {
@@ -86,7 +87,7 @@ const Register = () => {
 
   return (
     
-    <form onChange={handleInputChange}>
+    <form onSubmit={handleFormSubmit}>
 
     <MDBContainer fluid>
       <MDBCard className="text-black m-5" style={{ borderRadius: "25px" }}>
@@ -117,6 +118,7 @@ const Register = () => {
                   className="w-100"
                   required={true}
                   value={user.fullName}
+                  onChange={handleInputChange}
                 />
               </div>
 
@@ -128,6 +130,7 @@ const Register = () => {
                   type="email"
                   required={true}
                   value={user.email}
+                  onChange={handleInputChange}
                 />
               </div>
 
@@ -139,6 +142,7 @@ const Register = () => {
                   type="password"
                   required={true}
                   value={user.password}
+                  onChange={handleInputChange}
                 />
               </div>
 
@@ -150,6 +154,7 @@ const Register = () => {
                   type="github"
                   required={true}
                   value={user.github}
+                  onChange={handleInputChange}
                 />
               </div>
 
@@ -160,7 +165,8 @@ const Register = () => {
                   id="linkedIn"
                   type="linkedIn"
                   required={true}
-                  value={user.linkedIn}
+                  value={user.linkedin}
+                  onChange={handleInputChange}
                 />
               </div>
 
@@ -172,6 +178,7 @@ const Register = () => {
                   type="passOutYear"
                   required={true}
                   value={user.passOutYear}
+                  onChange={handleInputChange}
                 />
               </div>
 
@@ -183,6 +190,7 @@ const Register = () => {
                   type="rollNo"
                   required={true}
                   value={user.rollNo}
+                  onChange={handleInputChange}
                 />
               </div>
 
@@ -192,7 +200,9 @@ const Register = () => {
                 label="Job Role" 
                 id="jobRole" 
                 type="jobRole" 
-                value={user.jobRole}/>
+                value={user.jobRole}
+                onChange={handleInputChange}
+                />
               </div>
 
               <div className="d-flex flex-row align-items-center mb-4">
@@ -202,6 +212,7 @@ const Register = () => {
                   id="currentCompany"
                   type="currentCompany"
                   value={user.currentCompany}
+                  onChange={handleInputChange}
                 />
               </div>
 
@@ -214,6 +225,7 @@ const Register = () => {
                     className="w-full bg-white px-3 py-2 border focus:outline-none focus:ring focus:ring-blue-400 text-black"
                     required={true}
                     value={user.gender}
+                    onChange={handleInputChange}
                   >
                     <option value="gendr">Please select Gender</option>
                     <option value="female">Female</option>
@@ -233,7 +245,9 @@ const Register = () => {
                 id="city" 
                 type="city" 
                 required={true} 
-                value={user.city}/>
+                value={user.city}
+                onChange={handleInputChange}
+                />
               </div>
 
               <div className="d-flex flex-row align-items-center mb-4">
@@ -244,6 +258,7 @@ const Register = () => {
                   type="state"
                   required={true}
                   value={user.state}
+                  onChange={handleInputChange}
                 />
               </div>
 

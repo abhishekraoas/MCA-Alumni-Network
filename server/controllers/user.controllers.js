@@ -70,8 +70,8 @@ const handleUserLogin = async (req, res) => {
 // Update Alumni Data
 async function updateUserById(req, res) {
   try {
-    const _id = req.params.id;
-    const user = await userModel.findByIdAndUpdate(_id, req.body, {
+    const rollNo = req.params.id;
+    const user = await userModel.findOneAndUpdate({rollNo}, req.body, {
       new: true,
     });
     res.send(user);
@@ -84,8 +84,8 @@ async function updateUserById(req, res) {
 // Delete Alumni Data
 async function deleteUserById(req, res) {
   try {
-    // const _id = req.params.id;
-    const user = await userModel.findByIdAndDelete(req.params.id);
+    const rollNo = req.params.id;
+    const user = await userModel.findOneAndDelete({rollNo});
     if (!user) {
       return res.status(404).send("user doesn't exists");
     } else {
