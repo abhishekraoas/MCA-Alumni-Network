@@ -1,5 +1,5 @@
-import React from "react";
-import SocialMedia from "./SocialMedia";
+import React from 'react';
+import SocialMedia from './SocialMedia';
 
 const UserCard = ({ user }) => {
   return (
@@ -17,7 +17,7 @@ const UserCard = ({ user }) => {
         <h3 className="text-l font-regular text-black-200">{user.role}</h3>
         <h3 className="text-l font-regular text-black-200">{user.passOut}</h3>
 
-        <SocialMedia />
+       <SocialMedia/>
 
         {/* <p className="text-gray-600">{user.email}</p> */}
       </div>
