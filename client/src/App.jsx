@@ -21,7 +21,7 @@ export default function App() {
     <>
       <Header />
 
-      <Register />
+      {/* <Register /> */}
       {/* <SignUp/> */}
       <Login />
       {/* <Profile/> */}
