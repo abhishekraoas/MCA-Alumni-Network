@@ -1,5 +1,5 @@
 import React from "react";
-import rightImage from 'src';
+import rightImage from '../assets/Right.png';
  const Home = () => {
     return (
         <div>
