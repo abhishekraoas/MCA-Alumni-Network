@@ -1,58 +1,195 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Typography, Box, Grid, Button, Card, CardContent, CardMedia } from "@mui/material";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom"; // Import the useNavigate hook for redirection
+import { useNavigate } from "react-router-dom";
+import { FaFacebookF, FaTwitter, FaLinkedin, FaInstagram, FaYoutube } from "react-icons/fa"; // Import social media icons
 
 const Home = () => {
   const navigate = useNavigate(); // Initialize navigate for redirection
+
+  // State for typing effect
+  const [textIndex, setTextIndex] = useState(0);
+  const [isTyping, setIsTyping] = useState(true);
+  const descriptionText = "Empowering connections among MCA alumni to foster collaboration, mentorship, and professional growth within a dynamic and supportive community.";
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (isTyping) {
+      if (textIndex < descriptionText.length) {
+        setTextIndex((prev) => prev + 1);
+      } else {
+        setIsTyping(false);
+      }
+    } else {
+      // Start deleting the text
+      if (textIndex > 0) {
+        setTextIndex((prev) => prev - 1); // Delete character
+      } else {
+        // Reset to typing state after deleting
+        setIsTyping(true);
+      }
+    }
+  }, 100);
+
+  return () => clearInterval(interval);
+}, [textIndex, isTyping]);
 
   return (
     <div>
       {/* Hero Section */}
       <Box
         sx={{
-          height: '100vh',
-          backgroundImage: `url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&q=80&w=1080')`,
+          height: '95vh',
+          backgroundImage: `url('https://plus.unsplash.com/premium_photo-1701590725824-3d0482721544?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center',
+          justifyContent: 'space-between', // Space between description and image
+          padding: '0 5%', // Add padding for better layout
           color: '#fff',
-          textAlign: 'center',
           position: 'relative',
         }}
       >
         <Box sx={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.6)' }} />
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2 }}
-        >
-          <Typography variant="h2" gutterBottom sx={{ fontWeight: 'bold', letterSpacing: 1 }}>
-            Welcome to the MCA Alumni Network
-          </Typography>
-          <Typography variant="h5" gutterBottom sx={{ mb: 3 }}>
-            Connecting Leaders and Innovators
-          </Typography>
-          <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.3 }}>
-            <Button
-              variant="contained"
-              sx={{
-                mt: 2,
-                backgroundColor: '#f06292',
-                color: '#fff',
-                '&:hover': { backgroundColor: '#e91e63' }, // Hover effect
-              }}
-              onClick={() => navigate('/register')} // Redirect on click
-            >
-              Join Us
-            </Button>
-          </motion.div>
-        </motion.div>
-      </Box>
 
-      {/* Features Section */}
+        {/* Left Section - Description and Buttons */}
+        <Box sx={{ zIndex: 2, textAlign: 'left', maxWidth: '45%'}}>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.2 }}
+          >
+            <Typography variant="h2" gutterBottom sx={{ fontWeight: 'bold', letterSpacing: 1 }}>
+              Welcome to the MCA Alumni Network
+            </Typography>
+            <Typography variant="h6" gutterBottom sx={{ mb: 3 }}>
+              {descriptionText.slice(0, textIndex)}
+            </Typography>
+            
+            {/* Buttons */}
+            <Box sx={{ display: 'flex', gap: 3, mt: 2 }}>
+              <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.3 }}>
+                <Button
+                  variant="contained"
+                  sx={{
+                    backgroundColor: '#f06292',
+                    borderRadius: 3,
+                    color: '#fff',
+                    '&:hover': { backgroundColor: '#e91e63' },
+                  }}
+                  onClick={() => navigate('/about-us')}
+                >
+                  About Us
+                </Button>
+              </motion.div>
+              
+              <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.3 }}>
+                <Button
+                  variant="contained"
+                  sx={{
+                    backgroundColor: '#f06292',
+                    borderRadius: 3,
+                    color: '#fff',
+                    '&:hover': { backgroundColor: '#e91e63' },
+                  }}
+                  onClick={() => navigate('/register')}
+                >
+                  Join Us
+                </Button>
+              </motion.div>
+            </Box>
+          </motion.div>
+        </Box>
+
+        {/* Right Section - Hover Motion Image */}
+        <motion.div
+          initial={{ y: 0 }}
+          animate={{ y: [-10, 0, 10, 0] }}
+          transition={{ duration: 3, repeat: Infinity }} 
+          whileHover={{ scale: 1.1, rotate: 3 }} 
+        >
+          <img
+            src="https://astrorei.io/static/dedicated-dev-team-729a36b484a719fd20b200f39d614100.svg"
+            alt="MCA Alumni Network"
+            style={{
+              maxWidth: '550px', 
+              boxShadow: '0',
+              marginRight: '90px',
+            }}
+          />
+        </motion.div>
+
+        <Box
+      sx={{
+        position: 'fixed',
+        top: '45%',
+        right: 20,
+        transform: 'translateY(-50%)',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 4,
+      }}
+    >
+      {/* Each anchor has its own inline styles for hover effects */}
+      <a
+        href="https://facebook.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="social-icon"
+        style={{ color: '#F5DEB3', transition: 'color 0.3s ease', textDecoration: 'none' }}
+        onMouseOver={(e) => (e.currentTarget.style.color = '#4267B2')}
+        onMouseOut={(e) => (e.currentTarget.style.color = '#F5DEB3')}
+      >
+        <FaFacebookF size={40} />
+      </a>
+      <a
+        href="https://twitter.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="social-icon"
+        style={{ color: '#F5DEB3', transition: 'color 0.3s ease', textDecoration: 'none' }}
+        onMouseOver={(e) => (e.currentTarget.style.color = '#1DA1F2')}
+        onMouseOut={(e) => (e.currentTarget.style.color = '#F5DEB3')}
+      >
+        <FaTwitter size={40} />
+      </a>
+      <a
+        href="https://linkedin.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="social-icon"
+        style={{ color: '#F5DEB3', transition: 'color 0.3s ease', textDecoration: 'none' }}
+        onMouseOver={(e) => (e.currentTarget.style.color = '#0077B5')}
+        onMouseOut={(e) => (e.currentTarget.style.color = '#F5DEB3')}
+      >
+        <FaLinkedin size={40} />
+      </a>
+      <a
+        href="https://instagram.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="social-icon"
+        style={{ color: '#F5DEB3', transition: 'color 0.3s ease', textDecoration: 'none' }}
+        onMouseOver={(e) => (e.currentTarget.style.color = '#E1306C')}
+        onMouseOut={(e) => (e.currentTarget.style.color = '#F5DEB3')}
+      >
+        <FaInstagram size={40} />
+      </a>
+      <a
+        href="https://youtube.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="social-icon"
+        style={{ color: 'wheat', transition: 'color 0.3s ease', textDecoration: 'none' }}
+        onMouseOver={(e) => (e.currentTarget.style.color = '#FF0000')}
+        onMouseOut={(e) => (e.currentTarget.style.color = '#F5DEB3')}
+      >
+        <FaYoutube size={40} />
+      </a>
+    </Box>
+      </Box>
+    
       {/* Features Section */}
 <Container sx={{ mt: 8, mb: 4 }}>
   <Typography variant="h4" align="center" gutterBottom sx={{ mb: 4 }}>
@@ -242,13 +379,3 @@ const Home = () => {
 };
 
 export default Home;
-
-
-
-
-
-
-
-
-
-
