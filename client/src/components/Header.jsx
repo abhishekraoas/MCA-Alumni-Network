@@ -8,12 +8,14 @@ const Header = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
+
   const handleLogout = () => {
     logout();
     navigate("/login");
   };
 
   return (
+
     <header className="bg-gray-900 text-white shadow-lg">
       <div className="container mx-auto flex justify-between items-center px-6 py-4">
         <div>
@@ -53,10 +55,10 @@ const Header = () => {
           </Link>
           {user && (
             <Link
-              to="/admin"
+              to="/user/dashboard"
               className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
             >
-              Admin Dashboard
+               Dashboard
             </Link>
           )}
           {!user ? (
@@ -76,12 +78,7 @@ const Header = () => {
             </>
           ) : (
             <>
-              <Link
-                to="/profile"
-                className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
-              >
-                Profile
-              </Link>
+             
               <button
                 onClick={handleLogout}
                 className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
@@ -183,7 +180,6 @@ const Header = () => {
         </nav>
       )}
     </header>
-  );
-};
+  )};
 
 export default Header;

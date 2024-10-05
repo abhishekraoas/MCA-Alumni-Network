@@ -42,13 +42,13 @@ const Register = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     setError("");
-
+  
     const formUserData = {
       fullName: user.fullName,
       email: user.email,
       password: user.password,
       github: user.github,
-      linkedin: user.linkedIn,
+      linkedin: user.linkedin,
       passOutYear: user.passOutYear,
       rollNo: user.rollNo,
       jobRole: user.jobRole,
@@ -57,7 +57,7 @@ const Register = () => {
       city: user.city,
       state: user.state,
     };
-
+  
     try {
       const response = await fetch("http://localhost:3000/alumni/register", {
         method: "POST",
@@ -66,7 +66,7 @@ const Register = () => {
         },
         body: JSON.stringify(formUserData),
       });
-
+  
       if (response.ok) {
         const result = await response.json();
         console.log("User signed up successfully", result);
@@ -74,13 +74,14 @@ const Register = () => {
       } else {
         const errorResponse = await response.json();
         setError(errorResponse.message || "Registration failed");
-        console.error("Failed to sign up:", errorResponse);
+        alert("Failed to sign up:", errorResponse.message);
       }
     } catch (error) {
       setError("Registration failed. Please try again.");
       console.error("Error in signing up:", error);
     }
   };
+
 
   return (
     <div className="bg-[#e0e5ec] p-5 font-['Roboto',sans-serif]">
