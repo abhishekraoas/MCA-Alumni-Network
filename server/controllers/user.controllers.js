@@ -3,6 +3,7 @@ const userModel = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 const auth = require("../middlewares/auth.middlewares");
 const bcrypt = require("bcryptjs");
+const logger = require("../logger")
 
 
 // Creating User Account
