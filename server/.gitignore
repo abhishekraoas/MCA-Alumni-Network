@@ -1,2 +1,98 @@
-node_modules
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Dependency directories
+jspm_packages/
+bower_components/
+
+# Testing
+coverage/
+*.lcov
+
+# Build directories
+dist/
+build/
+out/
+tmp/
+temp/
+
+# Cache directories
+.cache/
+.npm/
+.eslintcache
+.parcel-cache/
+.vscode/
+.vs/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+*.swp
+.sass-cache/
+*.pid
+*.seed
+*.pid.lock
+
+# Environment variables
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Ignore local database
+*.sqlite3
+*.sqlite
+*.db
+
+# IDE and Editor settings
+.vscode/
+.idea/
+*.iml
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# macOS specific files
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+# Package files
+*.tgz
+*.zip
+*.tar
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+*.orig
+*.swp
+
+# Compiled files
+*.out
+*.o
+*.class
+
+# Windows-specific
+*.exe
+*.dll
+*.bat
+*.cmd
+
+# Linux-specific
+*.so

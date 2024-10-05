@@ -13,14 +13,16 @@ import {
   MDBInput,
   MDBIcon,
 } from "mdb-react-ui-kit";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     fullName: "",
     email: "",
     password: "",
     github: "",
-    linkedIn: "",
+    linkedin: "",
     passOutYear: "",
     rollNo: "",
     jobRole: "",
@@ -29,6 +31,7 @@ const Register = () => {
     city: "",
     state: "",
   });
+ 
 
   const [errors, setErrors] = useState({});
 
@@ -36,6 +39,7 @@ const Register = () => {
     const { id, value } = e.target;
     setUser({ ...user, [id]: value });
   };
+
 
   const validateForm = () => {
     let formErrors = {};
@@ -103,7 +107,6 @@ const Register = () => {
     }
 
     return formErrors;
-  };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -118,6 +121,7 @@ const Register = () => {
   };
 
   return (
+
     <form>
       <MDBContainer fluid>
         <MDBCard className="text-black m-5" style={{ borderRadius: "25px" }}>
@@ -286,6 +290,7 @@ const Register = () => {
                     <option value="other">Other</option>
                   </select>
                 </div>
+
                 {errors.gender && (
                   <p className="text-danger">{errors.gender}</p>
                 )}

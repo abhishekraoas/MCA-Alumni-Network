@@ -10,24 +10,29 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@fortawesome/fontawesome-free": "^6.6.0",
     "@heroicons/react": "^2.1.5",
+    "client": "file:",
     "mdb-react-ui-kit": "^9.0.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.3.0",
+    "react-router-dom": "^6.26.2",
+    "recharts": "^2.12.7"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
-    "autoprefixer": "^10.4.19",
+    "autoprefixer": "^10.4.20",
     "daisyui": "^4.12.10",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.3",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
-    "postcss": "^8.4.40",
-    "tailwindcss": "^3.4.7",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
     "vite": "^5.3.4"
   }
 }

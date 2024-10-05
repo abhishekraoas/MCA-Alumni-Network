@@ -12,9 +12,15 @@ Welcome to the **MMMUT MCA Alumni Network**, an exclusive platform that connects
 - **Search Functionality**: Easily search for alumni based on location, industry, and skills.
 
 ## UI Ideas
+
 ![alt text](<MCA ALumni Network.png>)
 
+## Login UI
+
+![alt text](image.png)
+
 ## Important Instructions
+
 - Before any updation in the code of your editor you must have to first use "git pull" command for the code updation or syncing.
 - Backend is already done. You have to only design the Modern UI of this project. You don't need to do the backend.
 - You can use any UI library or framework you want.
@@ -22,21 +28,22 @@ Welcome to the **MMMUT MCA Alumni Network**, an exclusive platform that connects
 
 ## Technologies Used
 
-- **Frontend**: 
+- **Frontend**:
   - React.js (JavaScript framework)
   - Tailwind CSS (for responsive and customizable UI)
   - Material-UI (for component styling)
-  
 - **Backend**:
+
   - Node.js (JavaScript runtime)
   - Express.js (Node.js framework)
   - MongoDB (Database)
 
-- **Authentication**: 
+- **Authentication**:
+
   - JWT (JSON Web Token) for secure authentication.
   - OAuth2 for third-party login (Google, LinkedIn).
 
-- **Deployment**: 
+- **Deployment**:
   - Vercel for frontend deployment.
   - Heroku for backend deployment.
 
@@ -55,16 +62,19 @@ Before you begin, make sure you have the following installed:
 ### Installation
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/abhishekraoas/MCA-Alumni-Network.git
    ```
 
 2. **Navigate to the project directory:**
+
    ```bash
    cd MCA-Alumni-Network
    ```
 
 3. **Install backend dependencies:**
+
    ```bash
    cd backend
    npm install
@@ -79,12 +89,14 @@ Before you begin, make sure you have the following installed:
 ### Running the Application
 
 1. **Start MongoDB server:**
+
    - If you are using a local MongoDB instance, make sure your MongoDB server is running:
      ```bash
      mongod
      ```
 
 2. **Configure environment variables:**
+
    - In the backend folder, create a `.env` file and add the following:
      ```
      PORT=3000
@@ -93,12 +105,14 @@ Before you begin, make sure you have the following installed:
      ```
 
 3. **Start the backend server:**
+
    ```bash
    cd backend
    npm run dev
    ```
 
 4. **Start the frontend development server:**
+
    ```bash
    cd client
    npm run dev
@@ -119,7 +133,7 @@ MCA-Alumni-Network/
 │   ├── models/              # MongoDB schemas and models
 │   ├── routes/              # API endpoints
 │   └── server.js            # Main server file
-│   ├── connectionDB.js      
+│   ├── connectionDB.js
 
 │
 ├── frontend/                # React.js frontend
@@ -152,12 +166,12 @@ We welcome contributions! If you would like to contribute to this project, pleas
    git push origin feature/your-feature-name
    ```
 5. Open a pull request to the main branch.
-\
+   \
 
 **Contact Information**
 
 If you have any questions or need support, feel free to reach out to the project maintainers at **internetduniya02@gmail.com**.
 
---- 
+---
 
 This `README.md` file gives a clear overview of the project, its features, setup, and instructions on how to contribute or use the application. Let me know if you need any further details!

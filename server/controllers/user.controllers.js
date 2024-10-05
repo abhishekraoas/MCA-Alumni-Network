@@ -1,96 +1,132 @@
 const userModel = require("../models/user.model");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 const auth = require("../middlewares/auth.middlewares");
-
-
+const bcrypt = require("bcryptjs");
 
 // Creating User Account
-async function handleUserSignUp(req, res) {
-    try {
+const handleUserSignUp = async (req, res) => {
+  try {
+    const { email, rollNo } = req.body;
 
-        const user = new userModel(req.body);
+    // Check if email already exists
+    const existingEmail = await userModel.findOne({ email: { $eq: email } });
+    if (existingEmail) {
+      return res.status(400).json({ message: "Email already exists" });
+    }
 
-        //   {
-          
-        //   fullname: req.body.fullname,
-        //   email: req.body.email,
-        //   password: req.body.password,
-        //   linkedin: req.body.linkedin,
-        //   github: req.body.github,
-        //   passOutYear: req.body.passOutYear,
-        //   rollNo: req.body.rollNo,
-        //   jobRole: req.body.jobRole,
-        //   currentCompany: req.body.currentCompany,
-        //   gender: req.body.gender,
-        //   city: req.body.city,
-        //   state: req.body.state,
-        // });
-     
-        const token = await user.generateAuthToken();
-        const userData = await user.save();
-        res.status(201).send(user);
-        console.log("User Account Created Successfully");
-      } catch (err) {
-        res.send(err);
-        res.status(400).send("Unable to save data");
-      }
-}
+    // Check if roll number already exists
+    const existingRollNo = await userModel.findOne({ rollNo: { $eq: rollNo } });
+    if (existingRollNo) {
+      return res.status(400).json({ message: "Roll number already exists" });
+    }
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
+    // Create new user
+    const user = new userModel({ ...req.body, password: hashedPassword });
+    await user.save();
+
+    // Send success response
+    res.status(201).json({ message: "User registered successfully", user });
+  } catch (err) {
+    console.error("Error during registration:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
 
 // Login User Account
-async function handleUserLogin(req, res) {
-    try {
-        const {email,password} = req.body;
-        const user = await userModel.findOne({email});
-        const isMatch = await bcrypt.compare(password, user.password);
-        const token = await user.generateAuthToken();
-        
-        if (isMatch) {
-          res.send("Login Successfull");
-          console.log(user);
-          
-        } else { 
-          res.send("Password Invalid");
-        }
-      } catch (err) {
-        res.status(400).send("Invalid Credentials");
-      }
-}
+const handleUserLogin = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Find user by email
+    const user = await userModel.findOne({ email: { $eq: email } });
+    if (!user) {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
+
+    // Compare password
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
+
+    // Generate JWT token
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
+    // Send success response
+    res.cookie("jwt", token, {
+      httpOnly: true,
+      maxAge: 3600000,
+    });
+    res.status(200).json({ message: "Logged in successfully", user, token });
+  } catch (err) {
+    console.error("Error during login:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
 
 // Update Alumni Data
 async function updateUserById(req, res) {
-    try {
-        const _id = req.params.id;
-        const user = await userModel.findByIdAndUpdate(_id, req.body, {
-          new: true,
-        });
-        res.send(user);
-        console.log("user updated successfully");
-      } catch (err) {
-        res.status(404).send(err);
-      }
+  try {
+    const rollNo = req.params.id;
+    const user = await userModel.findOneAndUpdate({rollNo}, req.body, {
+      new: true,
+    });
+    res.send(user);
+    console.log("user updated successfully");
+  } catch (err) {
+    res.status(404).send(err);
+  }
 }
 
 // Delete Alumni Data
 async function deleteUserById(req, res) {
-    try {
-        // const _id = req.params.id;
-        const user = await userModel.findByIdAndDelete(req.params.id);
-        if (!user) {
-          return res.status(404).send("user doesn't exists");
-        } else {
-          res.send(user);
-          console.log("user deleted successfully");
-        }
-      } catch (err) {
-        res.status(404).send(err);
-      }
+  try {
+    const rollNo = req.params.id;
+    const user = await userModel.findOneAndDelete({rollNo});
+    if (!user) {
+      return res.status(404).send("user doesn't exists");
+    } else {
+      res.send(user);
+      console.log("user deleted successfully");
+    }
+  } catch (err) {
+    res.status(404).send(err);
+  }
 }
 
+async function getAlumniById(req, res) {
+  try {
+    const rollNo = req.params.id;
+    const user = await userModel.findOne({ rollNo: rollNo });
+    if (!user) {
+      return res.status(404).send("user doesn't exists");
+    } else {
+      res.send(user);
+    }
+  } catch (err) {
+    res.status(404).send(err);
+  }
+}
 
+async function logoutUser(req, res) {
+  try {
+    res.clearCookie("jwt");
+    res.send("Logged Out");
+  } catch (err) {
+    res.status(500).send(err);
+  }
+}
 
 module.exports = {
-    handleUserSignUp,
-    handleUserLogin,
-    updateUserById,
-    deleteUserById
-}
+  handleUserSignUp,
+  handleUserLogin,
+  updateUserById,
+  deleteUserById,
+  getAlumniById,
+  logoutUser,
+};
