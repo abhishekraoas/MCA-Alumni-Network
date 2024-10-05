@@ -90,10 +90,11 @@ const Register = () => {
           <MDBCard className="text-black ">
             <MDBCardBody className="rounded-3xl  bg-[#e0e5ec] p-[40px_30px] shadow-[8px_8px_16px_#b3b9c5,-8px_-8px_16px_#ffffff] w-full text-center">
               <MDBRow className="justify-content-center">
-                <MDBCol md="10" lg="6" className="order-2 order-lg-1">
-                  <p className="text-center h3 fw-bold mx-1 mx-md-4 mt-4 text-black font-bold">
+              <p className="text-center h3 fw-bold mx-1 mx-md-4 my-4 text-black font-bold">
                     Register As Alumni
                   </p>
+                <MDBCol md="10" lg="6" className="order-2 order-lg-1">
+                  
                   {error && <div className="text-red-500 text-center">{error}</div>}
                   <MDBRow className="w-100">
                     <MDBCol md="6" className="mb-4">
@@ -249,13 +250,21 @@ const Register = () => {
                 </MDBCol>
               </MDBRow>
 
-              <div className="flex items-center justify-center">
+              <div className="flex items-center justify-center gap-x-4">
                 <button
                   onClick={handleFormSubmit}
-                  className="mb-4 w-40 bg-[#444444] text-white rounded-xl py-2"
+                  className="mb-4 w-40 rounded-xl py-2 bg-[#e0e5ec] shadow-[8px_8px_16px_#b3b9c5,-8px_-8px_16px_#ffffff] text-[#333] text-[1rem] font-bold cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#d1d9e6] hover:shadow-[4px_4px_8px_#b3b9c5,-4px_-4px_8px_#ffffff]"
                   size="lg"
                 >
                   Register
+                </button>
+
+                <button
+                  onClick={() => navigate("/login")}
+                  className="mb-4 w-40 bg-[#e0e5ec] shadow-[8px_8px_16px_#b3b9c5,-8px_-8px_16px_#ffffff] text-[#333] text-[1rem] font-bold cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#d1d9e6] hover:shadow-[4px_4px_8px_#b3b9c5,-4px_-4px_8px_#ffffff]  rounded-xl py-2 "
+                  size="lg"
+                >
+                  Login
                 </button>
               </div>
             </MDBCardBody>
