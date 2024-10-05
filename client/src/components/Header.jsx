@@ -28,18 +28,15 @@ const Header = () => {
             <a href="#" className="hover:text-gray-300">
               Contact
             </a>
-            <a href="#" className="hover:text-gray-300">
+            <a href="/Signup" className="hover:text-gray-300">
               Sign Up
             </a>
-            <a href="#" className="hover:text-gray-300">
+            <a href="/login" className="hover:text-gray-300">
               Log In
             </a>
-            
           </nav>
 
           <ThemeToggle />
-
-          
 
           {/* Mobile Menu Button */}
           <button

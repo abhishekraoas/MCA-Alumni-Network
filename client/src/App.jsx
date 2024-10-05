@@ -20,10 +20,10 @@ export default function App() {
   return (
     <>
       <Header />
-      
+
       <Register />
       {/* <SignUp/> */}
-      {/* <Login /> */}
+      <Login />
       {/* <Profile/> */}
       <Footer />
     </>
