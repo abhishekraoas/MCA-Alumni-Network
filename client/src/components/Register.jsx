@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import image from "../assets/image.png";
+import Image from "../assets/register.svg";
+
 import {
   MDBBtn,
   MDBContainer,
@@ -278,7 +280,7 @@ const Register = () => {
               lg="6"
               className="order-1 order-lg-2 d-flex align-items-center w-30"
             >
-              <MDBCardImage src="\src\assets\register.svg" fluid />
+              <MDBCardImage src={Image} fluid />
             </MDBCol>
           </MDBRow>
         </MDBCardBody>
