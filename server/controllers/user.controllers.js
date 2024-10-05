@@ -3,14 +3,16 @@ const userModel = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 const auth = require("../middlewares/auth.middlewares");
 const bcrypt = require("bcryptjs");
-const logger = require("../logger")
+
+const logger =require("../logger");
+
 
 
 // Creating User Account
 const handleUserSignUp = async (req, res) => {
   try {
     const { email, rollNo } = req.body;
-
+    
     // Check if email already exists
     const existingEmail = await userModel.findOne({ email: { $eq: email } });
     if (existingEmail) {
