@@ -17,46 +17,48 @@ const Header = () => {
   return (
 
     <header className="bg-gray-900 text-white shadow-lg">
-      <div className="container mx-auto flex justify-between items-center px-6 py-4">
-        <div>
-          <Link
-            to="/"
-            className="text-2xl font-extrabold text-white tracking-wider transition transform hover:scale-105 hover:text-gray-300"
-          >
-            MCA Alumni Network
-          </Link>
-        </div>
+      <div className="container mx-auto flex justify-between items-center px-4 py-3">
+      <div>
+      <Link
+        to="/"
+        className="text-2xl font-extrabold text-white tracking-wider transition transform hover:scale-105 hover:text-gray-300 ">
+        <div
+          className="bg-[url('/src/assets/Logo.png')] bg-contain bg-center h-20 w-40 bg-no-repeat p-0 ">
+
+          </div>
+      </Link>
+      </div>
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex space-x-4 lg:space-x-6 text-base font-medium">
           <Link
             to="/"
-            className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+            className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110 hover:bg-sky-700"
           >
             Home
           </Link>
           <Link
             to="/about-us"
-            className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+            className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110 hover:bg-sky-700"
           >
             About Us
           </Link>
           <Link
             to="/alumni"
-            className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+            className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110 hover:bg-sky-700"
           >
             Our Alumni
           </Link>
           <Link
             to="/contact-us"
-            className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+            className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110 hover:bg-sky-700"
           >
             Contact Us
           </Link>
           {user && (
             <Link
               to="/user/dashboard"
-              className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+              className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110 hover:bg-sky-700"
             >
                Dashboard
             </Link>
@@ -65,13 +67,13 @@ const Header = () => {
             <>
               <Link
                 to="/register"
-                className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+                className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110 hover:bg-sky-700"
               >
                 Register as Alumni
               </Link>
               <Link
                 to="/login"
-                className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+                className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110 hover:bg-sky-700"
               >
                 Log In
               </Link>
@@ -81,7 +83,7 @@ const Header = () => {
              
               <button
                 onClick={handleLogout}
-                className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+                className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110 hover:bg-sky-700"
               >
                 Logout
               </button>
@@ -93,6 +95,9 @@ const Header = () => {
         <div className="hidden md:block">
           <ThemeToggle />
         </div>
+        
+        
+        
 
         {/* Mobile Menu Button */}
         <button
@@ -123,25 +128,25 @@ const Header = () => {
           <div className="space-y-2 text-center text-lg font-semibold">
             <Link
               to="/"
-              className="block hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300"
+              className="block hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300 hover:bg-sky-700"
             >
               Home
             </Link>
             <Link
               to="/about-us"
-              className="block hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300"
+              className="block hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300 hover:bg-sky-700"
             >
               About Us
             </Link>
             <Link
               to="/alumni"
-              className="block hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300"
+              className="block hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300 hover:bg-sky-700"
             >
               Our Alumni
             </Link>
             <Link
               to="/contact-us"
-              className="block hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300"
+              className="block hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300 hover:bg-sky-700"
             >
               Contact Us
             </Link>
@@ -149,13 +154,13 @@ const Header = () => {
               <>
                 <Link
                   to="/register"
-                  className="block hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300"
+                  className="block hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300 hover:bg-sky-700"
                 >
                   Register as Alumni
                 </Link>
                 <Link
                   to="/login"
-                  className="block hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300"
+                  className="block hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300 hover:bg-sky-700"
                 >
                   Log In
                 </Link>
@@ -164,13 +169,13 @@ const Header = () => {
               <>
                 <Link
                   to="/profile"
-                  className="block hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300"
+                  className="block hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300 hover:bg-sky-700"
                 >
                   Profile
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="block w-full text-left hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300"
+                  className="block w-full text-left hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300 hover:bg-sky-700"
                 >
                   Logout
                 </button>

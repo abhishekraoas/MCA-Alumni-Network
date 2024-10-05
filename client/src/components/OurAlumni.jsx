@@ -14,7 +14,7 @@ const OurAlumni = () => {
 
   return (
     <>
-      <div className="container mx-auto px-4">
+      <div className="container mt-10 px-4 ">
         <div className="flex flex-wrap -mx-4">
         <div className="w-full md:w-1/2 xl:w-1/3 p
         x-4 mb-8">

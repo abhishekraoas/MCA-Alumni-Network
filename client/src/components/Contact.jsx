@@ -32,7 +32,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="border-2 border-gray-50 shadow shadow-gray-50 mx-auto  w-[1000px] mb-5 relative overflow-hidden">
+    <div className="border-2 border-gray-50 shadow shadow-gray-50 mx-auto  w-[1000px] mb-5 relative overflow-hidden mt-10">
       {/* Add a container for the wave image */}
       <div className="absolute bottom-0 w-full h-[700px]">
         <img src={wave} className="w-full h-full object-cover" alt="wave" />
@@ -59,7 +59,7 @@ const Contact = () => {
               type="text"
               name="user_name"
               placeholder="Name"
-              className="bg-white pl-8 border-2 border-gray-200 font-display focus:outline-none focus:border-primarycolor transition-all duration-500 capitalize text-lg"
+              className="bg-white pl-8 border-2 border-gray-200 font-display focus:outline-none focus:border-primarycolor transition-all duration-500 capitalize text-lg transition placeholder:text-neutral-500 focus:border-neutral-950 focus:outline-none"
             />
           </div>
           <div className="relative mt-8">
@@ -67,7 +67,7 @@ const Contact = () => {
               type="text"
               name="user_email"
               placeholder="Email"
-              className=" bg-white pl-8 border-2 border-gray-200 font-display focus:outline-none focus:border-primarycolor transition-all duration-500 capitalize text-lg"
+              className=" bg-white pl-8 border-2 border-gray-200 font-display focus:outline-none focus:border-primarycolor transition-all duration-500 capitalize text-lg transition placeholder:text-neutral-500 focus:border-neutral-950 focus:outline-none"
             />
           </div>
           <div className="relative mt-8">
@@ -75,12 +75,12 @@ const Contact = () => {
               name="message"
               placeholder="Message..."
               id=""
-              className="resize-none h-[150px] bg-white pl-8 border-2 border-gray-200 font-display focus:outline-none focus:border-primarycolor transition-all duration-500 capitalize text-lg"
+              className="resize-none h-[150px] bg-white pl-8 border-2 border-gray-200 font-display focus:outline-none focus:border-primarycolor transition-all duration-500 capitalize text-lg transition placeholder:text-neutral-500 focus:border-neutral-950 focus:outline-none"
             ></textarea>
           </div>
 
           <button
-            className="z-10 rounded-2xl w-[230px] mt-3 bg-black text-white p-1 font-display focus:outline-none focus:border-primarycolor transition-all duration-500 capitalize text-lg"
+            className="z-10 rounded-2xl w-[230px] mt-3 bg-black text-white p-1 font-display focus:outline-none focus:border-primarycolor transition-all duration-500 capitalize text-lg transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300"
             type="submit"
           >
             Submit
