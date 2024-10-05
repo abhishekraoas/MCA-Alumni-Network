@@ -67,13 +67,11 @@ const Register = () => {
         body: JSON.stringify(formUserData),
       });
 
-
       if (response.ok) {
         const result = await response.json();
         console.log("User signed up successfully", result);
         navigate("/login");
       } else {
-        // Handling non-2xx responses (like 400, 500)
         const errorResponse = await response.json();
         setError(errorResponse.message || "Registration failed");
         console.error("Failed to sign up:", errorResponse);
@@ -85,236 +83,180 @@ const Register = () => {
   };
 
   return (
-    <div className="bg-white">
+    <div className="bg-[#e0e5ec] p-5 font-['Roboto',sans-serif]">
       <form onChange={handleInputChange}>
-        <MDBContainer fluid>
-          <MDBCard className="text-black m-5 ">
-            <MDBCardBody className="rounded-3xl py-4">
-            <MDBRow className="justify-content-center">
-  <MDBCol
-    md="10"
-    lg="6"
-    className="order-1 order-lg-2 d-flex justify-content-center align-items-center"
-  >
-    <MDBCardImage src="\src\assets\register.svg" fluid className="w-3/4" />
-  </MDBCol>
-</MDBRow>
-
-
-              <MDBRow>
-                <MDBRow
-                  md="10"
-                  lg="6"
-                  className="order-2 order-lg-1 d-flex flex-column align-items-center"
-                >
+        <MDBContainer fluid className="">
+          <MDBCard className="text-black ">
+            <MDBCardBody className="rounded-3xl  bg-[#e0e5ec] p-[40px_30px] shadow-[8px_8px_16px_#b3b9c5,-8px_-8px_16px_#ffffff] w-full text-center">
+              <MDBRow className="justify-content-center">
+                <MDBCol md="10" lg="6" className="order-2 order-lg-1">
                   <p className="text-center h3 fw-bold mx-1 mx-md-4 mt-4 text-black font-bold">
                     Register As Alumni
                   </p>
                   {error && <div className="text-red-500 text-center">{error}</div>}
-
-                  <div className="flex justify-center items-center py-4">
-  <div className="avatar">
-    <div className="flex items-center justify-center ring-primary ring-offset-base-100 w-24 rounded-full ring ring-offset-2 mb-4">
-      <img src={image} className="w-24 rounded-full" alt="Avatar" />
-    </div>
-  </div>
-</div>
-
-
-
                   <MDBRow className="w-100">
-                    <MDBCol md="4" className="mb-4">
+                    <MDBCol md="6" className="mb-4">
                       <div className="d-flex flex-row align-items-center">
                         <MDBIcon fas icon="user me-3" size="lg" />
                         <input
                           placeholder="Enter Your Name"
                           id="fullName"
                           type="text"
-                          className="border-t-[#d0d3d6] border-l-[#e1e3e5] 
-                                      border-r-[#fbfcfd] border-b-[#ecf0f3] border-4 bg-[#ECF0F3] w-full rounded-3xl px-2 py-1 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#66B2FF] 
-                                        bg-gradient-to-l from-[#e2e4e6] via-[#e9edf0] to-[#e3e5e7]"
+                          className="w-full p-2 text-[1rem] border-none rounded-3xl bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
                           required
                           value={user.fullName}
                         />
                       </div>
                     </MDBCol>
-
-                    <MDBCol md="4" className="mb-4">
+                    <MDBCol md="6" className="mb-4">
                       <div className="d-flex flex-row align-items-center">
                         <MDBIcon fas icon="envelope me-3" size="lg" />
                         <input
                           placeholder="Enter Your Email"
                           id="email"
                           type="email"
-                          className="border-t-[#d0d3d6] border-l-[#e1e3e5] 
-                                      border-r-[#fbfcfd] border-b-[#ecf0f3] border-4 bg-[#ECF0F3] w-full rounded-3xl px-2 py-1 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#66B2FF] 
-                                        bg-gradient-to-l from-[#e2e4e6] via-[#e9edf0] to-[#e3e5e7]"required
+                          className="w-full p-2 text-[1rem] border-none rounded-3xl bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
+                          required
                           value={user.email}
                         />
                       </div>
                     </MDBCol>
-
-                    <MDBCol md="4" className="mb-4">
+                  </MDBRow>
+                  <MDBRow>
+                    <MDBCol md="6" className="mb-4">
                       <div className="d-flex flex-row align-items-center">
                         <MDBIcon fas icon="lock me-3" size="lg" />
                         <input
                           placeholder="Enter Your Password"
                           id="password"
                           type="password"
-                          className="border-t-[#d0d3d6] border-l-[#e1e3e5] 
-                                      border-r-[#fbfcfd] border-b-[#ecf0f3] border-4 bg-[#ECF0F3] w-full rounded-3xl px-2 py-1 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#66B2FF] 
-                                        bg-gradient-to-l from-[#e2e4e6] via-[#e9edf0] to-[#e3e5e7]"required
+                          className="w-full p-2 text-[1rem] border-none rounded-3xl bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
+                          required
                           value={user.password}
                         />
                       </div>
                     </MDBCol>
-
-                    <MDBCol md="4" className="mb-4">
+                    <MDBCol md="6" className="mb-4">
                       <div className="d-flex flex-row align-items-center">
                         <MDBIcon fab icon="github me-3" size="lg" />
                         <input
                           placeholder="GitHub URL"
                           id="github"
                           type="url"
-                          className="border-t-[#d0d3d6] border-l-[#e1e3e5] 
-                                      border-r-[#fbfcfd] border-b-[#ecf0f3] border-4 bg-[#ECF0F3] w-full rounded-3xl px-2 py-1 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#66B2FF] 
-                                        bg-gradient-to-l from-[#e2e4e6] via-[#e9edf0] to-[#e3e5e7]"value={user.github}
+                          className="w-full p-2 text-[1rem] border-none rounded-3xl bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
+                          value={user.github}
                         />
                       </div>
                     </MDBCol>
-
-                    <MDBCol md="4" className="mb-4">
+                  </MDBRow>
+                  <MDBRow>
+                    <MDBCol md="6" className="mb-4">
                       <div className="d-flex flex-row align-items-center">
                         <MDBIcon fab icon="linkedin me-3" size="lg" />
                         <input
                           placeholder="LinkedIn URL"
                           id="linkedIn"
                           type="url"
-                          className="border-t-[#d0d3d6] border-l-[#e1e3e5] 
-                                      border-r-[#fbfcfd] border-b-[#ecf0f3] border-4 bg-[#ECF0F3] w-full rounded-3xl px-2 py-1 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#66B2FF] 
-                                        bg-gradient-to-l from-[#e2e4e6] via-[#e9edf0] to-[#e3e5e7]"value={user.linkedIn}
+                          className="w-full p-2 text-[1rem] border-none rounded-3xl bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
+                          value={user.linkedin}
                         />
                       </div>
                     </MDBCol>
-
-                    <MDBCol md="4" className="mb-4">
+                    <MDBCol md="6" className="mb-4">
                       <div className="d-flex flex-row align-items-center">
                         <MDBIcon fas icon="user-graduate me-3" size="lg" />
                         <input
                           placeholder="Pass Out Year"
                           id="passOutYear"
                           type="text"
-                          className="border-t-[#d0d3d6] border-l-[#e1e3e5] 
-                                      border-r-[#fbfcfd] border-b-[#ecf0f3] border-4 bg-[#ECF0F3] w-full rounded-3xl px-2 py-1 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#66B2FF] 
-                                        bg-gradient-to-l from-[#e2e4e6] via-[#e9edf0] to-[#e3e5e7]"value={user.passOutYear}
+                          className="w-full p-2 text-[1rem] border-none rounded-3xl bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
+                          value={user.passOutYear}
                         />
                       </div>
                     </MDBCol>
-
-                    <MDBCol md="4" className="mb-4">
+                  </MDBRow>
+                  <MDBRow>
+                    <MDBCol md="6" className="mb-4">
                       <div className="d-flex flex-row align-items-center">
                         <MDBIcon fas icon="graduation-cap me-3" size="lg" />
                         <input
                           placeholder="University Roll No"
                           id="rollNo"
                           type="text"
-                          className="border-t-[#d0d3d6] border-l-[#e1e3e5] 
-                                      border-r-[#fbfcfd] border-b-[#ecf0f3] border-4 bg-[#ECF0F3] w-full rounded-3xl px-2 py-1 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#66B2FF] 
-                                        bg-gradient-to-l from-[#e2e4e6] via-[#e9edf0] to-[#e3e5e7]"value={user.rollNo}
+                          className="w-full p-2 text-[1rem] border-none rounded-3xl bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
+                          value={user.rollNo}
                         />
                       </div>
                     </MDBCol>
-
-                    <MDBCol md="4" className="mb-4">
+                    <MDBCol md="6" className="mb-4">
                       <div className="d-flex flex-row align-items-center">
                         <MDBIcon fas icon="user-tie me-3" size="lg" />
                         <input
                           placeholder="Job Role"
                           id="jobRole"
                           type="text"
-                          className="border-t-[#d0d3d6] border-l-[#e1e3e5] 
-                                      border-r-[#fbfcfd] border-b-[#ecf0f3] border-4 bg-[#ECF0F3] w-full rounded-3xl px-2 py-1 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#66B2FF] 
-                                        bg-gradient-to-l from-[#e2e4e6] via-[#e9edf0] to-[#e3e5e7]"value={user.jobRole}
+                          className="w-full p-2 text-[1rem] border-none rounded-3xl bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
+                          value={user.jobRole}
                         />
                       </div>
                     </MDBCol>
-
-                    <MDBCol md="4" className="mb-4">
+                  </MDBRow>
+                  <MDBRow>
+                    <MDBCol md="6" className="mb-4">
                       <div className="d-flex flex-row align-items-center">
                         <MDBIcon fas icon="building me-3" size="lg" />
                         <input
                           placeholder="Current Company"
                           id="currentCompany"
                           type="text"
-                          className="border-t-[#d0d3d6] border-l-[#e1e3e5] 
-                                      border-r-[#fbfcfd] border-b-[#ecf0f3] border-4 bg-[#ECF0F3] w-full rounded-3xl px-2 py-1 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#66B2FF] 
-                                        bg-gradient-to-l from-[#e2e4e6] via-[#e9edf0] to-[#e3e5e7]"value={user.currentCompany}
+                          className="w-full p-2 text-[1rem] border-none rounded-3xl bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
+                          value={user.currentCompany}
                         />
                       </div>
                     </MDBCol>
-
-                    <MDBCol md="4" className="mb-4">
+                    <MDBCol md="6" className="mb-4">
                       <div className="d-flex flex-row align-items-center">
                         <MDBIcon fas icon="users me-3" size="lg" />
                         <select
                           name="gender"
                           id="gender"
                           required
-                          className="border-t-[#d0d3d6] border-l-[#e1e3e5] 
-                                      border-r-[#fbfcfd] border-b-[#ecf0f3] border-4 bg-[#ECF0F3] w-full rounded-3xl px-2 py-1 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#66B2FF] 
-                                        bg-gradient-to-l from-[#e2e4e6] via-[#e9edf0] to-[#e3e5e7]"value={user.gender}
+                          className="w-full p-2 text-[1rem] border-none rounded-3xl bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
+                          value={user.gender}
                         >
-                          <option value="" disabled className="text-gray-700">
-        Select Gender
-      </option>
-      <option value="Male" className="text-gray-700">Male</option>
-      <option value="Female" className="text-gray-700">Female</option>
-      <option value="Other" className="text-gray-700">Other</option>
-    </select>
-                      </div>
-                    </MDBCol>
-
-                    <MDBCol md="4" className="mb-4">
-                      <div className="d-flex flex-row align-items-center">
-                        <MDBIcon fas icon="city me-3" size="lg" />
-                        <input
-                          placeholder="City"
-                          id="city"
-                          type="text"
-                          className="border-t-[#d0d3d6] border-l-[#e1e3e5] 
-                                      border-r-[#fbfcfd] border-b-[#ecf0f3] border-4 bg-[#ECF0F3] w-full rounded-3xl px-2 py-1 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#66B2FF] 
-                                        bg-gradient-to-l from-[#e2e4e6] via-[#e9edf0] to-[#e3e5e7]"
-                          value={user.city}
-                        />
-                      </div>
-                    </MDBCol>
-
-                    <MDBCol md="4" className="mb-4">
-                      <div className="d-flex flex-row align-items-center text-gray-700">
-                        <MDBIcon fas icon="flag me-3" size="lg" />
-                        <input
-                          placeholder="State"
-                          id="state"
-                          type="text"
-                          className="border-t-[#d0d3d6] border-l-[#e1e3e5] 
-                                      border-r-[#fbfcfd] border-b-[#ecf0f3] border-4 bg-[#ECF0F3] w-full rounded-3xl px-2 py-1 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#66B2FF] 
-                                        bg-gradient-to-l from-[#e2e4e6] via-[#e9edf0] to-[#e3e5e7]"value={user.state}
-                        />
+                          <option value="" disabled className="text-gray-400">
+                            Select Gender
+                          </option>
+                          <option value="male">Male</option>
+                          <option value="female">Female</option>
+                          <option value="other">Other</option>
+                        </select>
                       </div>
                     </MDBCol>
                   </MDBRow>
-                </MDBRow>
+                </MDBCol>
+                <MDBCol
+                  md="10"
+                  lg="4"
+                  className="order-1 order-lg-2 d-flex justify-content-center align-items-center"
+                >
+                  <MDBCardImage
+                    src="\src\assets\register.svg"
+                    fluid
+                    className="w-3/4"
+                  />
+                </MDBCol>
               </MDBRow>
-<div className="flex items-center justify-center">
-              <button
-                onClick={handleFormSubmit}
-                className="mb-4 w-40 bg-[#444444] text-white rounded-xl py-2"
-                size="lg"
-              >
-                Register
-              </button>
+
+              <div className="flex items-center justify-center">
+                <button
+                  onClick={handleFormSubmit}
+                  className="mb-4 w-40 bg-[#444444] text-white rounded-xl py-2"
+                  size="lg"
+                >
+                  Register
+                </button>
               </div>
-              
             </MDBCardBody>
           </MDBCard>
         </MDBContainer>
