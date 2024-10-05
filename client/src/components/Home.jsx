@@ -1,4 +1,5 @@
 import React from "react";
+import rightImage from 'src';
  const Home = () => {
     return (
         <div>
@@ -22,7 +23,7 @@ import React from "react";
                 {/* Right Side: Image */}
                 <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
                     <img
-                    src="/src/assets/Right.png"
+                    src="{rightImage}"
                     alt="Alumni Network"
                     className="max-w-xs lg:max-w-md m-auto rounded-lg  transform transition duration-500 ease-in-out hover:scale-105"
                     />
