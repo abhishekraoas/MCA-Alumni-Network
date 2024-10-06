@@ -3,9 +3,9 @@ import { Container, Typography, Box, Paper, Grid, CardMedia, Button } from "@mui
 import { ArrowForward } from "@mui/icons-material";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import imageFile from '../assets/MCA_Network.webp';
-import imageFile2 from '../assets/MCA_Department.webp';
-import imageFile3 from '../assets/About_Banner.webp';
+// import imageFile from '../assets/MCA_Network.webp';
+// import imageFile2 from '../assets/MCA_Department.webp';
+// import imageFile3 from '../assets/About_Banner.webp';
 
 const About = () => {
   const navigate = useNavigate();
