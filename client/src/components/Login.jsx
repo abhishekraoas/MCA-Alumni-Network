@@ -1,28 +1,60 @@
 import React, { useState } from "react";
+import image from "../assets/image.png";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../middleware/AuthContext";
-import { FaUserCircle } from "react-icons/fa"; // Import React Icons
-
+import { FaUserCircle } from "react-icons/fa"; 
+// Import React Icons
 const Login = () => {
+
   const navigate = useNavigate();
   const { login } = useAuth();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const [error, setError] = useState("");
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  const [error, setError] = useState({ email: "", password: "" });
+
+
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = { email: "", password: "" };
+
+    // Validate email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      newErrors.email = "Please enter a valid email.";
+      isValid = false;
+    }
+
+    // Validate password (minimum 6 characters)
+    if (formData.password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters.";
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
 
+    if (!validateForm()) {
+      console.log("Validation failed");
+      return;
+    }
+
+    console.log("Login Successful");
     try {
-      const response = await fetch("http://localhost:3000/alumni/login", {
+      const response = await fetch(`http://127.0.0.1:3000/alumni/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -39,9 +71,16 @@ const Login = () => {
       } else {
         setError(data.message || "Login failed");
       }
+      const result = await response.json();
+      console.log(result);
     } catch (err) {
       setError("An error occurred during login");
+      console.log(err);
     }
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   return (
@@ -108,7 +147,6 @@ const Login = () => {
         </form>
       </div>
     </div>
-  );
+  )
 };
-
 export default Login;
