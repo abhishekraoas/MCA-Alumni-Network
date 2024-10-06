@@ -17,7 +17,7 @@ This guide will help you get started with the project and make your first contri
 3. **Clone the forked repository** to your local machine:
 
     ```bash
-    git clone https://github.com/<your-github-username>/MCA-Alumni-Network.git
+    git clone https://github.com/abhishekraoas/MCA-Alumni-Network.git
     ```
 
 4. **Navigate to the project directory**:
