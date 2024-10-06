@@ -9,19 +9,50 @@ const Header = () => {
   const navigate = useNavigate();
 
 
+  return (
+    <div>
+      <header className="bg-white-900 text-black">
+        <div className="container px-6 py-4 mx-auto flex justify-between items-center">
+          <div>
+            <a href="#" className="text-lg font-bold">
+              MCA Alumni Network
+            </a>
+          </div>
+
+          {/* Desktop Menu */}
+          <nav className="hidden md:flex space-x-4 text-sm">
+            <a href="#" className="hover:text-gray-300">
+              Home
+            </a>
+            <a href="#" className="hover:text-gray-300">
+              About
+            </a>
+            <a href="#" className="hover:text-gray-300">
+              Our Alumni
+            </a>
+            <a href="#" className="hover:text-gray-300">
+              Contact
+            </a>
+            <a href="/Signup" className="hover:text-gray-300">
+              Sign Up
+            </a>
+            <a href="/login" className="hover:text-gray-300">
+              Log In
+            </a>
+          </nav>
+
+
   const handleLogout = () => {
     logout();
     navigate("/login");
   };
 
-  return (
 
-    <header className="bg-gray-900 text-white shadow-lg">
-      <div className="container mx-auto flex justify-between items-center px-6 py-4">
-        <div>
-          <Link
-            to="/"
-            className="text-2xl font-extrabold text-white tracking-wider transition transform hover:scale-105 hover:text-gray-300"
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden block focus:outline-none"
+            aria-label="Toggle menu"
           >
             MCA Alumni Network
           </Link>
