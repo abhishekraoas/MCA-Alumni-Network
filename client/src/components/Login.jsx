@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-
 import image from "../assets/image.png";
-
-const Login = () => {
-
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../middleware/AuthContext";
 import { FaUserCircle } from "react-icons/fa"; // Import React Icons
+const Login = () => {
+
 
 const Login = () => {
   const navigate = useNavigate();

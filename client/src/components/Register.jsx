@@ -106,7 +106,8 @@ const Register = () => {
       formErrors.state = "State is required.";
     }
 
-    return formErrors;
+      return formErrors;
+    };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -338,7 +339,6 @@ const Register = () => {
         </MDBCard>
       </MDBContainer>
     </form>
-  );
-};
+  )};
 
 export default Register;
