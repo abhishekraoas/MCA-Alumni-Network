@@ -16,7 +16,7 @@ import Events from "./pages/alumini/Events";
 // import Profile from "./components/Profile";
 export default function App() {
   return (
-    <AuthProvider>
+    
       <Router>
         <Header />
         <Routes>
@@ -29,7 +29,7 @@ export default function App() {
           <Route path="/contact-us" element={<Contact />} />
 
           {/* User Protected Routes */}
-
+       
           <Route
             path="/user/dashboard"
             element={
@@ -87,6 +87,5 @@ export default function App() {
 
         <Footer />
       </Router>
-    </AuthProvider>
   );
 }
