@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Container, Typography, Box, Grid, Button, Card, CardContent, CardMedia } from "@mui/material";
+import React from "react";
+import { useEffect, useState } from "react";
+import { Container, Typography, Box, Button, Grid, Card, CardContent, CardMedia } from "@mui/material";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { FaFacebookF, FaTwitter, FaLinkedin, FaInstagram, FaYoutube } from "react-icons/fa"; // Import social media icons
@@ -66,7 +67,7 @@ const Home = () => {
             <Typography variant="h6" gutterBottom sx={{ mb: 3 }}>
               {descriptionText.slice(0, textIndex)}
             </Typography>
-            
+
             {/* Buttons */}
             <Box sx={{ display: 'flex', gap: 3, mt: 2 }}>
               <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.3 }}>
@@ -83,7 +84,7 @@ const Home = () => {
                   About Us
                 </Button>
               </motion.div>
-              
+
               <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.3 }}>
                 <Button
                   variant="contained"
@@ -189,7 +190,7 @@ const Home = () => {
       </a>
     </Box>
       </Box>
-    
+
       {/* Features Section */}
 <Container sx={{ mt: 8, mb: 4 }}>
   <Typography variant="h4" align="center" gutterBottom sx={{ mb: 4 }}>
