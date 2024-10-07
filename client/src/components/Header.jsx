@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Single import for Link and useNavigate
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../middleware/AuthContext";
 import ThemeToggle from "./ThemeToggle";
+
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logout } = useAuth();
@@ -12,49 +13,16 @@ const Header = () => {
     navigate("/login");
   };
 
-
   return (
-    <div>
-      <header className="bg-white-900 text-black">
-        <div className="container px-6 py-4 mx-auto flex justify-between items-center">
-          <div>
-            <a href="#" className="text-lg font-bold">
-              MCA Alumni Network
-            </a>
-          </div>
-
-          {/* Desktop Menu */}
-          <nav className="hidden md:flex space-x-4 text-sm">
-            <a href="#" className="hover:text-gray-300">
-              Home
-            </a>
-            <a href="#" className="hover:text-gray-300">
-              About
-            </a>
-            <a href="#" className="hover:text-gray-300">
-              Our Alumni
-            </a>
-            <a href="#" className="hover:text-gray-300">
-              Contact
-            </a>
-            <a href="/Signup" className="hover:text-gray-300">
-              Sign Up
-            </a>
-            <a href="/login" className="hover:text-gray-300">
-              Log In
-            </a>
-          </nav>
-        </div>
-      </header>
-    </div>
-  )
-
-
-  return (
-
     <header className="bg-gray-900 text-white shadow-lg">
       <div className="container mx-auto flex justify-between items-center px-6 py-4">
-    
+        {/* Logo */}
+        <div>
+          <a href="/" className="text-lg font-bold">
+            MCA Alumni Network
+          </a>
+        </div>
+
         {/* Desktop Menu */}
         <nav className="hidden md:flex space-x-4 lg:space-x-6 text-base font-medium">
           <Link
@@ -81,15 +49,24 @@ const Header = () => {
           >
             Contact Us
           </Link>
-          {user && (
-            <Link
-              to="/user/dashboard"
-              className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
-            >
-               Dashboard
-            </Link>
-          )}
-          {!user ? (
+
+          {/* Conditional Links */}
+          {user ? (
+            <>
+              <Link
+                to="/user/dashboard"
+                className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+              >
+                Dashboard
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
             <>
               <Link
                 to="/register"
@@ -104,22 +81,14 @@ const Header = () => {
                 Log In
               </Link>
             </>
-          ) : (
-            <>
-             
-              <button
-                onClick={handleLogout}
-                className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
-              >
-                Logout
-              </button>
-            </>
           )}
         </nav>
+
         {/* Theme Toggle */}
         <div className="hidden md:block">
           <ThemeToggle />
         </div>
+
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -142,6 +111,7 @@ const Header = () => {
           </svg>
         </button>
       </div>
+
       {/* Mobile Menu */}
       {isOpen && (
         <nav className="md:hidden bg-gray-800 text-white py-2">
@@ -170,6 +140,8 @@ const Header = () => {
             >
               Contact Us
             </Link>
+
+            {/* Conditional Links for Mobile */}
             {!user ? (
               <>
                 <Link
@@ -205,6 +177,7 @@ const Header = () => {
         </nav>
       )}
     </header>
-  )};
-  
+  );
+};
+
 export default Header;

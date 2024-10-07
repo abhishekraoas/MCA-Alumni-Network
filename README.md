@@ -76,7 +76,7 @@ Before you begin, make sure you have the following installed:
 3. **Install backend dependencies:**
 
    ```bash
-   cd backend
+   cd server
    npm install
    ```
 
