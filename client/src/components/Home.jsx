@@ -4,6 +4,7 @@ import { Container, Typography, Box, Button, Grid, Card, CardContent, CardMedia 
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { FaFacebookF, FaTwitter, FaLinkedin, FaInstagram, FaYoutube } from "react-icons/fa"; // Import social media icons
+import ImageWithCursorEffect from "./ImageWithCursorEffect";
 
 const Home = () => {
   const navigate = useNavigate(); // Initialize navigate for redirection
@@ -102,9 +103,10 @@ const Home = () => {
             </Box>
           </motion.div>
         </Box>
-
+        {/* THhis is cursor effect changes made  */}
+        <ImageWithCursorEffect/>
         {/* Right Section - Hover Motion Image */}
-        <motion.div
+        {/* { <motion.div
           initial={{ y: 0 }}
           animate={{ y: [-10, 0, 10, 0] }}
           transition={{ duration: 3, repeat: Infinity }} 
@@ -119,7 +121,7 @@ const Home = () => {
               marginRight: '90px',
             }}
           />
-        </motion.div>
+        </motion.div> } */}
 
         <Box
       sx={{
