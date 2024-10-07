@@ -3,12 +3,9 @@ const userModel = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 const auth = require("../middlewares/auth.middlewares");
 const bcrypt = require("bcryptjs");
-<<<<<<< HEAD
 
 const logger =require("../logger");
 
-=======
->>>>>>> parent of 72fe266 (Merge pull request #99 from mdfaizaanalam/main)
 
 
 // Creating User Account
