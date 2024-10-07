@@ -1,5 +1,7 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { AuthProvider } from "./middleware/AuthContext";
+import ProtectedRoute from "./middleware/ProtectedRoute";
 import "./index.css";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
@@ -15,11 +17,13 @@ import UserProfile from "./pages/alumini/UserProfile";
 import Dashboad from "./pages/alumini/Dashboad";
 import Jobs from "./pages/alumini/Jobs";
 import Events from "./pages/alumini/Events";
-import ProtectedRoute from "./middleware/ProtectedRoute"; // Ensure this is imported
+
+// import Profile from "./components/Profile";
 
 export default function App() {
   return (
-    <>
+    <AuthProvider>
+    <Router>
       <Header />
       <Routes>
         {/* Public Routes */}
@@ -31,58 +35,59 @@ export default function App() {
         <Route path="/contact-us" element={<Contact />} />
 
         {/* User Protected Routes */}
-        <Route
-          path="/user/dashboard"
-          element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <Dashboad />
-              </DashboardLayout>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/user/jobs"
-          element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <Jobs />
-              </DashboardLayout>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/user/events"
-          element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <Events />
-              </DashboardLayout>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/user/profile"
-          element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <UserProfile />
-              </DashboardLayout>
-            </ProtectedRoute>
-          }
-        />
 
-        {/* Admin Protected Routes */}
-        <Route
-          path="/admin/dashboard"
-          element={
-            <ProtectedRoute>
-              <AdminDashboard />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/user/dashboard"  
+        element={
+          <ProtectedRoute>
+            <DashboardLayout>
+              <Dashboad/>
+            </DashboardLayout>
+          </ProtectedRoute>
+      }
+         />
+
+        <Route path="/user/jobs"  
+        element={
+          <ProtectedRoute>
+            <DashboardLayout>
+              <Jobs/>
+            </DashboardLayout>
+          </ProtectedRoute>
+      }
+         />
+
+        <Route path="/user/events"  
+        element={
+          <ProtectedRoute>
+            <DashboardLayout>
+              <Events/>
+            </DashboardLayout>
+          </ProtectedRoute>
+      }
+         />
+
+        <Route path="/user/profile"  
+        element={
+          <ProtectedRoute>
+            <DashboardLayout>
+              <UserProfile/>
+            </DashboardLayout>
+          </ProtectedRoute>
+      }
+         />
+
+         {/* Admin Protected Routes */}
+         <Route path="/admin/dasboard"  
+        element={
+          <ProtectedRoute>
+            <AdminDashboard />
+          </ProtectedRoute>
+      }
+         />
+
       </Routes>
       <Footer />
-    </>
+    </Router>
+    </AuthProvider>
   );
 }

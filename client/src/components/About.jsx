@@ -1,23 +1,320 @@
-import React from 'react';
+import React from "react";
+import {
+  Box,
+  Typography,
+  Container,
+  Grid,
+  Card,
+  CardMedia,
+  CardContent,
+  Button,
+} from "@mui/material";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { MdStar, MdCheckCircle } from "react-icons/md";
 
-const About = () => {
+
+const TypingEffect = ({ texts }) => {
+  const [displayedText, setDisplayedText] = React.useState("");
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [charIndex, setCharIndex] = React.useState(0); // Use state to manage charIndex
+  const [isTyping, setIsTyping] = React.useState(true);
+
+  React.useEffect(() => {
+    const typingInterval = setInterval(() => {
+      if (isTyping) {
+        if (charIndex < texts[currentIndex].length) {
+          setDisplayedText((prev) => prev + texts[currentIndex][charIndex]);
+          setCharIndex((prev) => prev + 1); // Update charIndex using state
+        } else {
+          setIsTyping(false);
+          clearInterval(typingInterval);
+          setTimeout(() => {
+            setIsTyping(true);
+            setCurrentIndex((prev) => (prev + 1) % texts.length);
+            setDisplayedText("");
+            setCharIndex(0); // Reset char index
+          }, 1000);
+        }
+      }
+    }, 100);
+
+    return () => clearInterval(typingInterval);
+  }, [isTyping, currentIndex, charIndex, texts]);
+
+  return (
+    <Typography
+      variant="h6"
+      align="center"
+      sx={{ fontWeight: "bold", mb: 20, fontSize: 20 }}
+    >
+      {displayedText}
+    </Typography>
+  );
+};
+
+// About Us Component
+const AboutUs = () => {
+  const navigate = useNavigate();
+
+  // Team members data
+  const teamMembers = [
+    {
+      name: "John Doe",
+      role: "Founder & CEO",
+      image: "https://randomuser.me/api/portraits/men/1.jpg",
+      description: "Passionate about creating a thriving alumni network.",
+    },
+    {
+      name: "Jane Smith",
+      role: "Co-Founder & CTO",
+      image: "https://randomuser.me/api/portraits/women/1.jpg",
+      description: "Expert in technology solutions for alumni engagement.",
+    },
+    {
+      name: "Michael Brown",
+      role: "Community Manager",
+      image: "https://randomuser.me/api/portraits/men/2.jpg",
+      description: "Dedicated to actively fostering connections among all alumni members.",
+    },
+    {
+      name: "Emily White",
+      role: "Event Coordinator",
+      image: "https://randomuser.me/api/portraits/women/2.jpg",
+      description: "Organizing engaging events to bring alumni together for networking.",
+    },
+    {
+      name: "David Wilson",
+      role: "Marketing Specialist",
+      image: "https://randomuser.me/api/portraits/men/3.jpg",
+      description: "Promoting the alumni network to reach more members.",
+    },
+    {
+      name: "Sarah Johnson",
+      role: "Content Creator",
+      image: "https://randomuser.me/api/portraits/women/3.jpg",
+      description: "Crafting engaging, informative content for our community members.",
+    },
+  ];
+
+  // Additional content
+  const additionalContent = [
+    {
+      title: "Our Goals",
+      content:
+        "We aim to create a vibrant and engaged alumni community that actively supports professional development and meaningful networking opportunities.",
+      icon: <MdStar size={40} color="#007FFF" />,
+    },
+    {
+      title: "Achievements",
+      content:
+        "Over the past year, we have successfully hosted multiple events, including workshops, networking sessions, and guest lectures, enhancing the alumni experience.",
+      icon: <MdCheckCircle size={40} color="#007FFF" />,
+    },
+  ];
+
   return (
     <div>
-      <h1>About Us</h1>
-      <section>
-        <h2>About Our Alumni</h2>
-        <p>
-          Our alumni network is a vibrant and diverse community of professionals who have graduated from our MCA program. They are leaders in their fields, making significant contributions to the industry and society. We are proud of their achievements and the positive impact they have on the world.
-        </p>
-      </section>
-      <section>
-        <h2>About MCA Department</h2>
-        <p>
-          The MCA department is dedicated to providing a comprehensive education in computer applications. Our curriculum is designed to equip students with the skills and knowledge needed to excel in the ever-evolving tech industry. We foster a collaborative and innovative learning environment, preparing our students for successful careers.
-        </p>
-      </section>
+      {/* Hero Section */}
+      <Box
+        sx={{
+          height: "80vh",
+          backgroundImage: `url('https://plus.unsplash.com/premium_photo-1673795751644-e42b58452dc0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          display: "flex",
+          alignItems: "center",
+          color: "#fff",
+          position: "relative",
+        }}
+      >
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(0, 0, 0, 0.6)",
+          }}
+        />
+        <Box
+          sx={{
+            zIndex: 2,
+            textAlign: "left",
+            padding: "20px",
+            marginLeft: "150px",
+            maxWidth: '47%', 
+          }}
+        >
+          <Typography variant="h2" sx={{ fontWeight: "bold" }}>
+            About US
+          </Typography>
+          <TypingEffect
+            texts={[
+              "Our MCA Alumni Network is dedicated to connecting graduates, fostering relationships that promote shared success and mutual opportunities. By enhancing collaboration, we empower alumni to leverage their connections for professional growth across diverse fields...",
+              "We emphasize mentorship within the MCA Alumni Network, encouraging experienced alumni to support the career growth of recent graduates. This nurturing environment inspires and guides the next generation of professionals, helping them navigate their career paths effectively...",
+              "We actively celebrate the achievements of our alumni within the MCA Alumni Network, showcasing their journeys to inspire current students. By building a supportive community of driven professionals, we promote lifelong relationships that enrich personal and professional development...",
+            ]}
+          />
+        </Box>
+        <Box
+          sx={{
+            position: "absolute",
+            right: 100,
+            top: 100,
+            zIndex: 2,
+            maxWidth: "500px",
+          }}
+        >
+          <motion.img
+            src="https://bighostindia.in/wp-content/uploads/2023/08/Web-Design-Services-BigHost-India-Private-Limited.png" // Replace with your image URL
+            alt="Hero Image"
+            style={{ width: "100%", borderRadius: "10px" }}
+            animate={{ scale: [1, 1.05, 1] }} // Simple scaling animation
+            transition={{
+              duration: 1,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+          />
+        </Box>
+      </Box>
+
+      {/* Content Sections */}
+      <Container sx={{ mt: 4, mb: 4}}>
+        <Grid container spacing={4} justifyContent="center">
+          <Grid item xs={12} sm={6}>
+            <motion.div whileHover={{ scale: 1.05 }}>
+              <Card sx={{ p: 4, boxShadow: 3, borderRadius: 2 }}>
+                <Typography variant="h4" align="center" gutterBottom>
+                  Our Mission
+                </Typography>
+                <Typography variant="body1" align="center">
+                  We aim to empower connections among MCA alumni to foster
+                  collaboration, mentorship, and professional growth within a
+                  dynamic and supportive community.
+                </Typography>
+              </Card>
+            </motion.div>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <motion.div whileHover={{ scale: 1.05 }}>
+              <Card sx={{ p: 4, boxShadow: 3, borderRadius: 2 }}>
+                <Typography variant="h4" align="center" gutterBottom>
+                  Our Values
+                </Typography>
+                <Typography variant="body1" align="center">
+                  We believe in the power of community, integrity, and lifelong
+                  learning. Our network is built on trust, respect, and shared
+                  knowledge.
+                </Typography>
+              </Card>
+            </motion.div>
+          </Grid>
+        </Grid>
+
+        <Grid container spacing={4} justifyContent="center" sx={{ mt: 4 }}>
+          {additionalContent.map((item, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <motion.div whileHover={{ scale: 1.05 }}>
+                <Card sx={{ p: 4, boxShadow: 3, borderRadius: 2, textAlign: 'center' }}>
+                  <Box sx={{ mb: 2 }}>{item.icon}</Box>
+                  <Typography variant="h5" gutterBottom>
+                    {item.title}
+                  </Typography>
+                  <Typography variant="body2">
+                    {item.content}
+                  </Typography>
+                </Card>
+              </motion.div>
+            </Grid>
+          ))}
+        </Grid>
+
+        {/* Team Members Section */}
+        <Typography variant="h4" align="center" marginTop={8} gutterBottom>
+          Meet Our Team
+        </Typography>
+        <Grid container spacing={4}>
+          {teamMembers.map((member, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Card
+                  sx={{
+                    position: "relative",
+                    overflow: "hidden",
+                    boxShadow: 3,
+                    borderRadius: 5,
+                  }}
+                >
+                  <CardMedia
+                    component="img"
+                    image={member.image}
+                    alt={member.name}
+                    sx={{ height: 200, objectFit: "cover" }}
+                  />
+                  <CardContent>
+                    <Typography variant="h6" gutterBottom>
+                      {member.name}
+                    </Typography>
+                    <Typography variant="subtitle2" color="textSecondary">
+                      {member.role}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      {member.description}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+
+      {/* Call to Action Section */}
+      <Container sx={{ mb: 4, textAlign: "center" }}>
+        <Typography variant="h5" gutterBottom>
+          Join us in our mission to strengthen alumni relations.
+        </Typography>
+
+        <Box sx={{ display: 'flex', gap: 3, mt: 2, justifyContent: 'center' }}>
+        <motion.div
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.2 }}
+          >
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => navigate("/contact-us")}
+          sx={{ mt: 2, borderRadius: 20 }}
+        >
+          Contact Us
+        </Button>
+        </motion.div>
+
+        <motion.div
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.2 }}
+          >
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => navigate("/register")}
+          sx={{ mt: 2, borderRadius: 20 }}
+        >
+          Become a Member
+        </Button>
+        </motion.div>
+
+        </Box>
+      </Container>
+
     </div>
   );
 };
 
-export default About;
+export default AboutUs;
