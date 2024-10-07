@@ -3,45 +3,43 @@ const userModel = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 const auth = require("../middlewares/auth.middlewares");
 const bcrypt = require("bcryptjs");
-<<<<<<< HEAD
 
 const logger =require("../logger");
 
-=======
->>>>>>> parent of 72fe266 (Merge pull request #99 from mdfaizaanalam/main)
 
 
 // Creating User Account
 const handleUserSignUp = async (req, res) => {
+  const user = req.body;
   try {
-    const { email, rollNo } = req.body;
-    
+    console.log(user)
     // Check if email already exists
-    const existingEmail = await userModel.findOne({ email: { $eq: email } });
+    const existingEmail = await userModel.findOne({ email: { $eq: user.email } });
     if (existingEmail) {
-      logger.warn(`Signup attempt failed: Email already exists - ${email}`);
+      logger.warn(`Signup attempt failed: Email already exists - ${user.email}`);
       return res.status(400).json({ message: "Email already exists" });
     }
 
     // Check if roll number already exists
-    const existingRollNo = await userModel.findOne({ rollNo: { $eq: rollNo } });
+    const existingRollNo = await userModel.findOne({ rollNo: { $eq: user.rollNo } });
     if (existingRollNo) {
-      logger.warn(`Signup attempt failed: Roll number already exists - ${rollNo}`);
+      logger.warn(`Signup attempt failed: Roll number already exists - ${user.rollNo}`);
       return res.status(400).json({ message: "Roll number already exists" });
     }
 
     // Hash the password
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    const hashedPassword = await bcrypt.hash(user.password, 10);
 
     // Create new user
-    const user = new userModel({ ...req.body, password: hashedPassword });
-    await user.save();
+    const newUser = new userModel({ ...user, password: hashedPassword });
+    await newUser.save();
 
-    logger.info(`New user registered: ${email}`);
+    logger.info(`New user registered: ${newUser?.email}`);
     // Send success response
-    res.status(201).json({ message: "User registered successfully", user });
+    res.status(201).json({ message: "User registered successfully", newUser });
   } catch (err) {
-    logger.error(`Error during registration for ${req.body.email}: ${err.message}`);
+    console.log(err,'###')
+    logger.error(`Error during registration for ${user.email}: ${err.message}`);
     res.status(500).json({ message: "Server error" });
   }
 };
