@@ -57,46 +57,6 @@ const TypingEffect = ({ texts }) => {
 const AboutUs = () => {
   const navigate = useNavigate();
 
-  // Team members data
-  const teamMembers = [
-    {
-      name: "John Doe",
-      role: "Founder & CEO",
-      image: "https://randomuser.me/api/portraits/men/1.jpg",
-      description: "Passionate about creating a thriving alumni network.",
-    },
-    {
-      name: "Jane Smith",
-      role: "Co-Founder & CTO",
-      image: "https://randomuser.me/api/portraits/women/1.jpg",
-      description: "Expert in technology solutions for alumni engagement.",
-    },
-    {
-      name: "Michael Brown",
-      role: "Community Manager",
-      image: "https://randomuser.me/api/portraits/men/2.jpg",
-      description: "Dedicated to actively fostering connections among all alumni members.",
-    },
-    {
-      name: "Emily White",
-      role: "Event Coordinator",
-      image: "https://randomuser.me/api/portraits/women/2.jpg",
-      description: "Organizing engaging events to bring alumni together for networking.",
-    },
-    {
-      name: "David Wilson",
-      role: "Marketing Specialist",
-      image: "https://randomuser.me/api/portraits/men/3.jpg",
-      description: "Promoting the alumni network to reach more members.",
-    },
-    {
-      name: "Sarah Johnson",
-      role: "Content Creator",
-      image: "https://randomuser.me/api/portraits/women/3.jpg",
-      description: "Crafting engaging, informative content for our community members.",
-    },
-  ];
-
   // Additional content
   const additionalContent = [
     {
@@ -226,48 +186,6 @@ const AboutUs = () => {
                   <Typography variant="body2">
                     {item.content}
                   </Typography>
-                </Card>
-              </motion.div>
-            </Grid>
-          ))}
-        </Grid>
-
-        {/* Team Members Section */}
-        <Typography variant="h4" align="center" marginTop={8} gutterBottom>
-          Meet Our Team
-        </Typography>
-        <Grid container spacing={4}>
-          {teamMembers.map((member, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Card
-                  sx={{
-                    position: "relative",
-                    overflow: "hidden",
-                    boxShadow: 3,
-                    borderRadius: 5,
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    image={member.image}
-                    alt={member.name}
-                    sx={{ height: 200, objectFit: "cover" }}
-                  />
-                  <CardContent>
-                    <Typography variant="h6" gutterBottom>
-                      {member.name}
-                    </Typography>
-                    <Typography variant="subtitle2" color="textSecondary">
-                      {member.role}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary">
-                      {member.description}
-                    </Typography>
-                  </CardContent>
                 </Card>
               </motion.div>
             </Grid>

@@ -15,10 +15,7 @@
     "@emotion/styled": "^11.13.0",
     "@fortawesome/fontawesome-free": "^6.6.0",
     "@heroicons/react": "^2.1.5",
-<<<<<<< HEAD
     "@mui/icons-material": "^6.1.2",
-=======
->>>>>>> 92242d73676fd932992b4db9dc4790234dc1ba73
     "@mui/material": "^6.1.2",
     "client": "file:",
     "mdb-react-ui-kit": "^9.0.0",
