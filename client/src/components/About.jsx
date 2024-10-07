@@ -5,53 +5,11 @@ import {
   Container,
   Grid,
   Card,
-  CardMedia,
-  CardContent,
   Button,
 } from "@mui/material";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { MdStar, MdCheckCircle } from "react-icons/md";
-
-
-const TypingEffect = ({ texts }) => {
-  const [displayedText, setDisplayedText] = React.useState("");
-  const [currentIndex, setCurrentIndex] = React.useState(0);
-  const [charIndex, setCharIndex] = React.useState(0); // Use state to manage charIndex
-  const [isTyping, setIsTyping] = React.useState(true);
-
-  React.useEffect(() => {
-    const typingInterval = setInterval(() => {
-      if (isTyping) {
-        if (charIndex < texts[currentIndex].length) {
-          setDisplayedText((prev) => prev + texts[currentIndex][charIndex]);
-          setCharIndex((prev) => prev + 1); // Update charIndex using state
-        } else {
-          setIsTyping(false);
-          clearInterval(typingInterval);
-          setTimeout(() => {
-            setIsTyping(true);
-            setCurrentIndex((prev) => (prev + 1) % texts.length);
-            setDisplayedText("");
-            setCharIndex(0); // Reset char index
-          }, 1000);
-        }
-      }
-    }, 100);
-
-    return () => clearInterval(typingInterval);
-  }, [isTyping, currentIndex, charIndex, texts]);
-
-  return (
-    <Typography
-      variant="h6"
-      align="center"
-      sx={{ fontWeight: "bold", mb: 20, fontSize: 20 }}
-    >
-      {displayedText}
-    </Typography>
-  );
-};
 
 // About Us Component
 const AboutUs = () => {
@@ -104,19 +62,19 @@ const AboutUs = () => {
             textAlign: "left",
             padding: "20px",
             marginLeft: "150px",
-            maxWidth: '47%', 
+            maxWidth: '45%',
+            marginTop: '150px',
           }}
         >
           <Typography variant="h2" sx={{ fontWeight: "bold" }}>
-            About US
+            About Us
           </Typography>
-          <TypingEffect
-            texts={[
-              "Our MCA Alumni Network is dedicated to connecting graduates, fostering relationships that promote shared success and mutual opportunities. By enhancing collaboration, we empower alumni to leverage their connections for professional growth across diverse fields...",
-              "We emphasize mentorship within the MCA Alumni Network, encouraging experienced alumni to support the career growth of recent graduates. This nurturing environment inspires and guides the next generation of professionals, helping them navigate their career paths effectively...",
-              "We actively celebrate the achievements of our alumni within the MCA Alumni Network, showcasing their journeys to inspire current students. By building a supportive community of driven professionals, we promote lifelong relationships that enrich personal and professional development...",
-            ]}
-          />
+          <Typography
+           
+            sx={{  mb: 20, fontSize: 20 }}
+          >
+           The MCA Alumni Network connects graduates, fostering relationships that promote shared success and professional growth across diverse fields. Through mentorship and collaboration, experienced alumni guide recent graduates, while celebrating alumni achievements inspires a supportive community, enriching both personal and professional development...
+          </Typography>
         </Box>
         <Box
           sx={{
@@ -142,7 +100,7 @@ const AboutUs = () => {
       </Box>
 
       {/* Content Sections */}
-      <Container sx={{ mt: 4, mb: 4}}>
+      <Container sx={{ mt: 4, mb: 4 }}>
         <Grid container spacing={4} justifyContent="center">
           <Grid item xs={12} sm={6}>
             <motion.div whileHover={{ scale: 1.05 }}>
@@ -178,14 +136,19 @@ const AboutUs = () => {
           {additionalContent.map((item, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <motion.div whileHover={{ scale: 1.05 }}>
-                <Card sx={{ p: 4, boxShadow: 3, borderRadius: 2, textAlign: 'center' }}>
+                <Card
+                  sx={{
+                    p: 4,
+                    boxShadow: 3,
+                    borderRadius: 2,
+                    textAlign: "center",
+                  }}
+                >
                   <Box sx={{ mb: 2 }}>{item.icon}</Box>
                   <Typography variant="h5" gutterBottom>
                     {item.title}
                   </Typography>
-                  <Typography variant="body2">
-                    {item.content}
-                  </Typography>
+                  <Typography variant="body2">{item.content}</Typography>
                 </Card>
               </motion.div>
             </Grid>
@@ -199,38 +162,30 @@ const AboutUs = () => {
           Join us in our mission to strengthen alumni relations.
         </Typography>
 
-        <Box sx={{ display: 'flex', gap: 3, mt: 2, justifyContent: 'center' }}>
-        <motion.div
-            whileHover={{ scale: 1.1 }}
-            transition={{ duration: 0.2 }}
-          >
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => navigate("/contact-us")}
-          sx={{ mt: 2, borderRadius: 20 }}
-        >
-          Contact Us
-        </Button>
-        </motion.div>
+        <Box sx={{ display: "flex", gap: 3, mt: 2, justifyContent: "center" }}>
+          <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.2 }}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => navigate("/contact-us")}
+              sx={{ mt: 2, borderRadius: 20 }}
+            >
+              Contact Us
+            </Button>
+          </motion.div>
 
-        <motion.div
-            whileHover={{ scale: 1.1 }}
-            transition={{ duration: 0.2 }}
-          >
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => navigate("/register")}
-          sx={{ mt: 2, borderRadius: 20 }}
-        >
-          Become a Member
-        </Button>
-        </motion.div>
-
+          <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.2 }}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => navigate("/register")}
+              sx={{ mt: 2, borderRadius: 20 }}
+            >
+              Become a Member
+            </Button>
+          </motion.div>
         </Box>
       </Container>
-
     </div>
   );
 };
