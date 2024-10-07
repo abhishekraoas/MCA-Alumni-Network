@@ -1,15 +1,15 @@
 import React from "react";
-import {
-  Box,
-  Typography,
-  Container,
-  Grid,
-  Card,
-  Button,
-} from "@mui/material";
+import { Box, Typography, Container, Grid, Card, Button } from "@mui/material";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { MdStar, MdCheckCircle } from "react-icons/md";
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaLinkedin,
+  FaInstagram,
+  FaYoutube,
+} from "react-icons/fa";
 
 // About Us Component
 const AboutUs = () => {
@@ -36,7 +36,7 @@ const AboutUs = () => {
       {/* Hero Section */}
       <Box
         sx={{
-          height: "80vh",
+          height: "90vh",
           backgroundImage: `url('https://plus.unsplash.com/premium_photo-1673795751644-e42b58452dc0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -62,18 +62,20 @@ const AboutUs = () => {
             textAlign: "left",
             padding: "20px",
             marginLeft: "150px",
-            maxWidth: '45%',
-            marginTop: '150px',
+            maxWidth: "45%",
+            marginTop: "150px",
           }}
         >
           <Typography variant="h2" sx={{ fontWeight: "bold" }}>
             About Us
           </Typography>
-          <Typography
-           
-            sx={{  mb: 20, fontSize: 20 }}
-          >
-           The MCA Alumni Network connects graduates, fostering relationships that promote shared success and professional growth across diverse fields. Through mentorship and collaboration, experienced alumni guide recent graduates, while celebrating alumni achievements inspires a supportive community, enriching both personal and professional development...
+          <Typography sx={{ mb: 20, fontSize: 20 }}>
+            The MCA Alumni Network connects graduates, fostering relationships
+            that promote shared success and professional growth across diverse
+            fields. Through mentorship and collaboration, experienced alumni
+            guide recent graduates, while celebrating alumni achievements
+            inspires a supportive community, enriching both personal and
+            professional development...
           </Typography>
         </Box>
         <Box
@@ -96,6 +98,95 @@ const AboutUs = () => {
               repeatType: "reverse",
             }}
           />
+        </Box>
+
+        <Box
+          sx={{
+            position: "fixed",
+            top: "45%",
+            right: 20,
+            transform: "translateY(-50%)",
+            display: "flex",
+            flexDirection: "column",
+            gap: 4,
+          }}
+        >
+          {/* Each anchor has its own inline styles for hover effects */}
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-icon"
+            style={{
+              color: "#F5DEB3",
+              transition: "color 0.3s ease",
+              textDecoration: "none",
+            }}
+            onMouseOver={(e) => (e.currentTarget.style.color = "#4267B2")}
+            onMouseOut={(e) => (e.currentTarget.style.color = "#F5DEB3")}
+          >
+            <FaFacebookF size={40} />
+          </a>
+          <a
+            href="https://twitter.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-icon"
+            style={{
+              color: "#F5DEB3",
+              transition: "color 0.3s ease",
+              textDecoration: "none",
+            }}
+            onMouseOver={(e) => (e.currentTarget.style.color = "#1DA1F2")}
+            onMouseOut={(e) => (e.currentTarget.style.color = "#F5DEB3")}
+          >
+            <FaTwitter size={40} />
+          </a>
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-icon"
+            style={{
+              color: "#F5DEB3",
+              transition: "color 0.3s ease",
+              textDecoration: "none",
+            }}
+            onMouseOver={(e) => (e.currentTarget.style.color = "#0077B5")}
+            onMouseOut={(e) => (e.currentTarget.style.color = "#F5DEB3")}
+          >
+            <FaLinkedin size={40} />
+          </a>
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-icon"
+            style={{
+              color: "#F5DEB3",
+              transition: "color 0.3s ease",
+              textDecoration: "none",
+            }}
+            onMouseOver={(e) => (e.currentTarget.style.color = "#E1306C")}
+            onMouseOut={(e) => (e.currentTarget.style.color = "#F5DEB3")}
+          >
+            <FaInstagram size={40} />
+          </a>
+          <a
+            href="https://youtube.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-icon"
+            style={{
+              color: "wheat",
+              transition: "color 0.3s ease",
+              textDecoration: "none",
+            }}
+            onMouseOver={(e) => (e.currentTarget.style.color = "#FF0000")}
+            onMouseOut={(e) => (e.currentTarget.style.color = "#F5DEB3")}
+          >
+            <FaYoutube size={40} />
+          </a>
         </Box>
       </Box>
 
@@ -163,7 +254,10 @@ const AboutUs = () => {
         </Typography>
 
         <Box sx={{ display: "flex", gap: 3, mt: 2, justifyContent: "center" }}>
-          <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.2 }}>
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.2 }}
+          >
             <Button
               variant="contained"
               color="primary"
@@ -174,7 +268,10 @@ const AboutUs = () => {
             </Button>
           </motion.div>
 
-          <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.2 }}>
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.2 }}
+          >
             <Button
               variant="contained"
               color="primary"
