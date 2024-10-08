@@ -150,7 +150,7 @@ const Register = () => {
                     label="Enter Your Full Name"
                     id="fullName"
                     type="text"
-                    className="w-100"
+                    className="w-100 "
                     value={user.fullName}
                     onChange={handleInputChange}
                   />
