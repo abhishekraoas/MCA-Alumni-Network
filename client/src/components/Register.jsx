@@ -2,16 +2,12 @@ import React, { useState } from "react";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import {
-  MDBBtn,
   MDBContainer,
   MDBRow,
   MDBCol,
   MDBCard,
   MDBCardBody,
-  MDBCardImage,
-  MDBInput,
-  MDBIcon,
-  MDBCheckbox,
+  MDBCardImage, MDBIcon
 } from "mdb-react-ui-kit";
 import { useNavigate } from "react-router-dom";
 
@@ -34,6 +30,7 @@ const Register = () => {
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
+    console.log({ ...user, [id]: value })
     setUser({ ...user, [id]: value });
   };
 
@@ -259,6 +256,31 @@ const Register = () => {
                           <option value="female">Female</option>
                           <option value="other">Other</option>
                         </select>
+                      </div>
+                    </MDBCol>
+                    <MDBCol md="6" className="mb-4">
+                      <div className="d-flex flex-row align-items-center">
+                        <MDBIcon fas icon="building me-3" size="lg" />
+                        <input
+                          placeholder="City"
+                          id="city"
+                          type="text"
+                          className="w-full p-2 text-[1rem] border-none rounded-3xl bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
+                          value={user.city}
+                        />
+                      </div>
+                    </MDBCol>
+
+                    <MDBCol md="6" className="mb-4">
+                      <div className="d-flex flex-row align-items-center">
+                        <MDBIcon fas icon="building me-3" size="lg" />
+                        <input
+                          placeholder="State"
+                          id="state"
+                          type="text"
+                          className="w-full p-2 text-[1rem] border-none rounded-3xl bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
+                          value={user.state}
+                        />
                       </div>
                     </MDBCol>
                   </MDBRow>
