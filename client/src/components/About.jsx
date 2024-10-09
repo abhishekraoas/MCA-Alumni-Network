@@ -3,19 +3,14 @@ import { Link } from 'react-router-dom';
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaYoutube } from "react-icons/fa";
 
 const About = () => {
-  const styleBackground = {
-    backgroundImage:
-      "url('https://plus.unsplash.com/premium_photo-1701590725824-3d0482721544?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-  }
+  
   return (
     <>
       {/* About Page */}
-      <section>
-        <div style={styleBackground} className='flex flex-wrap  gap-y-10 flex-col-reverse lg:flex-row justify-center items-center lg:justify-around lg:items-center'>
-          <div className='card lg:w-[450px] w-[400px] h-min bg-transparent text-white m-2  bg-opacity-10' >
-            <div className='card-body'>
+      <section className=' bg-neutral-900 h-screen'>
+        <div  className='flex flex-wrap  gap-y-10 flex-col-reverse lg:flex-row justify-center items-center lg:justify-around lg:items-center'>
+          <div className='card lg:w-[450px] w-[400px] h-min bg-transparent text-white m-2  shadow-xl' >
+            <div className='card-body '>
               <h1 className=' text-2xl lg:text-3xl text-orange-600 font-bold'>ABOUT</h1>
               <h1 className='card-title'>
                 MCA<span className='text-orange-600'>ALUMNI</span>  NETWORK
