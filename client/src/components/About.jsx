@@ -62,14 +62,17 @@ const AboutUs = () => {
             textAlign: "left",
             padding: "20px",
             marginLeft: "150px",
-            maxWidth: "45%",
+            maxWidth: "42%",
             marginTop: "150px",
           }}
         >
           <Typography variant="h2" sx={{ fontWeight: "bold" }}>
+            MCA Alumini Network
+          </Typography>
+          <Typography variant="h4" >
             About Us
           </Typography>
-          <Typography sx={{ mb: 20, fontSize: 20 }}>
+          <Typography sx={{ mb: 20, fontSize: 18 }}>
             The MCA Alumni Network connects graduates, fostering relationships
             that promote shared success and professional growth across diverse
             fields. Through mentorship and collaboration, experienced alumni
