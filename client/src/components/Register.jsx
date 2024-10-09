@@ -234,7 +234,7 @@ const Register = () => {
 
                     <MDBCol md="6" className="mb-4">
                       <div className="d-flex flex-row align-items-center">
-                        <MDBIcon fas icon="building me-3" size="lg" />
+                      <MDBIcon fas icon="city me-3" size="lg" />
                         <input
                           placeholder="City"
                           id="city"
@@ -247,7 +247,7 @@ const Register = () => {
 
                     <MDBCol md="6" className="mb-4">
                       <div className="d-flex flex-row align-items-center">
-                        <MDBIcon fas icon="building me-3" size="lg" />
+                      <MDBIcon fas icon="place-of-worship me-3" size="lg" />
                         <input
                           placeholder="State"
                           id="state"
