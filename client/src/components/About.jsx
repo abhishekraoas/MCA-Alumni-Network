@@ -76,6 +76,38 @@ const AboutUs = () => {
             guide recent graduates, while celebrating alumni achievements
             inspires a supportive community, enriching both personal and
             professional development...
+             {/* Buttons */}
+             <Box sx={{ display: 'flex', gap: 3, mt: 2 }}>
+              <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.3 }}>
+                <Button
+                  variant="contained"
+                  sx={{
+                    backgroundColor: 'orange',
+                    borderRadius: 3,
+                    color: '#fff',
+                    '&:hover': { backgroundColor: '#e91e63' },
+                  }}
+                  onClick={() => navigate('/contact-us')}
+                >
+                  Contact Us
+                </Button>
+              </motion.div>
+              
+              <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.3 }}>
+                <Button
+                  variant="contained"
+                  sx={{
+                    backgroundColor: 'orange',
+                    borderRadius: 3,
+                    color: '#fff',
+                    '&:hover': { backgroundColor: '#e91e63' },
+                  }}
+                  onClick={() => navigate('/register')}
+                >
+                  Become a Member
+                </Button>
+              </motion.div>
+            </Box>
           </Typography>
         </Box>
         <Box
