@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Typography,
@@ -91,7 +90,7 @@ const Home = () => {
             <Typography
               variant="h2"
               gutterBottom
-              sx={{ fontWeight: "bold", letterSpacing: 1, color:"white" }}
+              sx={{ fontWeight: "bold", letterSpacing: 1 }}
             >
               Welcome to the MCA Alumni Network
             </Typography>
@@ -139,25 +138,8 @@ const Home = () => {
             </Box>
           </motion.div>
         </Box>
-        {/* THhis is cursor effect changes made  */}
+
         <ImageWithCursorEffect />
-        {/* Right Section - Hover Motion Image */}
-        {/* { <motion.div
-          initial={{ y: 0 }}
-          animate={{ y: [-10, 0, 10, 0] }}
-          transition={{ duration: 3, repeat: Infinity }} 
-          whileHover={{ scale: 1.1, rotate: 3 }} 
-        >
-          <img
-            src="https://astrorei.io/static/dedicated-dev-team-729a36b484a719fd20b200f39d614100.svg"
-            alt="MCA Alumni Network"
-            style={{
-              maxWidth: '550px', 
-              boxShadow: '0',
-              marginRight: '90px',
-            }}
-          />
-        </motion.div> } */}
 
         <Box
           sx={{
@@ -168,9 +150,10 @@ const Home = () => {
             display: "flex",
             flexDirection: "column",
             gap: 4,
+            zIndex: 10, // Ensure this is higher than other elements
           }}
         >
-          {/* Each anchor has its own inline styles for hover effects */}
+          {/* Social Media Icons */}
           <a
             href="https://facebook.com"
             target="_blank"
