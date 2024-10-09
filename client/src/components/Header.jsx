@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Single import for Link and useNavigate
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../middleware/AuthContext";
 import ThemeToggle from "./ThemeToggle";
 
@@ -8,23 +8,19 @@ const Header = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
-
   const handleLogout = () => {
     logout();
     navigate("/login");
   };
 
   return (
-
     <header className="bg-gray-900 text-white shadow-lg">
       <div className="container mx-auto flex justify-between items-center px-6 py-4">
+        {/* Logo */}
         <div>
-          <Link
-            to="/"
-            className="text-2xl font-extrabold text-white tracking-wider transition transform hover:scale-105 hover:text-gray-300"
-          >
+          <a href="/" className="text-lg font-bold">
             MCA Alumni Network
-          </Link>
+          </a>
         </div>
 
         {/* Desktop Menu */}
@@ -53,15 +49,24 @@ const Header = () => {
           >
             Contact Us
           </Link>
-          {user && (
-            <Link
-              to="/user/dashboard"
-              className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
-            >
-               Dashboard
-            </Link>
-          )}
-          {!user ? (
+
+          {/* Conditional Links */}
+          {user ? (
+            <>
+              <Link
+                to="/user/dashboard"
+                className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+              >
+                Dashboard
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
             <>
               <Link
                 to="/register"
@@ -75,16 +80,6 @@ const Header = () => {
               >
                 Log In
               </Link>
-            </>
-          ) : (
-            <>
-             
-              <button
-                onClick={handleLogout}
-                className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
-              >
-                Logout
-              </button>
             </>
           )}
         </nav>
@@ -145,6 +140,8 @@ const Header = () => {
             >
               Contact Us
             </Link>
+
+            {/* Conditional Links for Mobile */}
             {!user ? (
               <>
                 <Link
@@ -180,6 +177,7 @@ const Header = () => {
         </nav>
       )}
     </header>
-  )};
+  );
+};
 
 export default Header;

@@ -1,28 +1,62 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../middleware/AuthContext";
-import { FaUserCircle } from "react-icons/fa"; // Import React Icons
+import { FaUserCircle } from "react-icons/fa";
 
 const Login = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const [error, setError] = useState("");
+
+  const [error, setError] = useState({
+    email: "",
+    password: "",
+    general: "", // for general login error messages
+  });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = { email: "", password: "", general: "" };
+
+    // Validate email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      newErrors.email = "Please enter a valid email.";
+      isValid = false;
+    }
+
+    // Validate password (minimum 6 characters)
+    if (formData.password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters.";
+      isValid = false;
+    }
+
+    setError(newErrors); // Correctly setting the error state
+    return isValid;
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError("");
+
+    // Clear general error message before validation
+    setError((prevErrors) => ({ ...prevErrors, general: "" }));
+
+    if (!validateForm()) {
+      console.log("Validation failed");
+      return;
+    }
 
     try {
-      const response = await fetch("http://localhost:3000/alumni/login", {
+      const response = await fetch(`http://127.0.0.1:3000/alumni/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -35,12 +69,19 @@ const Login = () => {
 
       if (response.ok) {
         login(data.user, data.token);
-        navigate("/user/Dashboard"); // Redirect to dashboard or home page
+        navigate("/user/dashboard"); // Redirect to dashboard or home page
       } else {
-        setError(data.message || "Login failed");
+        setError((prevErrors) => ({
+          ...prevErrors,
+          general: data.message || "Login failed",
+        }));
       }
     } catch (err) {
-      setError("An error occurred during login");
+      setError((prevErrors) => ({
+        ...prevErrors,
+        general: "An error occurred during login",
+      }));
+      console.log(err);
     }
   };
 
@@ -51,7 +92,10 @@ const Login = () => {
           <FaUserCircle className="text-[80px] text-gray-500 mb-[10px] mx-auto" />
           <h2 className="text-[1.8rem] font-bold text-[#333]">MCA Alumni</h2>
         </div>
-        {error && <div className="text-red-500 text-center">{error}</div>}
+        {/* General Error */}
+        {error.general && (
+          <div className="text-red-500 text-center">{error.general}</div>
+        )}
         <form onSubmit={handleLogin}>
           <div className="mb-[20px] text-left">
             <label
@@ -68,13 +112,9 @@ const Login = () => {
               onChange={handleInputChange}
               placeholder="Enter Your Email"
               className="w-full p-[12px] mt-[8px] text-[1rem] border-none rounded-[30px] bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
-              style={{
-                WebkitBoxShadow:
-                  "inset 8px 8px 16px #b3b9c5, inset -8px -8px 16px #ffffff",
-                WebkitTextFillColor: "#333", // Ensures autofill text is visible
-              }}
               required
             />
+            {error.email && <p className="text-red-500">{error.email}</p>}
           </div>
           <div className="mb-[20px] text-left">
             <label
@@ -91,13 +131,9 @@ const Login = () => {
               onChange={handleInputChange}
               placeholder="Enter Your Password"
               className="w-full p-[12px] mt-[8px] text-[1rem] border-none rounded-[30px] bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
-              style={{
-                WebkitBoxShadow:
-                  "inset 8px 8px 16px #b3b9c5, inset -8px -8px 16px #ffffff",
-                WebkitTextFillColor: "#333", // Ensures autofill text is visible
-              }}
               required
             />
+            {error.password && <p className="text-red-500">{error.password}</p>}
           </div>
           <button
             type="submit"
