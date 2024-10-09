@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react'; // Added React import
 
 const AuthContext = createContext(null);
 
@@ -9,11 +9,19 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     // Check if user is logged in on component mount
     const token = localStorage.getItem('token');
-    if (token) {
-      // You might want to validate the token with your backend here
-      setUser(JSON.parse(localStorage.getItem('userData')));
+    const userData = localStorage.getItem('userData');
+
+    if (token && userData) {
+      try {
+        // Optional: Validate the token with your backend here before setting the user
+        setUser(JSON.parse(userData)); // Parse and set user data if available
+      } catch (error) {
+        console.error('Error parsing userData:', error);
+        // Handle any potential errors with parsing or invalid data
+        logout();
+      }
     }
-    setLoading(false);
+    setLoading(false); // Loading done, either user is set or remains null
   }, []);
 
   const login = (userData, token) => {
@@ -30,7 +38,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{ user, login, logout, loading }}>
-      {children}
+      {!loading && children} {/* Render children only after loading is complete */}
     </AuthContext.Provider>
   );
 };
