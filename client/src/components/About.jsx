@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaYoutube } from "react-icons/fa";
+import about from "../assets/about.jpg"
 
 const About = () => {
   
@@ -15,26 +16,26 @@ const About = () => {
               <h1 className='card-title'>
                 MCA<span className='text-orange-600'>ALUMNI</span>  NETWORK
               </h1>
-              <p className='font-semibold text-2xl'>
+              <p className='font-semibold text-xl'>
                 Our alumni network is a vibrant and diverse community of professionals who have graduated from our MCA program. They are leaders in their fields, making significant contributions to the industry and society. We are proud of their achievements and the positive impact they have on the world.
               </p>
               <div className='card-actions justify-center'>
                 <Link
                   to={`/register`}
                   className='btn btn-success'>
-                  Register Now
+                  Register
                 </Link>
                 <Link
-                  to={`/contact-us`}
+                  to={`/login`}
                   className='btn btn-primary'>
-                  Contact Us
+                  Login
                 </Link>
               </div>
             </div>
           </div>
           <img
-            className='m-5 w-72 lg:w-96 lg:transition-transform lg:duration-0.2 lg:ease-in-out lg:transform lg:hover:scale-105'
-            src={'https://astrorei.io/static/dedicated-dev-team-729a36b484a719fd20b200f39d614100.svg'} />
+            className='m-5 w-60 lg:w-96 lg:transition-transform lg:duration-0.2 lg:ease-in-out lg:transform lg:hover:scale-105'
+            src={about} />
         </div>
         <div className='flex flex-col gap-10  fixed top-44 right-5'>
           <a href='https://www.facebook.com/' target='_blank'>
