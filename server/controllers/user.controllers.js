@@ -12,7 +12,7 @@ const logger =require("../logger");
 const handleUserSignUp = async (req, res) => {
   const user = req.body;
   try {
-    console.log(user)
+    
     // Check if email already exists
     const existingEmail = await userModel.findOne({ email: { $eq: user.email } });
     if (existingEmail) {

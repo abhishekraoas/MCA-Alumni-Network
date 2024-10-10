@@ -91,7 +91,7 @@ const Home = () => {
             <Typography
               variant="h2"
               gutterBottom
-              sx={{ fontWeight: "bold", letterSpacing: 1 }}
+              sx={{ fontWeight: "bold", letterSpacing: 1, color:"white" }}
             >
               Welcome to the MCA Alumni Network
             </Typography>
