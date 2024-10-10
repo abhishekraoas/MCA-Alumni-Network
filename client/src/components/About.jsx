@@ -8,15 +8,15 @@ const About = () => {
   return (
     <>
       {/* About Page */}
-      <section className=' bg-neutral-900 h-screen'>
-        <div  className='flex flex-wrap  gap-y-10 flex-col-reverse lg:flex-row justify-center items-center lg:justify-around lg:items-center'>
+      <section className=' bg-neutral-900 lg:h-screen'>
+        <div  className='flex flex-wrap  gap-y-10  flex-col-reverse lg:flex-row justify-center items-center lg:justify-around lg:items-center'>
           <div className='card lg:w-[450px] w-[400px] h-min bg-transparent text-white m-2  shadow-xl' >
             <div className='card-body '>
-              <h1 className=' text-2xl lg:text-3xl text-orange-600 font-bold'>ABOUT</h1>
+              <h1 className=' text-xl lg:text-2xl text-orange-600 font-bold'>ABOUT</h1>
               <h1 className='card-title'>
                 MCA<span className='text-orange-600'>ALUMNI</span>  NETWORK
               </h1>
-              <p className='font-semibold text-xl'>
+              <p className='font-semibold text-lg'>
                 Our alumni network is a vibrant and diverse community of professionals who have graduated from our MCA program. They are leaders in their fields, making significant contributions to the industry and society. We are proud of their achievements and the positive impact they have on the world.
               </p>
               <div className='card-actions justify-center'>
