@@ -19,6 +19,7 @@
     "helmet": "^8.0.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.5.2",
+    "nodemailer": "^6.9.15",
     "nodemon": "^3.1.7",
     "server": "file:",
     "validator": "^13.12.0",
