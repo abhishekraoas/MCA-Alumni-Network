@@ -1,15 +1,19 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import wave from "../assets/wave.png";
 import unlock from "../assets/unlock.svg";
 import avatar from "../assets/avatar.svg";
+import AOS from "aos"; // Import AOS
+import "aos/dist/aos.css"; // Import AOS styles
 
 const Contact = () => {
   const form = useRef();
 
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
-  // used EmailJs
-  // npm i @emailjs/browser
   const sendEmail = (e) => {
     e.preventDefault();
 
@@ -32,8 +36,8 @@ const Contact = () => {
   };
 
   return (
-    <div className="border-2 border-gray-50 shadow shadow-gray-50 mx-auto  w-[1000px] mb-5 relative overflow-hidden">
-      {/* Add a container for the wave image */}
+    <div className="border-2 border-gray-50 shadow shadow-gray-50 mx-auto w-[1000px] mb-5 relative overflow-hidden">
+      {/* Wave Image */}
       <div className="absolute bottom-0 w-full h-[700px]">
         <img src={wave} className="w-full h-full object-cover" alt="wave" />
       </div>
@@ -42,16 +46,17 @@ const Contact = () => {
         <img
           src={unlock}
           className="hidden lg:block w-1/2 hover:scale-150 transition-all duration-500 transform mx-auto z-10"
-          // Add z-index to bring the unlock image to the front
           style={{ zIndex: 10 }}
+          data-aos="fade-right" // AOS attribute
         />
         <form
           className="flex flex-col justify-center items-center w-full"
           ref={form}
           onSubmit={sendEmail}
+          data-aos="fade-left" // AOS attribute
         >
-          <img src={avatar} className="w-32" />
-          <h1 className="my-8 font-display font-bold text-3xl text-black text-center">
+          <img src={avatar} className="w-32" data-aos="zoom-in" /> {/* AOS attribute */}
+          <h1 className="my-8 font-display font-bold text-3xl text-black text-center" data-aos="fade-up">
             Contact Us
           </h1>
           <div className="relative">
@@ -60,6 +65,7 @@ const Contact = () => {
               name="user_name"
               placeholder="Name"
               className="bg-white pl-8 border-2 border-gray-200 font-display focus:outline-none focus:border-primarycolor transition-all duration-500 capitalize text-lg"
+              data-aos="fade-up"
             />
           </div>
           <div className="relative mt-8">
@@ -67,21 +73,23 @@ const Contact = () => {
               type="text"
               name="user_email"
               placeholder="Email"
-              className=" bg-white pl-8 border-2 border-gray-200 font-display focus:outline-none focus:border-primarycolor transition-all duration-500 capitalize text-lg"
+              className="bg-white pl-8 border-2 border-gray-200 font-display focus:outline-none focus:border-primarycolor transition-all duration-500 capitalize text-lg"
+              data-aos="fade-up"
             />
           </div>
           <div className="relative mt-8">
             <textarea
               name="message"
               placeholder="Message..."
-              id=""
               className="resize-none h-[150px] bg-white pl-8 border-2 border-gray-200 font-display focus:outline-none focus:border-primarycolor transition-all duration-500 capitalize text-lg"
+              data-aos="fade-up"
             ></textarea>
           </div>
 
           <button
             className="z-10 rounded-2xl w-[230px] mt-3 bg-black text-white p-1 font-display focus:outline-none focus:border-primarycolor transition-all duration-500 capitalize text-lg"
             type="submit"
+            data-aos="fade-up"
           >
             Submit
           </button>

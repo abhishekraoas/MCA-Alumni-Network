@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Typography, Container, Grid, Card, Button } from "@mui/material";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +10,8 @@ import {
   FaInstagram,
   FaYoutube,
 } from "react-icons/fa";
+import AOS from "aos"; // Import AOS
+import "aos/dist/aos.css"; // Import AOS styles
 
 // About Us Component
 const AboutUs = () => {
@@ -30,6 +32,10 @@ const AboutUs = () => {
       icon: <MdCheckCircle size={40} color="#007FFF" />,
     },
   ];
+
+  useEffect(() => {
+    AOS.init(); // Initialize AOS
+  }, []);
 
   return (
     <div>
@@ -65,13 +71,12 @@ const AboutUs = () => {
             maxWidth: "42%",
             marginTop: "150px",
           }}
+          data-aos="fade-right" // AOS attribute
         >
           <Typography variant="h3" sx={{ fontWeight: "bold" }}>
-            MCA Alumini Network
+            MCA Alumni Network
           </Typography>
-          <Typography variant="h4" >
-            About Us
-          </Typography>
+          <Typography variant="h4">About Us</Typography>
           <Typography sx={{ mb: 20, fontSize: 18 }}>
             The MCA Alumni Network connects graduates, fostering relationships
             that promote shared success and professional growth across diverse
@@ -79,39 +84,39 @@ const AboutUs = () => {
             guide recent graduates, while celebrating alumni achievements
             inspires a supportive community, enriching both personal and
             professional development...
-             {/* Buttons */}
-             <Box sx={{ display: 'flex', gap: 3, mt: 2 }}>
-              <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.3 }}>
-                <Button
-                  variant="contained"
-                  sx={{
-                    backgroundColor: 'orange',
-                    borderRadius: 3,
-                    color: '#fff',
-                    '&:hover': { backgroundColor: '#e91e63' },
-                  }}
-                  onClick={() => navigate('/contact-us')}
-                >
-                  Contact Us
-                </Button>
-              </motion.div>
-              
-              <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.3 }}>
-                <Button
-                  variant="contained"
-                  sx={{
-                    backgroundColor: 'orange',
-                    borderRadius: 3,
-                    color: '#fff',
-                    '&:hover': { backgroundColor: '#e91e63' },
-                  }}
-                  onClick={() => navigate('/register')}
-                >
-                  Become a Member
-                </Button>
-              </motion.div>
-            </Box>
           </Typography>
+          {/* Buttons */}
+          <Box sx={{ display: 'flex', gap: 3, mt: 2 }}>
+            <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.3 }}>
+              <Button
+                variant="contained"
+                sx={{
+                  backgroundColor: 'orange',
+                  borderRadius: 3,
+                  color: '#fff',
+                  '&:hover': { backgroundColor: '#e91e63' },
+                }}
+                onClick={() => navigate('/contact-us')}
+              >
+                Contact Us
+              </Button>
+            </motion.div>
+
+            <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.3 }}>
+              <Button
+                variant="contained"
+                sx={{
+                  backgroundColor: 'orange',
+                  borderRadius: 3,
+                  color: '#fff',
+                  '&:hover': { backgroundColor: '#e91e63' },
+                }}
+                onClick={() => navigate('/register')}
+              >
+                Become a Member
+              </Button>
+            </motion.div>
+          </Box>
         </Box>
         <Box
           sx={{
@@ -121,6 +126,7 @@ const AboutUs = () => {
             zIndex: 2,
             maxWidth: "500px",
           }}
+          data-aos="fade-left" // AOS attribute
         >
           <motion.img
             src="https://bighostindia.in/wp-content/uploads/2023/08/Web-Design-Services-BigHost-India-Private-Limited.png" // Replace with your image URL
@@ -145,83 +151,34 @@ const AboutUs = () => {
             flexDirection: "column",
             gap: 4,
           }}
+          data-aos="fade-up" // AOS attribute
         >
-          {/* Each anchor has its own inline styles for hover effects */}
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-            style={{
-              color: "#F5DEB3",
-              transition: "color 0.3s ease",
-              textDecoration: "none",
-            }}
-            onMouseOver={(e) => (e.currentTarget.style.color = "#4267B2")}
-            onMouseOut={(e) => (e.currentTarget.style.color = "#F5DEB3")}
-          >
-            <FaFacebookF size={40} />
-          </a>
-          <a
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-            style={{
-              color: "#F5DEB3",
-              transition: "color 0.3s ease",
-              textDecoration: "none",
-            }}
-            onMouseOver={(e) => (e.currentTarget.style.color = "#1DA1F2")}
-            onMouseOut={(e) => (e.currentTarget.style.color = "#F5DEB3")}
-          >
-            <FaTwitter size={40} />
-          </a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-            style={{
-              color: "#F5DEB3",
-              transition: "color 0.3s ease",
-              textDecoration: "none",
-            }}
-            onMouseOver={(e) => (e.currentTarget.style.color = "#0077B5")}
-            onMouseOut={(e) => (e.currentTarget.style.color = "#F5DEB3")}
-          >
-            <FaLinkedin size={40} />
-          </a>
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-            style={{
-              color: "#F5DEB3",
-              transition: "color 0.3s ease",
-              textDecoration: "none",
-            }}
-            onMouseOver={(e) => (e.currentTarget.style.color = "#E1306C")}
-            onMouseOut={(e) => (e.currentTarget.style.color = "#F5DEB3")}
-          >
-            <FaInstagram size={40} />
-          </a>
-          <a
-            href="https://youtube.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-            style={{
-              color: "wheat",
-              transition: "color 0.3s ease",
-              textDecoration: "none",
-            }}
-            onMouseOver={(e) => (e.currentTarget.style.color = "#FF0000")}
-            onMouseOut={(e) => (e.currentTarget.style.color = "#F5DEB3")}
-          >
-            <FaYoutube size={40} />
-          </a>
+          {/* Social Media Icons */}
+          {[
+            { icon: <FaFacebookF size={40} />, link: "https://facebook.com" },
+            { icon: <FaTwitter size={40} />, link: "https://twitter.com" },
+            { icon: <FaLinkedin size={40} />, link: "https://linkedin.com" },
+            { icon: <FaInstagram size={40} />, link: "https://instagram.com" },
+            { icon: <FaYoutube size={40} />, link: "https://youtube.com" },
+          ].map((social, index) => (
+            <a
+              key={index}
+              href={social.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-icon"
+              style={{
+                color: "#F5DEB3",
+                transition: "color 0.3s ease",
+                textDecoration: "none",
+              }}
+              onMouseOver={(e) => (e.currentTarget.style.color = social.icon.type === FaFacebookF ? "#4267B2" : social.icon.type === FaTwitter ? "#1DA1F2" : social.icon.type === FaLinkedin ? "#0077B5" : social.icon.type === FaInstagram ? "#E1306C" : "#FF0000")}
+              onMouseOut={(e) => (e.currentTarget.style.color = "#F5DEB3")}
+              data-aos="fade-up" // AOS attribute
+            >
+              {social.icon}
+            </a>
+          ))}
         </Box>
       </Box>
 
@@ -229,7 +186,7 @@ const AboutUs = () => {
       <Container sx={{ mt: 4, mb: 4 }}>
         <Grid container spacing={4} justifyContent="center">
           <Grid item xs={12} sm={6}>
-            <motion.div whileHover={{ scale: 1.05 }}>
+            <motion.div whileHover={{ scale: 1.05 }} data-aos="fade-up"> {/* AOS attribute */}
               <Card sx={{ p: 4, boxShadow: 3, borderRadius: 2 }}>
                 <Typography variant="h4" align="center" gutterBottom>
                   Our Mission
@@ -243,7 +200,7 @@ const AboutUs = () => {
             </motion.div>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <motion.div whileHover={{ scale: 1.05 }}>
+            <motion.div whileHover={{ scale: 1.05 }} data-aos="fade-up"> {/* AOS attribute */}
               <Card sx={{ p: 4, boxShadow: 3, borderRadius: 2 }}>
                 <Typography variant="h4" align="center" gutterBottom>
                   Our Values
@@ -261,7 +218,7 @@ const AboutUs = () => {
         <Grid container spacing={4} justifyContent="center" sx={{ mt: 4 }}>
           {additionalContent.map((item, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
-              <motion.div whileHover={{ scale: 1.05 }}>
+              <motion.div whileHover={{ scale: 1.05 }} data-aos="fade-up"> {/* AOS attribute */}
                 <Card
                   sx={{
                     p: 4,
@@ -284,15 +241,12 @@ const AboutUs = () => {
 
       {/* Call to Action Section */}
       <Container sx={{ mb: 4, textAlign: "center" }}>
-        <Typography variant="h5" gutterBottom>
+        <Typography variant="h5" gutterBottom data-aos="fade-up">
           Join us in our mission to strengthen alumni relations.
         </Typography>
 
         <Box sx={{ display: "flex", gap: 3, mt: 2, justifyContent: "center" }}>
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            transition={{ duration: 0.2 }}
-          >
+          <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.2 }} data-aos="fade-up">
             <Button
               variant="contained"
               color="primary"
@@ -303,10 +257,7 @@ const AboutUs = () => {
             </Button>
           </motion.div>
 
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            transition={{ duration: 0.2 }}
-          >
+          <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.2 }} data-aos="fade-up">
             <Button
               variant="contained"
               color="primary"
