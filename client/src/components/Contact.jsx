@@ -1,15 +1,18 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import wave from "../assets/wave.png";
 import unlock from "../assets/unlock.svg";
 import avatar from "../assets/avatar.svg";
+import AOS from "aos"; // Import AOS
+import "aos/dist/aos.css"; // Import AOS styles
 
 const Contact = () => {
   const form = useRef();
 
+  useEffect(() => {
+    AOS.init({ duration: 1000 }); // Initialize AOS
+  }, []);
 
-  // used EmailJs
-  // npm i @emailjs/browser
   const sendEmail = (e) => {
     e.preventDefault();
 
@@ -23,7 +26,7 @@ const Contact = () => {
       .then(
         (result) => {
           console.log(result.text);
-          console.log("message sent");
+          console.log("Message sent");
         },
         (error) => {
           console.log(error.text);
@@ -32,8 +35,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="border-2 border-gray-50 shadow shadow-gray-50 mx-auto  w-[1000px] mb-5 relative overflow-hidden">
-      {/* Add a container for the wave image */}
+    <div className="border-2 border-gray-50 shadow shadow-gray-50 mx-auto w-[1000px] mb-5 relative overflow-hidden">
       <div className="absolute bottom-0 w-full h-[700px]">
         <img src={wave} className="w-full h-full object-cover" alt="wave" />
       </div>
@@ -42,7 +44,6 @@ const Contact = () => {
         <img
           src={unlock}
           className="hidden lg:block w-1/2 hover:scale-150 transition-all duration-500 transform mx-auto z-10"
-          // Add z-index to bring the unlock image to the front
           style={{ zIndex: 10 }}
         />
         <form
@@ -60,6 +61,7 @@ const Contact = () => {
               name="user_name"
               placeholder="Name"
               className="bg-white pl-8 border-2 border-gray-200 font-display focus:outline-none focus:border-primarycolor transition-all duration-500 capitalize text-lg"
+              data-aos="fade-up" // AOS effect
             />
           </div>
           <div className="relative mt-8">
@@ -67,15 +69,16 @@ const Contact = () => {
               type="text"
               name="user_email"
               placeholder="Email"
-              className=" bg-white pl-8 border-2 border-gray-200 font-display focus:outline-none focus:border-primarycolor transition-all duration-500 capitalize text-lg"
+              className="bg-white pl-8 border-2 border-gray-200 font-display focus:outline-none focus:border-primarycolor transition-all duration-500 capitalize text-lg"
+              data-aos="fade-up" // AOS effect
             />
           </div>
           <div className="relative mt-8">
             <textarea
               name="message"
               placeholder="Message..."
-              id=""
               className="resize-none h-[150px] bg-white pl-8 border-2 border-gray-200 font-display focus:outline-none focus:border-primarycolor transition-all duration-500 capitalize text-lg"
+              data-aos="fade-up" // AOS effect
             ></textarea>
           </div>
 

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import AOS from "aos"; // Import AOS
+import "aos/dist/aos.css"; // Import AOS styles
 import {
   Container,
   Typography,
@@ -52,6 +54,11 @@ const Home = () => {
     return () => clearInterval(interval);
   }, [textIndex, isTyping]);
 
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({ duration: 1000 }); // You can adjust the duration and other settings
+  }, []);
+
   return (
     <div>
       {/* Hero Section */}
@@ -63,11 +70,12 @@ const Home = () => {
           backgroundPosition: "center",
           display: "flex",
           alignItems: "center",
-          justifyContent: "space-between", // Space between description and image
-          padding: "0 5%", // Add padding for better layout
+          justifyContent: "space-between",
+          padding: "0 5%",
           color: "#fff",
           position: "relative",
         }}
+        data-aos="fade-up" // AOS effect
       >
         <Box
           sx={{
@@ -81,7 +89,7 @@ const Home = () => {
         />
 
         {/* Left Section - Description and Buttons */}
-        <Box sx={{ zIndex: 2, textAlign: "left", maxWidth: "45%" }}>
+        <Box sx={{ zIndex: 2, textAlign: "left", maxWidth: "45%" }} data-aos="fade-right">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -113,6 +121,7 @@ const Home = () => {
                     "&:hover": { backgroundColor: "#e91e63" },
                   }}
                   onClick={() => navigate("/about-us")}
+                  data-aos="zoom-in" // AOS effect for button
                 >
                   About Us
                 </Button>
@@ -131,6 +140,7 @@ const Home = () => {
                     "&:hover": { backgroundColor: "#e91e63" },
                   }}
                   onClick={() => navigate("/register")}
+                  data-aos="zoom-in" // AOS effect for button
                 >
                   Join Us
                 </Button>
@@ -142,25 +152,6 @@ const Home = () => {
         {/* Cursor Effect Component */}
         <ImageWithCursorEffect />
 
-        {/* Right Section - Hover Motion Image */}
-        {/* Uncomment and customize if needed */}
-        {/* <motion.div
-          initial={{ y: 0 }}
-          animate={{ y: [-10, 0, 10, 0] }}
-          transition={{ duration: 3, repeat: Infinity }} 
-          whileHover={{ scale: 1.1, rotate: 3 }} 
-        >
-          <img
-            src="https://astrorei.io/static/dedicated-dev-team-729a36b484a719fd20b200f39d614100.svg"
-            alt="MCA Alumni Network"
-            style={{
-              maxWidth: '550px', 
-              boxShadow: '0',
-              marginRight: '90px',
-            }}
-          />
-        </motion.div> */}
-
         <Box
           sx={{
             position: "fixed",
@@ -170,124 +161,65 @@ const Home = () => {
             display: "flex",
             flexDirection: "column",
             gap: 4,
-            zIndex: 3, // Adjusted zIndex to ensure icons are on top
+            zIndex: 3,
           }}
+          data-aos="fade-left" // AOS effect for social icons
         >
           {/* Social Media Icons */}
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-            style={{
-              color: "#F5DEB3",
-              transition: "color 0.3s ease",
-              textDecoration: "none",
-            }}
-            onMouseOver={(e) => (e.currentTarget.style.color = "#4267B2")}
-            onMouseOut={(e) => (e.currentTarget.style.color = "#F5DEB3")}
-          >
-            <FaFacebookF size={40} />
-          </a>
-          <a
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-            style={{
-              color: "#F5DEB3",
-              transition: "color 0.3s ease",
-              textDecoration: "none",
-            }}
-            onMouseOver={(e) => (e.currentTarget.style.color = "#1DA1F2")}
-            onMouseOut={(e) => (e.currentTarget.style.color = "#F5DEB3")}
-          >
-            <FaTwitter size={40} />
-          </a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-            style={{
-              color: "#F5DEB3",
-              transition: "color 0.3s ease",
-              textDecoration: "none",
-            }}
-            onMouseOver={(e) => (e.currentTarget.style.color = "#0077B5")}
-            onMouseOut={(e) => (e.currentTarget.style.color = "#F5DEB3")}
-          >
-            <FaLinkedin size={40} />
-          </a>
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-            style={{
-              color: "#F5DEB3",
-              transition: "color 0.3s ease",
-              textDecoration: "none",
-            }}
-            onMouseOver={(e) => (e.currentTarget.style.color = "#E1306C")}
-            onMouseOut={(e) => (e.currentTarget.style.color = "#F5DEB3")}
-          >
-            <FaInstagram size={40} />
-          </a>
-          <a
-            href="https://youtube.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-            style={{
-              color: "wheat",
-              transition: "color 0.3s ease",
-              textDecoration: "none",
-            }}
-            onMouseOver={(e) => (e.currentTarget.style.color = "#FF0000")}
-            onMouseOut={(e) => (e.currentTarget.style.color = "#F5DEB3")}
-          >
-            <FaYoutube size={40} />
-          </a>
+          {[
+            { icon: <FaFacebookF />, link: "https://facebook.com", color: "#4267B2" },
+            { icon: <FaTwitter />, link: "https://twitter.com", color: "#1DA1F2" },
+            { icon: <FaLinkedin />, link: "https://linkedin.com", color: "#0077B5" },
+            { icon: <FaInstagram />, link: "https://instagram.com", color: "#E1306C" },
+            { icon: <FaYoutube />, link: "https://youtube.com", color: "#FF0000" },
+          ].map(({ icon, link, color }, index) => (
+            <a
+              key={index}
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-icon"
+              style={{
+                color: "#F5DEB3",
+                transition: "color 0.3s ease",
+                textDecoration: "none",
+              }}
+              onMouseOver={(e) => (e.currentTarget.style.color = color)}
+              onMouseOut={(e) => (e.currentTarget.style.color = "#F5DEB3")}
+            >
+              {React.cloneElement(icon, { size: 40 })}
+            </a>
+          ))}
         </Box>
       </Box>
 
       {/* Features Section */}
       <Container sx={{ mt: 8, mb: 4 }}>
-        <Typography variant="h4" align="center" gutterBottom sx={{ mb: 4 }}>
+        <Typography variant="h4" align="center" gutterBottom sx={{ mb: 4 }} data-aos="fade-up">
           Our Features
         </Typography>
         <Grid container spacing={4}>
           {[
             {
               title: "Networking Opportunities",
-              description:
-                "Connect with alumni and expand your professional network.",
-              image:
-                "https://blog.goinglobal.com/wp-content/uploads/2023/11/networking-job-search-goinglobal.jpg",
-              gradient:
-                "linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9))", // Darker gradient
+              description: "Connect with alumni and expand your professional network.",
+              image: "https://blog.goinglobal.com/wp-content/uploads/2023/11/networking-job-search-goinglobal.jpg",
+              gradient: "linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9))",
             },
             {
               title: "Career Development",
-              description:
-                "Access resources and mentorship to advance your career.",
-              image:
-                "https://www.tierpoint.com/wp-content/uploads/2022/05/8-IT-Professional-Career-Development-Tips-in-a-Managed-Services-World_blog.jpg",
-              gradient:
-                "linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9))", // Darker gradient
+              description: "Access resources and mentorship to advance your career.",
+              image: "https://www.tierpoint.com/wp-content/uploads/2022/05/8-IT-Professional-Career-Development-Tips-in-a-Managed-Services-World_blog.jpg",
+              gradient: "linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9))",
             },
             {
               title: "Community Engagement",
-              description:
-                "Participate in events and give back to the community.",
-              image:
-                "https://sustainingcommunity.wordpress.com/wp-content/uploads/2011/03/community-engagement-definition-3.png",
-              gradient:
-                "linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9))", // Darker gradient
+              description: "Participate in events and give back to the community.",
+              image: "https://sustainingcommunity.wordpress.com/wp-content/uploads/2011/03/community-engagement-definition-3.png",
+              gradient: "linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9))",
             },
           ].map((feature, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
+            <Grid item xs={12} sm={6} md={4} key={index} data-aos="fade-up">
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
@@ -347,7 +279,6 @@ const Home = () => {
                         "transform 0.3s ease-in-out, font-size 0.3s ease-in-out",
                     }}
                   >
-                    {/* Title with hover effect */}
                     <Typography
                       variant="h5"
                       sx={{
@@ -360,7 +291,6 @@ const Home = () => {
                     >
                       {feature.title}
                     </Typography>
-                    {/* Description with hover effect */}
                     <Typography
                       variant="body2"
                       sx={{
