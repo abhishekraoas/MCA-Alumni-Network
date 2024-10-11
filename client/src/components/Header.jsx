@@ -18,7 +18,7 @@ const Header = () => {
       <div className="container mx-auto flex justify-between items-center px-6 py-4">
         {/* Logo */}
         <div>
-          <a href="/" className="text-lg font-bold">
+          <a href="/" className="text-lg font-bold text-blue-500 hover:text-blue-300 transition duration-300 ease-in-out">
             MCA Alumni Network
           </a>
         </div>
