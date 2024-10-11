@@ -9,7 +9,7 @@ const Footer = () => {
 
               {/* First Part: Website Description */}
               <div>
-                <h5 className="uppercase font-bold mb-2.5">MCA Alumini Network</h5>
+                <h5 className="uppercase font-bold mb-2.5">MCA Alumni Network</h5>
                 <p className="mb-4">
                   MMMUT MCA Alumni Network, an exclusive platform that connects the alumni of the MCA department at Madan Mohan Malaviya University of Technology (MMMUT).
                 </p>
