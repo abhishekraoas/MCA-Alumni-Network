@@ -20,6 +20,8 @@ import {
 } from "react-icons/fa"; // Import social media icons
 import ImageWithCursorEffect from "./ImageWithCursorEffect";
 import Testimonials from "./Testimonial/Testimonial";
+import AOS from "aos"; // Import AOS
+import "aos/dist/aos.css"; // Import AOS styles
 
 const Home = () => {
   const navigate = useNavigate(); // Initialize navigate for redirection
@@ -51,6 +53,10 @@ const Home = () => {
 
     return () => clearInterval(interval);
   }, [textIndex, isTyping]);
+
+  useEffect(() => {
+    AOS.init(); // Initialize AOS
+  }, []);
 
   return (
     <div>
@@ -86,6 +92,7 @@ const Home = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.2 }}
+            data-aos="fade-right" // AOS attribute
           >
             <Typography
               variant="h2"
@@ -113,6 +120,7 @@ const Home = () => {
                     "&:hover": { backgroundColor: "#e91e63" },
                   }}
                   onClick={() => navigate("/about-us")}
+                  data-aos="fade-up" // AOS attribute
                 >
                   About Us
                 </Button>
@@ -131,6 +139,7 @@ const Home = () => {
                     "&:hover": { backgroundColor: "#e91e63" },
                   }}
                   onClick={() => navigate("/register")}
+                  data-aos="fade-up" // AOS attribute
                 >
                   Join Us
                 </Button>
@@ -141,25 +150,6 @@ const Home = () => {
 
         {/* Cursor Effect Component */}
         <ImageWithCursorEffect />
-
-        {/* Right Section - Hover Motion Image */}
-        {/* Uncomment and customize if needed */}
-        {/* <motion.div
-          initial={{ y: 0 }}
-          animate={{ y: [-10, 0, 10, 0] }}
-          transition={{ duration: 3, repeat: Infinity }} 
-          whileHover={{ scale: 1.1, rotate: 3 }} 
-        >
-          <img
-            src="https://astrorei.io/static/dedicated-dev-team-729a36b484a719fd20b200f39d614100.svg"
-            alt="MCA Alumni Network"
-            style={{
-              maxWidth: '550px', 
-              boxShadow: '0',
-              marginRight: '90px',
-            }}
-          />
-        </motion.div> */}
 
         <Box
           sx={{
@@ -173,7 +163,7 @@ const Home = () => {
             zIndex: 3, // Adjusted zIndex to ensure icons are on top
           }}
         >
-          {/* Social Media Icons */}
+          {/* Social Media Icons - No changes made here */}
           <a
             href="https://facebook.com"
             target="_blank"
@@ -254,7 +244,13 @@ const Home = () => {
 
       {/* Features Section */}
       <Container sx={{ mt: 8, mb: 4 }}>
-        <Typography variant="h4" align="center" gutterBottom sx={{ mb: 4 }}>
+        <Typography
+          variant="h4"
+          align="center"
+          gutterBottom
+          sx={{ mb: 4 }}
+          data-aos="fade-up" // AOS attribute
+        >
           Our Features
         </Typography>
         <Grid container spacing={4}>
@@ -291,6 +287,7 @@ const Home = () => {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
+                data-aos="zoom-in" // AOS attribute
               >
                 <Card
                   sx={{
