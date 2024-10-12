@@ -1,12 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../middleware/AuthContext";
 import ThemeToggle from "./ThemeToggle";
+import gsap from 'gsap'
+import {tl} from './gsap.js'
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+     // Initialize the timeline
+  
+    const ctx = gsap.context(() => {
+      tl.fromTo('.header',
+        {
+          y: -100, // Starting position (from)
+          opacity: 0, // Starting opacity (from)
+        },
+        {
+          y: 0, // Ending position (to)
+          opacity: 1, // Ending opacity (to)
+          duration: 1, // Animation duration
+          ease: "power2.inOut", // Easing function
+           // Stagger the animations for smoother effect
+        }
+      );
+      tl.fromTo('.navbar',
+        {
+          y: -100, // Starting position (from)
+          opacity: 0, // Starting opacity (from)
+        },
+        {
+          y: 0, // Ending position (to)
+          opacity: 1, // Ending opacity (to)
+          duration: 1, // Animation duration
+          ease: "power2.inOut", // Easing function
+          stagger: 0.3, // Stagger the animations for smoother effect
+        }
+      );
+    });
+  
+    return () => ctx.revert(); // Cleanup when the component unmounts
+  }, []);
+  
 
   const handleLogout = () => {
     logout();
@@ -14,11 +52,11 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-black text-white shadow-lg">
+    <header className=" header bg-black text-white shadow-lg">
       <div className="container mx-auto flex justify-between items-center px-6 py-4">
         {/* Logo */}
         <div>
-          <a href="/" className="text-xl font-bold text-white">
+          <a href="/" className="navbar text-xl font-bold text-white">
             MCA Alumni Network
           </a>
         </div>
@@ -27,25 +65,25 @@ const Header = () => {
         <nav className="hidden md:flex space-x-4 lg:space-x-6 text-base font-medium">
           <Link
             to="/"
-            className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+            className="navbar relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
           >
             Home
           </Link>
           <Link
             to="/about-us"
-            className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+            className="navbar relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
           >
             About Us
           </Link>
           <Link
             to="/alumni"
-            className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+            className="navbar relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
           >
             Our Alumni
           </Link>
           <Link
             to="/contact-us"
-            className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+            className="navbar relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
           >
             Contact Us
           </Link>

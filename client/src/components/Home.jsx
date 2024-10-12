@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import gsap from 'gsap'
+import {tl} from './gsap.js'
 import {
   Container,
   Typography,
@@ -29,6 +31,30 @@ const Home = () => {
   const [isTyping, setIsTyping] = useState(true);
   const descriptionText =
     "Empowering connections among MCA alumni to foster collaboration, mentorship, and professional growth within a dynamic and supportive community.";
+    useEffect(() => {
+      // Initialize the timeline
+   
+     const ctx = gsap.context(() => {
+       
+       tl.fromTo('.left',
+         {
+           scale: 0, // Starting position (from)
+           opacity: 0, // Starting opacity (from)
+         },
+         {
+           scale: 1, // Ending position (to)
+           opacity: 1, // Ending opacity (to)
+           duration: 1, // Animation duration
+           ease: "power2.inOut", // Easing function
+          // Stagger the animations for smoother effect
+         }
+       );
+     });
+   
+     return () => ctx.revert(); // Cleanup when the component unmounts
+   }, []);
+
+
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -81,7 +107,7 @@ const Home = () => {
         />
 
         {/* Left Section - Description and Buttons */}
-        <Box sx={{ zIndex: 2, textAlign: "left", maxWidth: "45%" }}>
+        <Box sx={{ zIndex: 2, textAlign: "left", maxWidth: "45%" }} className="left">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
