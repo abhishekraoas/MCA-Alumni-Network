@@ -11,6 +11,10 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 
+import {
+  FaXTwitter
+} from "react-icons/fa6";
+
 // About Us Component
 const AboutUs = () => {
   const navigate = useNavigate();
@@ -163,7 +167,7 @@ const AboutUs = () => {
             <FaFacebookF size={40} />
           </a>
           <a
-            href="https://twitter.com"
+            href="https://x.com"
             target="_blank"
             rel="noopener noreferrer"
             className="social-icon"
@@ -172,10 +176,10 @@ const AboutUs = () => {
               transition: "color 0.3s ease",
               textDecoration: "none",
             }}
-            onMouseOver={(e) => (e.currentTarget.style.color = "#1DA1F2")}
+            onMouseOver={(e) => (e.currentTarget.style.color = "#393e41")}
             onMouseOut={(e) => (e.currentTarget.style.color = "#F5DEB3")}
           >
-            <FaTwitter size={40} />
+            <FaXTwitter size={40} />
           </a>
           <a
             href="https://linkedin.com"
