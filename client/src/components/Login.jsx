@@ -159,14 +159,6 @@ const Login = () => {
           >
             {isLoading ? <FaSpinner className="animate-spin mx-auto" /> : "LOGIN"}
           </button>
-
-          <button
-            type="button" // Change type to button
-            onClick={() => navigate("/register")} // Navigate to the Sign Up page
-            className="w-full mt-2 p-[12px] border-none rounded-[30px] bg-[#e0e5ec] shadow-[8px_8px_16px_#b3b9c5,-8px_-8px_16px_#ffffff] text-[#333] text-[1rem] font-bold cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#d1d9e6]"
-          >
-            Sign Up
-          </button>
         </form>
       </div>
     </div>
