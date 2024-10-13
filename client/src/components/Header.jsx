@@ -1,12 +1,40 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../middleware/AuthContext";
 import ThemeToggle from "./ThemeToggle";
+import gsap from 'gsap'
+import {tl} from './gsap.js'
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+
+//gsap starts
+useEffect(() => {
+    const ctx = gsap.context(() => {
+    tl.fromTo('.navGsap',
+      {
+        y: -100, // Starting position (from)
+        opacity: 0, // Starting opacity (from)
+      },
+      {
+        y: 0, // Ending position (to)
+        opacity: 1, // Ending opacity (to)
+        duration: 0.5, // Animation duration
+        ease: "sine.in", // Easing function
+        stagger: 0.1, 
+        delay:0.5
+      }
+    );
+  });
+
+  return () => ctx.revert(); // Cleanup when the component unmounts
+}, []);
+
+//gsap ends
+
+
 
   const handleLogout = () => {
     logout();
@@ -17,8 +45,8 @@ const Header = () => {
     <header className="bg-black text-white shadow-lg">
       <div className="container mx-auto flex justify-between items-center px-6 py-4">
         {/* Logo */}
-        <div>
-          <a href="/" className="text-xl font-bold text-white">
+        <div className="navGsap">
+          <a href="/" className=" text-xl font-bold text-white">
             MCA Alumni Network
           </a>
         </div>
@@ -27,25 +55,25 @@ const Header = () => {
         <nav className="hidden md:flex space-x-4 lg:space-x-6 text-base font-medium">
           <Link
             to="/"
-            className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+            className="navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
           >
             Home
           </Link>
           <Link
             to="/about-us"
-            className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+            className="navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
           >
             About Us
           </Link>
           <Link
             to="/alumni"
-            className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+            className="navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
           >
             Our Alumni
           </Link>
           <Link
             to="/contact-us"
-            className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+            className="navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
           >
             Contact Us
           </Link>
@@ -55,13 +83,13 @@ const Header = () => {
             <>
               <Link
                 to="/user/dashboard"
-                className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+                className="navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
               >
                 Dashboard
               </Link>
               <button
                 onClick={handleLogout}
-                className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+                className="navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
               >
                 Logout
               </button>
@@ -70,13 +98,13 @@ const Header = () => {
             <>
               <Link
                 to="/register"
-                className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+                className="navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
               >
                 Register as Alumni
               </Link>
               <Link
                 to="/login"
-                className="relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+                className="navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
               >
                 Log In
               </Link>

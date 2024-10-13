@@ -20,6 +20,8 @@ import {
 } from "react-icons/fa"; // Import social media icons
 import ImageWithCursorEffect from "./ImageWithCursorEffect";
 import Testimonials from "./Testimonial/Testimonial";
+import gsap from 'gsap'
+import {tl} from './gsap.js'
 
 const Home = () => {
   const navigate = useNavigate(); // Initialize navigate for redirection
@@ -29,6 +31,29 @@ const Home = () => {
   const [isTyping, setIsTyping] = useState(true);
   const descriptionText =
     "Empowering connections among MCA alumni to foster collaboration, mentorship, and professional growth within a dynamic and supportive community.";
+
+    useEffect(() => {
+      const ctx = gsap.context(() => {
+      tl.fromTo('.homeGsap',
+        {
+          scale: 0, // Starting position (from)
+          opacity: 0, // Starting opacity (from)
+        },
+        {
+          scale: 1, // Ending position (to)
+          opacity: 1, // Ending opacity (to)
+          duration: 1, // Animation duration
+          ease: "expo.inOut", // Easing function
+          stagger: 0.3, 
+          // delay:0.5
+        }
+      );
+    });
+  
+    return () => ctx.revert(); // Cleanup when the component unmounts
+  }, []);
+
+
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -81,7 +106,7 @@ const Home = () => {
         />
 
         {/* Left Section - Description and Buttons */}
-        <Box sx={{ zIndex: 2, textAlign: "left", maxWidth: "45%" }}>
+        <Box sx={{ zIndex: 2, textAlign: "left", maxWidth: "45%" }} className="homeGsap">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
