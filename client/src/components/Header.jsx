@@ -21,6 +21,7 @@ const Header = () => {
           <a href="/" className="text-lg font-bold text-blue-500 hover:text-blue-300 transition duration-300 ease-in-out">
             MCA Alumni Network
           </a>
+          
         </div>
 
         {/* Desktop Menu */}
