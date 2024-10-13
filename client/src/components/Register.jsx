@@ -10,6 +10,7 @@ import {
   MDBCardImage,
   MDBIcon,
 } from "mdb-react-ui-kit";
+import { FaSpinner } from "react-icons/fa"; // Import spinner icon
 import { useNavigate } from "react-router-dom";
 import registerImage from "../assets/register.svg";
 
@@ -30,6 +31,7 @@ const Register = () => {
     state: "",
   });
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -39,10 +41,8 @@ const Register = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     setError("");
-
-    const formUserData = {
-      ...user,
-    };
+    setIsLoading(true); // Set loading state
+    const formUserData = { ...user };
 
     try {
       const response = await fetch("http://localhost:3000/alumni/register", {
@@ -64,6 +64,8 @@ const Register = () => {
     } catch (error) {
       setError("Registration failed. Please try again.");
       console.error("Error in signing up:", error);
+    } finally {
+      setIsLoading(false); // Reset loading state
     }
   };
 
@@ -74,11 +76,25 @@ const Register = () => {
           <MDBCard className="text-black">
             <MDBCardBody className="rounded-3xl bg-[#e0e5ec] p-[40px_30px] shadow-[8px_8px_16px_#b3b9c5,-8px_-8px_16px_#ffffff] w-full text-center">
               <MDBRow className="justify-content-center">
+                {/* Image Column */}
+                <MDBCol md="6" className="order-1 order-lg-2 p-12">
+                  <div className="flex justify-center items-center">
+                    <MDBCardImage
+                      src={registerImage}
+                      alt="Register"
+                      className="w-2/3" // Adjust the width to reduce image size
+                    />
+                  </div>
+                </MDBCol>
+
+                {/* Form Fields Column */}
                 <MDBCol md="6" className="order-2 order-lg-1">
                   <p className="text-center h3 fw-bold mx-1 mx-md-4 my-4 text-black font-bold">
                     Register As Alumni
                   </p>
-                  {error && <div className="text-red-500 text-center">{error}</div>}
+                  {error && (
+                    <div className="text-red-500 text-center">{error}</div>
+                  )}
                   <MDBRow className="w-100">
                     {/* Name Input */}
                     <MDBCol md="6" className="mb-4">
@@ -111,9 +127,9 @@ const Register = () => {
                       </div>
                     </MDBCol>
                   </MDBRow>
-                  {/* Password, GitHub and LinkedIn */}
+
+                  {/* Password, GitHub, LinkedIn */}
                   <MDBRow>
-                    {/* Password Input */}
                     <MDBCol md="6" className="mb-4">
                       <div className="d-flex flex-row align-items-center">
                         <MDBIcon fas icon="lock me-3" size="lg" />
@@ -128,7 +144,6 @@ const Register = () => {
                         />
                       </div>
                     </MDBCol>
-                    {/* GitHub Input */}
                     <MDBCol md="6" className="mb-4">
                       <div className="d-flex flex-row align-items-center">
                         <MDBIcon fab icon="github me-3" size="lg" />
@@ -143,9 +158,9 @@ const Register = () => {
                       </div>
                     </MDBCol>
                   </MDBRow>
-                  {/* LinkedIn, Pass Out Year, Roll No */}
+
+                  {/* LinkedIn, Pass-Out Year, Roll No */}
                   <MDBRow>
-                    {/* LinkedIn Input */}
                     <MDBCol md="6" className="mb-4">
                       <div className="d-flex flex-row align-items-center">
                         <MDBIcon fab icon="linkedin me-3" size="lg" />
@@ -159,14 +174,13 @@ const Register = () => {
                         />
                       </div>
                     </MDBCol>
-                    {/* Pass Out Year Input */}
                     <MDBCol md="6" className="mb-4">
                       <div className="d-flex flex-row align-items-center">
                         <MDBIcon fas icon="calendar me-3" size="lg" />
                         <input
-                          placeholder="Pass Out Year"
+                          placeholder="Pass-Out Year"
                           id="passOutYear"
-                          type="number"
+                          type="text"
                           className="w-full p-2 text-[1rem] border-none rounded-3xl bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
                           value={user.passOutYear}
                           onChange={handleInputChange}
@@ -174,14 +188,14 @@ const Register = () => {
                       </div>
                     </MDBCol>
                   </MDBRow>
-                  {/* Roll No, Job Role, Current Company */}
+
+                  {/* Roll No, Job Role */}
                   <MDBRow>
-                    {/* Roll No Input */}
                     <MDBCol md="6" className="mb-4">
                       <div className="d-flex flex-row align-items-center">
                         <MDBIcon fas icon="id-card me-3" size="lg" />
                         <input
-                          placeholder="Enter Roll No"
+                          placeholder="Roll Number"
                           id="rollNo"
                           type="text"
                           className="w-full p-2 text-[1rem] border-none rounded-3xl bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
@@ -190,7 +204,6 @@ const Register = () => {
                         />
                       </div>
                     </MDBCol>
-                    {/* Job Role Input */}
                     <MDBCol md="6" className="mb-4">
                       <div className="d-flex flex-row align-items-center">
                         <MDBIcon fas icon="briefcase me-3" size="lg" />
@@ -205,9 +218,10 @@ const Register = () => {
                       </div>
                     </MDBCol>
                   </MDBRow>
-                  {/* Current Company Input */}
-                  <MDBRow className="mb-4">
-                    <MDBCol>
+
+                  {/* Current Company, Gender */}
+                  <MDBRow>
+                    <MDBCol md="6" className="mb-4">
                       <div className="d-flex flex-row align-items-center">
                         <MDBIcon fas icon="building me-3" size="lg" />
                         <input
@@ -220,30 +234,28 @@ const Register = () => {
                         />
                       </div>
                     </MDBCol>
-                  </MDBRow>
-                  {/* Gender Input */}
-                  <MDBRow className="mb-4">
-                    <MDBCol>
-                      <select
-                        id="gender"
-                        className="w-full p-2 border-none rounded-3xl bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
-                        value={user.gender}
-                        onChange={handleInputChange}
-                      >
-                        <option value="">Select Gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Other">Other</option>
-                      </select>
+                    <MDBCol md="6" className="mb-4">
+                      <div className="d-flex flex-row align-items-center">
+                        <MDBIcon fas icon="venus-mars me-3" size="lg" />
+                        <input
+                          placeholder="Gender"
+                          id="gender"
+                          type="text"
+                          className="w-full p-2 text-[1rem] border-none rounded-3xl bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
+                          value={user.gender}
+                          onChange={handleInputChange}
+                        />
+                      </div>
                     </MDBCol>
                   </MDBRow>
-                  {/* City Input */}
-                  <MDBRow className="mb-4">
-                    <MDBCol>
+
+                  {/* City, State */}
+                  <MDBRow>
+                    <MDBCol md="6" className="mb-4">
                       <div className="d-flex flex-row align-items-center">
                         <MDBIcon fas icon="city me-3" size="lg" />
                         <input
-                          placeholder="Enter Your City"
+                          placeholder="City"
                           id="city"
                           type="text"
                           className="w-full p-2 text-[1rem] border-none rounded-3xl bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
@@ -252,14 +264,11 @@ const Register = () => {
                         />
                       </div>
                     </MDBCol>
-                  </MDBRow>
-                  {/* State Input */}
-                  <MDBRow className="mb-4">
-                    <MDBCol>
+                    <MDBCol md="6" className="mb-4">
                       <div className="d-flex flex-row align-items-center">
-                        <MDBIcon fas icon="map-marked-alt me-3" size="lg" />
+                        <MDBIcon fas icon="map-marker-alt me-3" size="lg" />
                         <input
-                          placeholder="Enter Your State"
+                          placeholder="State"
                           id="state"
                           type="text"
                           className="w-full p-2 text-[1rem] border-none rounded-3xl bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
@@ -269,26 +278,36 @@ const Register = () => {
                       </div>
                     </MDBCol>
                   </MDBRow>
-                  {/* Submit Button */}
-                  <MDBRow className="mb-4">
-                    <MDBCol>
-                      <button
-                        type="submit"
-                        className="w-full py-2 px-4 text-white bg-blue-500 rounded-3xl hover:bg-blue-600"
-                      >
-                        Register
-                      </button>
-                    </MDBCol>
-                  </MDBRow>
                 </MDBCol>
+              </MDBRow>
+              {/* Buttons (Login & Register) */}
+              <MDBRow className="mb-4">
+                <MDBCol className="text-center">
+                  <div className="flex justify-center gap-4">
+                    {/* Register Button */}
+                    <button
+                      type="submit"
+                      className={`p-[12px] px-[60px] border-none rounded-[15px] bg-[#e0e5ec] shadow-[8px_8px_16px_#b3b9c5,-8px_-8px_16px_#ffffff] text-[#333] text-[1rem] font-bold cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#d1d9e6] ${
+                        isLoading ? "opacity-70 cursor-not-allowed" : ""
+                      }`}
+                      disabled={isLoading}
+                    >
+                      {isLoading ? (
+                        <FaSpinner className="animate-spin mx-auto" />
+                      ) : (
+                        "REGISTER"
+                      )}
+                    </button>
 
-                {/* Image Column */}
-                <MDBCol md="6" className="order-1 order-lg-2">
-                  <MDBCardImage
-                    src={registerImage}
-                    alt="Register"
-                    className="w-full"
-                  />
+                    {/* Login Button */}
+                    <button
+                      type="button"
+                      onClick={() => navigate("/login")}
+                      className="p-[12px] px-[50px] border-none rounded-[15px] bg-[#e0e5ec] shadow-[8px_8px_16px_#b3b9c5,-8px_-8px_16px_#ffffff] text-[#333] text-[1rem] font-bold cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#d1d9e6]"
+                    >
+                      LOGIN
+                    </button>
+                  </div>
                 </MDBCol>
               </MDBRow>
             </MDBCardBody>
