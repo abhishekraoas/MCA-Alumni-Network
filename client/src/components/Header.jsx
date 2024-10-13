@@ -24,7 +24,7 @@ useEffect(() => {
         duration: 0.5, // Animation duration
         ease: "sine.in", // Easing function
         stagger: 0.1, 
-        delay:0.5
+        
       }
     );
   });

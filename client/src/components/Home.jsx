@@ -21,7 +21,7 @@ import {
 import ImageWithCursorEffect from "./ImageWithCursorEffect";
 import Testimonials from "./Testimonial/Testimonial";
 import gsap from 'gsap'
-import {tl} from './gsap.js'
+
 
 const Home = () => {
   const navigate = useNavigate(); // Initialize navigate for redirection
@@ -34,24 +34,34 @@ const Home = () => {
 
     useEffect(() => {
       const ctx = gsap.context(() => {
-      tl.fromTo('.homeGsap',
-        {
-          scale: 0, // Starting position (from)
-          opacity: 0, // Starting opacity (from)
-        },
-        {
-          scale: 1, // Ending position (to)
-          opacity: 1, // Ending opacity (to)
-          duration: 1, // Animation duration
-          ease: "expo.inOut", // Easing function
-          stagger: 0.3, 
-          // delay:0.5
-        }
-      );
-    });
+        // Ensure initial styles are set to scale 1 and opacity 1
+       
   
-    return () => ctx.revert(); // Cleanup when the component unmounts
-  }, []);
+        // Timeline for animation
+        const tl = gsap.timeline();
+        tl.fromTo('.homeGsap',
+          {
+            scale: 0, // Starting position (from)
+            opacity: 0, // Starting opacity (from)
+          },
+          {
+            scale: 1, // Ending position (to)
+            opacity: 1, // Ending opacity (to)
+            duration: 1, // Animation duration
+            ease: "expo.inOut", // Easing function
+            stagger: 0.3, 
+           
+          }
+        );
+      });
+
+     
+  
+      // Cleanup GSAP context
+      return () => {
+        ctx.revert();
+      };
+    }, []); 
 
 
 
@@ -106,7 +116,8 @@ const Home = () => {
         />
 
         {/* Left Section - Description and Buttons */}
-        <Box sx={{ zIndex: 2, textAlign: "left", maxWidth: "45%" }} className="homeGsap">
+        <Box sx={{ zIndex: 2, textAlign: "left", maxWidth: "45%",transform: "scale(1)", // Adding scale
+    opacity: 1,  }} className="homeGsap ">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
