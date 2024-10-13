@@ -212,33 +212,6 @@ const Register = () => {
                         />
                       </div>
                     </MDBCol>
-
-                    <MDBCol md="6" className="mb-4">
-                      <div className="d-flex flex-row align-items-center">
-                        <MDBIcon fas icon="building me-3" size="lg" />
-                        <input
-                          placeholder="City"
-                          id="city"
-                          type="text"
-                          className="w-full p-2 text-[1rem] border-none rounded-3xl bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
-                          value={user.city}
-                        />
-                      </div>
-                    </MDBCol>
-
-                    <MDBCol md="6" className="mb-4">
-                      <div className="d-flex flex-row align-items-center">
-                        <MDBIcon fas icon="building me-3" size="lg" />
-                        <input
-                          placeholder="State"
-                          id="state"
-                          type="text"
-                          className="w-full p-2 text-[1rem] border-none rounded-3xl bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
-                          value={user.state}
-                        />
-                      </div>
-                    </MDBCol>
-
                     <MDBCol md="6" className="mb-4">
                       <div className="d-flex flex-row align-items-center">
                         <MDBIcon fas icon="users me-3" size="lg" />
@@ -258,9 +231,10 @@ const Register = () => {
                         </select>
                       </div>
                     </MDBCol>
+
                     <MDBCol md="6" className="mb-4">
                       <div className="d-flex flex-row align-items-center">
-                        <MDBIcon fas icon="building me-3" size="lg" />
+                      <MDBIcon fas icon="city me-3" size="lg" />
                         <input
                           placeholder="City"
                           id="city"
@@ -273,7 +247,7 @@ const Register = () => {
 
                     <MDBCol md="6" className="mb-4">
                       <div className="d-flex flex-row align-items-center">
-                        <MDBIcon fas icon="building me-3" size="lg" />
+                      <MDBIcon fas icon="place-of-worship me-3" size="lg" />
                         <input
                           placeholder="State"
                           id="state"
@@ -283,6 +257,7 @@ const Register = () => {
                         />
                       </div>
                     </MDBCol>
+
                   </MDBRow>
                 </MDBCol>
                 <MDBCol

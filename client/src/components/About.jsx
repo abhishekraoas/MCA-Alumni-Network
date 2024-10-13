@@ -2,8 +2,9 @@ import React from "react";
 import "./about.css";
 import { FaGraduationCap } from "react-icons/fa6";
 
-const About = () => {
-  return (
+ const About =() =>{
+   return (
+
     <div className="flex justify-center items-center h-screen bg-[#e0e5ec] font-['Roboto',sans-serif]">
       <div className="bg-[#e0e5ec] rounded-[20px] p-[40px_30px] shadow-[8px_8px_16px_#b3b9c5,-8px_-8px_16px_#ffffff] w-auto m-8 h-[700px] text-center">
         <h1 className="text-5xl font-semibold text-[#000] mb-4">About Us</h1>
@@ -60,8 +61,10 @@ const About = () => {
           </p>
         </section>
       </div>
-    </div>
-  );
+<div>
+);
 };
 
+     
 export default About;
+
