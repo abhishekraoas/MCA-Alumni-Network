@@ -75,6 +75,9 @@ const Register = () => {
         <MDBContainer fluid>
           <MDBCard className="text-black">
             <MDBCardBody className="rounded-3xl bg-[#e0e5ec] p-[40px_30px] shadow-[8px_8px_16px_#b3b9c5,-8px_-8px_16px_#ffffff] w-full text-center">
+              <p className="text-center h3 fw-bold mx-1 mx-md-4 my-4 text-black font-bold">
+                Register As Alumni
+              </p>
               <MDBRow className="justify-content-center">
                 {/* Image Column */}
                 <MDBCol md="6" className="order-1 order-lg-2 p-12">
@@ -82,20 +85,17 @@ const Register = () => {
                     <MDBCardImage
                       src={registerImage}
                       alt="Register"
-                      className="w-2/3" // Adjust the width to reduce image size
+                      className="w-72" // Adjust the width to reduce image size
                     />
                   </div>
                 </MDBCol>
 
                 {/* Form Fields Column */}
-                <MDBCol md="6" className="order-2 order-lg-1">
-                  <p className="text-center h3 fw-bold mx-1 mx-md-4 my-4 text-black font-bold">
-                    Register As Alumni
-                  </p>
+                <MDBCol md="6" className="order-2 order-lg-1 ps-5">
                   {error && (
                     <div className="text-red-500 text-center">{error}</div>
                   )}
-                  <MDBRow className="w-100">
+                  <MDBRow className="justify-content-start">
                     {/* Name Input */}
                     <MDBCol md="6" className="mb-4">
                       <div className="d-flex flex-row align-items-center">
@@ -235,16 +235,22 @@ const Register = () => {
                       </div>
                     </MDBCol>
                     <MDBCol md="6" className="mb-4">
-                      <div className="d-flex flex-row align-items-center">
-                        <MDBIcon fas icon="venus-mars me-3" size="lg" />
-                        <input
-                          placeholder="Gender"
+                    <div className="d-flex flex-row align-items-center">
+                        <MDBIcon fas icon="users me-3" size="lg" />
+                        <select
+                          name="gender"
                           id="gender"
-                          type="text"
+                          required
                           className="w-full p-2 text-[1rem] border-none rounded-3xl bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
                           value={user.gender}
-                          onChange={handleInputChange}
-                        />
+                        >
+                          <option value="" disabled className="text-gray-400">
+                            Select Gender
+                          </option>
+                          <option value="male">Male</option>
+                          <option value="female">Female</option>
+                          <option value="other">Other</option>
+                        </select>
                       </div>
                     </MDBCol>
                   </MDBRow>
