@@ -10,7 +10,6 @@ import {
   MDBCardImage,
   MDBIcon,
 } from "mdb-react-ui-kit";
-import { FaSpinner } from "react-icons/fa"; // Import spinner icon
 import { useNavigate } from "react-router-dom";
 import registerImage from "../assets/register.svg";
 
