@@ -267,7 +267,6 @@ const Register = () => {
                       </div>
                     </MDBCol>
                   </MDBRow>
-                  {/* Centered Buttons */}
                   <div className="flex items-center justify-center gap-x-4 my-4">
                     <button
                       type="submit"
