@@ -11,7 +11,7 @@ import {
   MDBIcon,
 } from "mdb-react-ui-kit";
 import { useNavigate } from "react-router-dom";
-import registerImage from "../assets/register.svg";
+import registerImage from '../assets/register.svg';
 
 const Register = () => {
   const navigate = useNavigate();
