@@ -10,6 +10,7 @@ import {
   MDBCardImage, MDBIcon
 } from "mdb-react-ui-kit";
 import { useNavigate } from "react-router-dom";
+import registerImage from '../assets/register.svg';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -266,7 +267,7 @@ const Register = () => {
                   className="order-1 order-lg-2 d-flex justify-content-center align-items-center"
                 >
                   <MDBCardImage
-                    src="\src\assets\register.svg"
+                    src={registerImage}
                     fluid
                     className="w-3/4"
                   />
