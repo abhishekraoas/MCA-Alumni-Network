@@ -11,7 +11,7 @@ import {
   MDBIcon,
 } from "mdb-react-ui-kit";
 import { useNavigate } from "react-router-dom";
-import registerImage from '../assets/register.svg';
+import registerImage from "../assets/register.svg";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -277,14 +277,12 @@ const Register = () => {
                     </button>
                   </div>
                 </MDBCol>
-                <MDBCol md="6" className="order-1 order-lg-2 ps-5">
-                  <div className="flex justify-center">
-                    <MDBCardImage
-                      src={registerImage}
-                      alt="Register"
-                      className="w-80"
-                    />
-                  </div>
+                <MDBCol
+                  md="10"
+                  lg="4"
+                  className="order-1 order-lg-2 d-flex justify-content-center align-items-center"
+                >
+                  <MDBCardImage src={registerImage} fluid className="w-3/4" />
                 </MDBCol>
               </MDBRow>
             </MDBCardBody>
