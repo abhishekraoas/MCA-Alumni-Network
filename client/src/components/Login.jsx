@@ -140,7 +140,7 @@ const Login = () => {
             placeholder="Enter Your Password"
           />
           <div
-            className="relative top-[-35px] left-[275px] cursor-pointer"
+            className="relative top-[-52px] left-[265px] cursor-pointer"
             onClick={handlePassword}
           >
             {showPassword ? (
