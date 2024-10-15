@@ -8,16 +8,32 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            background-color: #f8f4f4; /* Light background color */
             margin: 0;
             padding: 0;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         header {
-            background-color: #003366;
+            background-color: #d54a4a; /* Light red color */
             color: #fff;
             padding: 10px 0;
             text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        header:hover {
+            background-color: #c03939; /* Darker shade of red on hover */
         }
 
         header h1 {
@@ -26,7 +42,7 @@
         }
 
         nav {
-            background-color: #00509e;
+            background-color: #e15b5b; /* Light red color */
             color: #fff;
             text-align: center;
             padding: 10px;
@@ -37,14 +53,30 @@
             text-decoration: none;
             margin: 0 15px;
             font-weight: bold;
+            transition: transform 0.3s, color 0.3s; /* Added color transition */
+        }
+
+        nav a:hover {
+            transform: scale(1.1);
+            color: #fff; /* Color stays white on hover */
         }
 
         section {
             padding: 20px;
+            margin: 20px 0;
+            background-color: #fff; /* White background for sections */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
         }
 
         section h2 {
-            color: #003366;
+            color: #d54a4a; /* Light red color for headings */
+            border-bottom: 2px solid #e15b5b; /* Slightly darker red border */
+            padding-bottom: 10px;
         }
 
         .intro {
@@ -57,19 +89,18 @@
             color: #333;
         }
 
-        .events, .contact {
-            padding: 20px;
-            margin: 20px 0;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        .events-list,
+        .contact-info {
+            list-style-type: none;
+            padding: 0;
         }
 
         footer {
-            background-color: #003366;
+            background-color: #d54a4a; /* Light red color */
             color: #fff;
             text-align: center;
             padding: 10px 0;
-            position: fixed;
+            position: relative;
             width: 100%;
             bottom: 0;
         }
@@ -90,8 +121,8 @@
     <nav>
         <a href="index.html">Home</a>
         <a href="event.html">Events</a>
-        <a href="#">Alumni Stories</a>
-        <a href="#">Contact</a>
+        <a href="alumni stories.html">Alumni Stories</a>
+        <a href="contact.html">Contact</a>
     </nav>
 
     <section class="intro">
@@ -101,17 +132,20 @@
 
     <section class="events">
         <h2>Upcoming Events</h2>
-        <ul>
-            <li>Alumni Meet 2024 - January 15th, 2024</li>
-            <li>Webinar on IT Trends - February 20th, 2024</li>
-            <li>Alumni Startup Showcase - March 10th, 2024</li>
+        <ul class="events-list">
+            <li>🎉 <strong>Alumni Meet 2024</strong> - October 15th, 2024</li>
+            <li>📊 <strong>Webinar on IT Trends</strong> - November 20th, 2024</li>
+            <li>🚀 <strong>Alumni Startup Showcase</strong> - December 10th, 2024</li>
         </ul>
     </section>
 
     <section class="contact">
         <h2>Contact Us</h2>
-        <p>Email: alumni@mitwpu.edu.in</p>
-        <p>Phone: +91 12345 67890</p>
+        <ul class="contact-info">
+            <li>✉️ Email: <a href="mitwpu.edu.in">alumni@mitwpu.edu.in</a></li>
+            <li>📞 Phone: +91 12345 67890</li>
+            <li>🌐 Website: <a href="https://mitwpu.edu.in">mitwpu.edu.in</a></li>
+        </ul>
     </section>
 
     <footer>
