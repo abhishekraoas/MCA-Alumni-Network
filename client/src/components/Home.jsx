@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Typography,
@@ -21,6 +20,8 @@ import {
 } from "react-icons/fa"; // Import social media icons
 import ImageWithCursorEffect from "./ImageWithCursorEffect";
 import Testimonials from "./Testimonial/Testimonial";
+import gsap from 'gsap'
+
 
 const Home = () => {
   const navigate = useNavigate(); // Initialize navigate for redirection
@@ -30,6 +31,39 @@ const Home = () => {
   const [isTyping, setIsTyping] = useState(true);
   const descriptionText =
     "Empowering connections among MCA alumni to foster collaboration, mentorship, and professional growth within a dynamic and supportive community.";
+
+    useEffect(() => {
+      const ctx = gsap.context(() => {
+        // Ensure initial styles are set to scale 1 and opacity 1
+       
+  
+        // Timeline for animation
+        const tl = gsap.timeline();
+        tl.fromTo('.homeGsap',
+          {
+            scale: 0, // Starting position (from)
+            opacity: 0, // Starting opacity (from)
+          },
+          {
+            scale: 1, // Ending position (to)
+            opacity: 1, // Ending opacity (to)
+            duration: 1, // Animation duration
+            ease: "expo.inOut", // Easing function
+            stagger: 0.3, 
+           
+          }
+        );
+      });
+
+     
+  
+      // Cleanup GSAP context
+      return () => {
+        ctx.revert();
+      };
+    }, []); 
+
+
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -59,7 +93,7 @@ const Home = () => {
       <Box
         sx={{
           height: "95vh",
-          backgroundImage: `url('https://plus.unsplash.com/premium_photo-1701590725824-3d0482721544?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
+          backgroundImage: `url('https://plus.unsplash.com/premium_photo-1672940671025-113a634f83d1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmxhY2slMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           display: "flex",
@@ -82,7 +116,8 @@ const Home = () => {
         />
 
         {/* Left Section - Description and Buttons */}
-        <Box sx={{ zIndex: 2, textAlign: "left", maxWidth: "45%" }}>
+        <Box sx={{ zIndex: 2, textAlign: "left", maxWidth: "45%",transform: "scale(1)", // Adding scale
+    opacity: 1,  }} className="homeGsap ">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -91,7 +126,7 @@ const Home = () => {
             <Typography
               variant="h2"
               gutterBottom
-              sx={{ fontWeight: "bold", letterSpacing: 1 }}
+              sx={{ fontWeight: "bold", letterSpacing: 1, color: "white" }}
             >
               Welcome to the MCA Alumni Network
             </Typography>
@@ -139,10 +174,13 @@ const Home = () => {
             </Box>
           </motion.div>
         </Box>
-        {/* THhis is cursor effect changes made  */}
+
+        {/* Cursor Effect Component */}
         <ImageWithCursorEffect />
+
         {/* Right Section - Hover Motion Image */}
-        {/* { <motion.div
+        {/* Uncomment and customize if needed */}
+        {/* <motion.div
           initial={{ y: 0 }}
           animate={{ y: [-10, 0, 10, 0] }}
           transition={{ duration: 3, repeat: Infinity }} 
@@ -157,7 +195,7 @@ const Home = () => {
               marginRight: '90px',
             }}
           />
-        </motion.div> } */}
+        </motion.div> */}
 
         <Box
           sx={{
@@ -168,9 +206,10 @@ const Home = () => {
             display: "flex",
             flexDirection: "column",
             gap: 4,
+            zIndex: 3, // Adjusted zIndex to ensure icons are on top
           }}
         >
-          {/* Each anchor has its own inline styles for hover effects */}
+          {/* Social Media Icons */}
           <a
             href="https://facebook.com"
             target="_blank"
