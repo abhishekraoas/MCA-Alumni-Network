@@ -20,15 +20,14 @@ import ScrollToTop from "./components/ScrollToTop";
 import { Scrollbars } from 'react-custom-scrollbars';
 export default function App() {
   return (
-    <>
-    <Scrollbars
+    <> <Scrollbars
       style={{ height: '100vh' }}
       renderThumbVertical={({ style, ...props }) => (
         <div
           {...props}
           style={{
             ...style,
-            backgroundColor: '#d3d3d3',
+            backgroundColor: '#717E8E',
             borderRadius: '10px',
           }}
         />
