@@ -10,6 +10,7 @@ const {
   deleteUserById,
   logoutUser,
   getAlumniById,
+  Sendcontactmail
 } = require("../controllers/user.controllers");
 // const jwt = require("jsonwebtoken");
 
@@ -28,7 +29,7 @@ router.get("/", (req, res) => {
 
 // Creating User Account
 router.post("/alumni/register", handleUserSignUp);
-
+router.post("/contactus", Sendcontactmail);
 // Login User Account
 router.post("/alumni/login", handleUserLogin);
 
