@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../middleware/AuthContext";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUserCircle,FaEyeSlash,FaEye } from "react-icons/fa";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -11,6 +11,7 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
 
   const [error, setError] = useState({
     email: "",
@@ -21,6 +22,9 @@ const Login = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+  };
+  const handlePassword = () => {
+    setShowPassword(!showPassword);
   };
 
   const validateForm = () => {
@@ -124,7 +128,7 @@ const Login = () => {
               PASSWORD
             </label>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="password"
               name="password"
               value={formData.password}
@@ -133,6 +137,16 @@ const Login = () => {
               className="w-full p-[12px] mt-[8px] text-[1rem] border-none rounded-[30px] bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
               required
             />
+            <div
+              className=" relative left-[265px] top-[-30px]"
+              onClick={handlePassword}
+            >
+              {showPassword ? (
+                <FaEyeSlash className="text-gray-500" />
+              ) : (
+                <FaEye className="text-gray-500" />
+              )}
+            </div>
             {error.password && <p className="text-red-500">{error.password}</p>}
           </div>
           <button
