@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../middleware/AuthContext";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUserCircle, FaEye, FaEyeSlash } from "react-icons/fa";
 import { FaSpinner } from "react-icons/fa";
 
 const InputField = ({ label, type, name, value, onChange, error, placeholder }) => (
@@ -26,7 +26,7 @@ const InputField = ({ label, type, name, value, onChange, error, placeholder }) 
 const Login = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
-  
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -87,7 +87,7 @@ const Login = () => {
       });
 
       const data = await response.json();
-      
+
       if (response.ok) {
         login(data.user, data.token);
         setFormData({ email: "", password: "", rememberMe: false });
@@ -117,7 +117,7 @@ const Login = () => {
           <FaUserCircle className="text-[80px] text-gray-500 mb-[10px] mx-auto" />
           <h2 className="text-[1.8rem] font-bold text-[#333]">MCA Alumni</h2>
         </div>
-        
+
         {error.general && <div className="text-red-500 text-center">{error.general}</div>}
 
         <form onSubmit={handleLogin}>
@@ -132,13 +132,23 @@ const Login = () => {
           />
           <InputField
             label="PASSWORD"
-            type="password"
+            type={showPassword ? "text" : "password"}
             name="password"
             value={formData.password}
             onChange={handleInputChange}
             error={error.password}
             placeholder="Enter Your Password"
           />
+          <div
+            className="relative top-[-35px] left-[275px] cursor-pointer"
+            onClick={handlePassword}
+          >
+            {showPassword ? (
+              <FaEyeSlash className="text-gray-500" />
+            ) : (
+              <FaEye className="text-gray-500" />
+            )}
+          </div>
 
           <div className="flex items-center mb-[20px] text-left">
             <input
@@ -156,9 +166,8 @@ const Login = () => {
 
           <button
             type="submit"
-            className={`w-full p-[12px] border-none rounded-[30px] bg-[#e0e5ec] shadow-[8px_8px_16px_#b3b9c5,-8px_-8px_16px_#ffffff] text-[#333] text-[1rem] font-bold cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#d1d9e6] ${
-              isLoading ? "opacity-70 cursor-not-allowed" : ""
-            }`}
+            className={`w-full p-[12px] border-none rounded-[30px] bg-[#e0e5ec] shadow-[8px_8px_16px_#b3b9c5,-8px_-8px_16px_#ffffff] text-[#333] text-[1rem] font-bold cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#d1d9e6] ${isLoading ? "opacity-70 cursor-not-allowed" : ""
+              }`}
             disabled={isLoading}
           >
             {isLoading ? <FaSpinner className="animate-spin mx-auto" /> : "LOGIN"}
