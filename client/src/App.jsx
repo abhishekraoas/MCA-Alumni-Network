@@ -15,8 +15,8 @@ import UserProfile from "./pages/alumini/UserProfile";
 import Dashboad from "./pages/alumini/Dashboad";
 import Jobs from "./pages/alumini/Jobs";
 import Events from "./pages/alumini/Events";
-import ProtectedRoute from "./middleware/ProtectedRoute"; // Ensure this is imported
-import ScrollToTop from "./components/ScrollToTop";
+import ProtectedRoute from "./middleware/ProtectedRoute"; // Authentication middleware
+import ScrollToTop from "./components/ScrollToTop"; // Smooth scrolling
 
 export default function App() {
   return (
@@ -83,7 +83,7 @@ export default function App() {
           }
         />
       </Routes>
-      <ScrollToTop></ScrollToTop>
+      <ScrollToTop /> {/* Scrolls to the top when navigating between pages */}
       <Footer />
     </>
   );
