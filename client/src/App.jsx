@@ -1,23 +1,46 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import "./index.css";
-import Footer from "./components/Footer";
-import Login from "./components/Login";
-import Header from "./components/Header";
-import Register from "./components/Register";
-import About from "./components/About";
-import OurAlumni from "./components/OurAlumni";
-import Contact from "./components/Contact";
-import Home from "./components/Home";
-import AdminDashboard from "./pages/admin/AdminDashboard";
-import DashboardLayout from "./pages/alumini/DashboardLayout";
-import UserProfile from "./pages/alumini/UserProfile";
-import Dashboad from "./pages/alumini/Dashboad";
-import Jobs from "./pages/alumini/Jobs";
-import Events from "./pages/alumini/Events";
-import ProtectedRoute from "./middleware/ProtectedRoute"; // Authentication middleware
-import ScrollToTop from "./components/ScrollToTop"; // Smooth scrolling
 
+// Components
+const Header = () => <header>Header Component</header>;
+const Footer = () => <footer>Footer Component</footer>;
+const ScrollToTop = () => <div>ScrollToTop Component</div>;
+const Home = () => <div>Home Page</div>;
+const Register = () => <div>Register Page</div>;
+const Login = () => <div>Login Page</div>;
+const About = () => <div>About Us Page</div>;
+const OurAlumni = () => <div>Our Alumni Page</div>;
+const Contact = () => <div>Contact Us Page</div>;
+
+// Pages (User and Admin)
+const DashboardLayout = ({ children }) => <div>Dashboard Layout {children}</div>;
+const Dashboard = () => <div>User Dashboard Page</div>;
+const Jobs = () => <div>Jobs Page</div>;
+const Events = () => <div>Events Page</div>;
+const UserProfile = () => <div>User Profile Page</div>;
+const AdminDashboard = () => <div>Admin Dashboard Page</div>;
+
+// Authentication Logic (Simulated)
+const isAuthenticated = () => !!localStorage.getItem("token"); // Check if a token exists
+const isAdminAuthenticated = () => {
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+  return token && role === "admin"; // Check if the user is admin
+};
+
+// ProtectedRoute Component
+const ProtectedRoute = ({ children, isAdmin = false }) => {
+  if (!isAuthenticated()) {
+    return <Navigate to="/login" />; // Redirect to login if not authenticated
+  }
+  if (isAdmin && !isAdminAuthenticated()) {
+    return <Navigate to="/login" />; // Redirect to login if not an admin
+  }
+  return children; // Render the protected content
+};
+
+// Main App Component
 export default function App() {
   return (
     <>
@@ -37,7 +60,7 @@ export default function App() {
           element={
             <ProtectedRoute>
               <DashboardLayout>
-                <Dashboad />
+                <Dashboard />
               </DashboardLayout>
             </ProtectedRoute>
           }
@@ -77,13 +100,13 @@ export default function App() {
         <Route
           path="/admin/dashboard"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute isAdmin={true}>
               <AdminDashboard />
             </ProtectedRoute>
           }
         />
       </Routes>
-      <ScrollToTop /> {/* Scrolls to the top when navigating between pages */}
+      <ScrollToTop />
       <Footer />
     </>
   );
