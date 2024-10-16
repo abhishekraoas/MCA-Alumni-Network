@@ -2,7 +2,7 @@ import React from "react";
 
 const SocialMedia = ({ user }) => {
   return (
-    <div className="bg-white w-full h-10 py-4 flex items-center justify-center gap-2 flex-wrap">
+    <div className="bg-white w-full h-10 py-1 flex items-center justify-center gap-2 flex-wrap">
       {/* Email Button */}
       <a
         href={`mailto:${user.email}`} // Add the user's email to the mailto link

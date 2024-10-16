@@ -15,18 +15,19 @@ const Search = ({ onSearch }) => {
   };
 
   return (
-    <div className="flex justify-center mb-6">
+    <div className="flex justify-center mb-6 rounded-r-[30px]">
       <input
         type="text"
         placeholder="Search alumni..."
         value={query}
         onChange={handleQueryChange}
-        className="border w-full max-w-xl border-gray-300 p-2 rounded-l"
+        className="border-none w-full max-w-xl p-[12px] text-[1rem] rounded-l-[30px] bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)] transition-all duration-300 ease-in-out"
+        required
       />
       <select
         value={filter}
         onChange={handleFilterChange}
-        className="border border-gray-300 p-2 rounded-r"
+        className="border-none w-auto p-[12px] rounded-r-[30px] bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] text-[1rem] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)] transition-all duration-300 ease-in-out appearance-none"
       >
         <option value="name">Name</option>
         <option value="city">City</option>

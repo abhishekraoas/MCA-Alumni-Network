@@ -63,8 +63,7 @@ const OurAlumni = () => {
   
 
   return (
-    <>
-      <div className="container mx-auto px-4" style={{ marginTop: "5vh" }}>
+      <div className="container mx-auto px-4 pt-4">
         <h1 className="text-3xl font-bold text-center mb-4">Our Alumni</h1>
         <Search onSearch={handleSearch} />
         <div className="flex flex-wrap -mx-4">
@@ -79,7 +78,6 @@ const OurAlumni = () => {
           )}
         </div>
       </div>
-    </>
   );
 };
 
