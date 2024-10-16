@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import UserCard from "./UserCards";
 import Search from "./Search";
 
 const OurAlumni = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  
+  // Sample user data
   const users = [
     {
       name: "AbhiShek Rao",
@@ -37,32 +40,19 @@ const OurAlumni = () => {
       bio: "Creative UX designer focused on enhancing user experiences.",
       worksAt: "DesignHub",
     },
-    {
-      name: "Suryam Shrivastav",
-      email: "rahul@example.com",
-      avatar: "https://i.postimg.cc/q7HVzS6f/Abhi.jpg",
-      city: "Delhi",
-      role: "UX Designer",
-      passOut: "MCA 2023",
-      skills: ["Figma", "Sketch", "User Research"],
-      bio: "Creative UX designer focused on enhancing user experiences.",
-      worksAt: "DesignHub",
-    },
-    {
-      name: "Suryam Shrivastav",
-      email: "rahul@example.com",
-      avatar: "https://i.postimg.cc/q7HVzS6f/Abhi.jpg",
-      city: "Delhi",
-      role: "UX Designer",
-      passOut: "MCA 2023",
-      skills: ["Figma", "Sketch", "User Research"],
-      bio: "Creative UX designer focused on enhancing user experiences.",
-      worksAt: "DesignHub",
-    },
   ];
-  
 
   const [filteredUsers, setFilteredUsers] = useState(users);
+
+  useEffect(() => {
+    const matchDark = window.matchMedia("(prefers-color-scheme: dark)");
+    setIsDarkMode(matchDark.matches);
+
+    const listener = (e) => setIsDarkMode(e.matches);
+    matchDark.addListener(listener);
+
+    return () => matchDark.removeListener(listener);
+  }, []);
 
   const handleSearch = (query, filter) => {
     const lowerCaseQuery = query.toLowerCase();
@@ -76,31 +66,36 @@ const OurAlumni = () => {
           skill.toLowerCase().includes(lowerCaseQuery)
         );
       } else if (filter === "passOut") {
-        return user.passOut.toLowerCase().includes(lowerCaseQuery); // Batch filter logic
+        return user.passOut.toLowerCase().includes(lowerCaseQuery);
       }
       return false;
     });
     setFilteredUsers(filtered);
   };
-  
+
+  const cardStyles = {
+    backgroundColor: isDarkMode ? "#1a1a1a" : "#ffffff",
+    color: isDarkMode ? "#f5f5f5" : "#000000",
+  };
 
   return (
-      <div className="container mx-auto px-4 pt-4">
-        <h1 className="text-3xl font-bold text-center mb-4">Our Alumni</h1>
-        <Search onSearch={handleSearch} />
-        <div className="flex flex-wrap -mx-4">
-          {filteredUsers.length > 0 ? (
-            filteredUsers.map((user, index) => (
-              <div className="w-full md:w-1/2 xl:w-1/3 px-4 mb-8" key={index}>
-                <UserCard user={user} />
-              </div>
-            ))
-          ) : (
-            <p className="text-center w-full">No alumni found.</p>
-          )}
-        </div>
+    <div className="container mx-auto px-4 pt-4">
+      <h1 className="text-3xl font-bold text-center mb-4">Our Alumni</h1>
+      <Search onSearch={handleSearch} />
+      <div className="flex flex-wrap -mx-4" style={{ marginTop: "10vh" }}>
+        {filteredUsers.length > 0 ? (
+          filteredUsers.map((user, index) => (
+            <div className="w-full md:w-1/2 xl:w-1/3 px-4 mb-8" key={index}>
+              <UserCard user={user} cardStyles={cardStyles} />
+            </div>
+          ))
+        ) : (
+          <p className="text-center w-full">No alumni found.</p>
+        )}
       </div>
+    </div>
   );
 };
 
 export default OurAlumni;
+
