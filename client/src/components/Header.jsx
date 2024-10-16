@@ -1,38 +1,38 @@
-import React, { useState,useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../middleware/AuthContext";
 import ThemeToggle from "./ThemeToggle";
 import gsap from 'gsap'
-import {tl} from './gsap.js'
+import { tl } from './gsap.js'
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
-//gsap starts
-useEffect(() => {
+  //gsap starts
+  useEffect(() => {
     const ctx = gsap.context(() => {
-    tl.fromTo('.navGsap',
-      {
-        y: -100, // Starting position (from)
-        opacity: 0, // Starting opacity (from)
-      },
-      {
-        y: 0, // Ending position (to)
-        opacity: 1, // Ending opacity (to)
-        duration: 0.5, // Animation duration
-        ease: "sine.in", // Easing function
-        stagger: 0.1, 
-        
-      }
-    );
-  });
+      tl.fromTo('.navGsap',
+        {
+          y: -100, // Starting position (from)
+          opacity: 0, // Starting opacity (from)
+        },
+        {
+          y: 0, // Ending position (to)
+          opacity: 1, // Ending opacity (to)
+          duration: 0.5, // Animation duration
+          ease: "sine.in", // Easing function
+          stagger: 0.1,
 
-  return () => ctx.revert(); // Cleanup when the component unmounts
-}, []);
+        }
+      );
+    });
 
-//gsap ends
+    return () => ctx.revert(); // Cleanup when the component unmounts
+  }, []);
+
+  //gsap ends
 
 
 
@@ -53,40 +53,44 @@ useEffect(() => {
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex space-x-4 lg:space-x-6 text-base font-medium">
-          <Link
+          <NavLink
             to="/"
-            className="navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+            className={({isActive})=>`${isActive?"navGsap relative text-orange-600 px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110":"navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"}`}
           >
             Home
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/about-us"
-            className="navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+            className={({isActive})=>`${isActive?"navGsap relative text-orange-600 px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110":"navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"}`}
+
           >
             About Us
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/alumni"
-            className="navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+            className={({isActive})=>`${isActive?"navGsap relative text-orange-600 px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110":"navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"}`}
+
           >
             Our Alumni
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/contact-us"
-            className="navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+            className={({isActive})=>`${isActive?"navGsap relative text-orange-600 px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110":"navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"}`}
+
           >
             Contact Us
-          </Link>
+          </NavLink>
 
           {/* Conditional Links */}
           {user ? (
             <>
-              <Link
+              <NavLink
                 to="/user/dashboard"
-                className="navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+                className={({isActive})=>`${isActive?"navGsap relative text-orange-600 px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110":"navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"}`}
+
               >
                 Dashboard
-              </Link>
+              </NavLink>
               <button
                 onClick={handleLogout}
                 className="navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
@@ -96,18 +100,20 @@ useEffect(() => {
             </>
           ) : (
             <>
-              <Link
+              <NavLink
                 to="/register"
-                className="navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+                className={({isActive})=>`${isActive?"navGsap relative text-orange-600 px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110":"navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"}`}
+
               >
                 Register as Alumni
-              </Link>
-              <Link
+              </NavLink>
+              <NavLink
                 to="/login"
-                className="navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+                className={({isActive})=>`${isActive?"navGsap relative text-orange-600 px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110":"navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"}`}
+
               >
                 Log In
-              </Link>
+              </NavLink>
             </>
           )}
         </nav>
