@@ -17,6 +17,7 @@
     "@heroicons/react": "^2.1.5",
     "@mui/material": "^6.1.2",
     "client": "file:",
+    "lodash": "^4.17.21",
     "mdb-react-ui-kit": "^9.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

@@ -17,11 +17,12 @@ import Jobs from "./pages/alumini/Jobs";
 import Events from "./pages/alumini/Events";
 import ProtectedRoute from "./middleware/ProtectedRoute"; // Ensure this is imported
 import ScrollToTop from "./components/ScrollToTop";
-
+import CursorTrail from "./components/CursorFolder/CustomCursor";
 export default function App() {
   return (
     <>
       <Header />
+      <CursorTrail></CursorTrail>
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<Home />} />

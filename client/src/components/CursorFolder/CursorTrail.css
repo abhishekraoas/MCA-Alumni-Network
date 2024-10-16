@@ -1,0 +1,10 @@
+.trail {
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background: teal;
+  pointer-events: none;
+  z-index: 1000;
+  transition: transform 0.1s ease-out, opacity 0.3s ease-out; /* Smooth movement and fade out */
+}
