@@ -1,48 +1,45 @@
-import React, { useState,useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../middleware/AuthContext";
 import ThemeToggle from "./ThemeToggle";
-import gsap from 'gsap'
-import {tl} from './gsap.js'
+import gsap from 'gsap';
+import { tl } from './gsap.js';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation(); // Get the current location
 
-//gsap starts
-useEffect(() => {
+  // gsap starts
+  useEffect(() => {
     const ctx = gsap.context(() => {
-    tl.fromTo('.navGsap',
-      {
+      tl.fromTo('.navGsap', {
         y: -100, // Starting position (from)
         opacity: 0, // Starting opacity (from)
-      },
-      {
+      }, {
         y: 0, // Ending position (to)
         opacity: 1, // Ending opacity (to)
         duration: 0.5, // Animation duration
         ease: "sine.in", // Easing function
-        stagger: 0.1, 
-        
-      }
-    );
-  });
+        stagger: 0.1,
+      });
+    });
 
-  return () => ctx.revert(); // Cleanup when the component unmounts
-}, []);
-
-//gsap ends
-
-
+    return () => ctx.revert(); // Cleanup when the component unmounts
+  }, []);
+  // gsap ends
 
   const handleLogout = () => {
     logout();
     navigate("/login");
   };
 
+  // Check if the current route is Register or Login
+  const isAuthPage = location.pathname === '/login' || location.pathname === '/register';
+
   return (
-    <header className="bg-black text-white shadow-lg">
+    <header className={`bg-black text-white shadow-lg ${isAuthPage ? 'theme-light' : ''}`}>
       <div className="container mx-auto flex justify-between items-center px-6 py-4">
         {/* Logo */}
         <div className="navGsap">
@@ -113,9 +110,11 @@ useEffect(() => {
         </nav>
 
         {/* Theme Toggle */}
-        <div className="hidden md:block">
-          <ThemeToggle />
-        </div>
+        {!isAuthPage && (
+          <div className="hidden md:block">
+            <ThemeToggle />
+          </div>
+        )}
 
         {/* Mobile Menu Button */}
         <button
