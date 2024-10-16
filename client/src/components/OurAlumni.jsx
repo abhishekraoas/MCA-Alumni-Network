@@ -1,50 +1,101 @@
 import React, { useEffect, useState } from "react";
 import UserCard from "./UserCards";
+import Search from "./Search";
 
 const OurAlumni = () => {
-	const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  
+  // Sample user data
+  const users = [
+    {
+      name: "AbhiShek Rao",
+      email: "abhi@example.com",
+      avatar: "https://i.postimg.cc/q7HVzS6f/Abhi.jpg",
+      city: "Gorakhpur",
+      role: "Web Developer",
+      passOut: "MCA 2025",
+      skills: ["JavaScript", "React", "Node.js"],
+      bio: "Passionate web developer with a love for building interactive applications.",
+      worksAt: "TechSoft Pvt. Ltd.",
+    },
+    {
+      name: "Satish Pandey",
+      email: "sita@example.com",
+      avatar: "https://i.postimg.cc/q7HVzS6f/Abhi.jpg",
+      city: "Lucknow",
+      role: "Data Scientist",
+      passOut: "MCA 2024",
+      skills: ["Python", "Machine Learning", "Data Analysis"],
+      bio: "Data scientist with a knack for uncovering insights from data.",
+      worksAt: "DataMinds Corp.",
+    },
+    {
+      name: "Suryam Shrivastav",
+      email: "rahul@example.com",
+      avatar: "https://i.postimg.cc/q7HVzS6f/Abhi.jpg",
+      city: "Delhi",
+      role: "UX Designer",
+      passOut: "MCA 2023",
+      skills: ["Figma", "Sketch", "User Research"],
+      bio: "Creative UX designer focused on enhancing user experiences.",
+      worksAt: "DesignHub",
+    },
+  ];
 
-	useEffect(() => {
-		const matchDark = window.matchMedia("(prefers-color-scheme: dark)");
-		setIsDarkMode(matchDark.matches);
+  const [filteredUsers, setFilteredUsers] = useState(users);
 
-		const listener = (e) => setIsDarkMode(e.matches);
-		matchDark.addListener(listener);
+  useEffect(() => {
+    const matchDark = window.matchMedia("(prefers-color-scheme: dark)");
+    setIsDarkMode(matchDark.matches);
 
-		return () => matchDark.removeListener(listener);
-	}, []);
+    const listener = (e) => setIsDarkMode(e.matches);
+    matchDark.addListener(listener);
 
-	const cardStyles = {
-		backgroundColor: isDarkMode ? "#1a1a1a" : "#ffffff",
-		color: isDarkMode ? "#f5f5f5" : "#000000",
-	};
+    return () => matchDark.removeListener(listener);
+  }, []);
 
-	const user = {
-		name: "AbhiShek Rao",
-		email: "johndoe@example.com",
-		avatar: "https://i.postimg.cc/q7HVzS6f/Abhi.jpg",
-		city: "Gorakhpur",
-		role: "Web Developer",
-		passOut: "MCA 2025",
-	};
+  const handleSearch = (query, filter) => {
+    const lowerCaseQuery = query.toLowerCase();
+    const filtered = users.filter((user) => {
+      if (filter === "name") {
+        return user.name.toLowerCase().includes(lowerCaseQuery);
+      } else if (filter === "city") {
+        return user.city.toLowerCase().includes(lowerCaseQuery);
+      } else if (filter === "skills") {
+        return user.skills.some((skill) =>
+          skill.toLowerCase().includes(lowerCaseQuery)
+        );
+      } else if (filter === "passOut") {
+        return user.passOut.toLowerCase().includes(lowerCaseQuery);
+      }
+      return false;
+    });
+    setFilteredUsers(filtered);
+  };
 
-	return (
-		<>
-			<div className="container mx-auto px-4">
-				<div className="flex flex-wrap -mx-4" style={{ marginTop: "10vh" }}>
-					<div className="w-full md:w-1/2 xl:w-1/3 px-4 mb-8">
-						<UserCard user={user} cardStyles={cardStyles} />
-					</div>
-					<div className="w-full md:w-1/2 xl:w-1/3 px-4 mb-8">
-						<UserCard user={user} cardStyles={cardStyles} />
-					</div>
-					<div className="w-full md:w-1/2 xl:w-1/3 px-4 mb-8">
-						<UserCard user={user} cardStyles={cardStyles} />
-					</div>
-				</div>
-			</div>
-		</>
-	);
+  const cardStyles = {
+    backgroundColor: isDarkMode ? "#1a1a1a" : "#ffffff",
+    color: isDarkMode ? "#f5f5f5" : "#000000",
+  };
+
+  return (
+    <div className="container mx-auto px-4 pt-4">
+      <h1 className="text-3xl font-bold text-center mb-4">Our Alumni</h1>
+      <Search onSearch={handleSearch} />
+      <div className="flex flex-wrap -mx-4" style={{ marginTop: "10vh" }}>
+        {filteredUsers.length > 0 ? (
+          filteredUsers.map((user, index) => (
+            <div className="w-full md:w-1/2 xl:w-1/3 px-4 mb-8" key={index}>
+              <UserCard user={user} cardStyles={cardStyles} />
+            </div>
+          ))
+        ) : (
+          <p className="text-center w-full">No alumni found.</p>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default OurAlumni;
+

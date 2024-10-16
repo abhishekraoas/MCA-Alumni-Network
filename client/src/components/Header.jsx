@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, NavLink, useNavigate, useLocation } from "react-router-dom"; // Using NavLink from main branch
 import { useAuth } from "../middleware/AuthContext";
 import ThemeToggle from "./ThemeToggle";
 import gsap from 'gsap';
@@ -11,7 +11,7 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation(); // Get the current location
 
-  // gsap starts
+  // GSAP starts
   useEffect(() => {
     const ctx = gsap.context(() => {
       tl.fromTo('.navGsap', {
@@ -28,7 +28,7 @@ const Header = () => {
 
     return () => ctx.revert(); // Cleanup when the component unmounts
   }, []);
-  // gsap ends
+  // GSAP ends
 
   const handleLogout = () => {
     logout();
@@ -50,40 +50,40 @@ const Header = () => {
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex space-x-4 lg:space-x-6 text-base font-medium">
-          <Link
+          <NavLink
             to="/"
-            className="navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+            className={({isActive})=>`${isActive ? "navGsap relative text-orange-600 px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110" : "navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"}`}
           >
             Home
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/about-us"
-            className="navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+            className={({isActive})=>`${isActive ? "navGsap relative text-orange-600 px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110" : "navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"}`}
           >
             About Us
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/alumni"
-            className="navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+            className={({isActive})=>`${isActive ? "navGsap relative text-orange-600 px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110" : "navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"}`}
           >
             Our Alumni
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/contact-us"
-            className="navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+            className={({isActive})=>`${isActive ? "navGsap relative text-orange-600 px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110" : "navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"}`}
           >
             Contact Us
-          </Link>
+          </NavLink>
 
           {/* Conditional Links */}
           {user ? (
             <>
-              <Link
+              <NavLink
                 to="/user/dashboard"
-                className="navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+                className={({isActive})=>`${isActive ? "navGsap relative text-orange-600 px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110" : "navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"}`}
               >
                 Dashboard
-              </Link>
+              </NavLink>
               <button
                 onClick={handleLogout}
                 className="navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
@@ -93,18 +93,18 @@ const Header = () => {
             </>
           ) : (
             <>
-              <Link
+              <NavLink
                 to="/register"
-                className="navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+                className={({isActive})=>`${isActive ? "navGsap relative text-orange-600 px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110" : "navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"}`}
               >
                 Register as Alumni
-              </Link>
-              <Link
+              </NavLink>
+              <NavLink
                 to="/login"
-                className="navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"
+                className={({isActive})=>`${isActive ? "navGsap relative text-orange-600 px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110" : "navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"}`}
               >
                 Log In
-              </Link>
+              </NavLink>
             </>
           )}
         </nav>
