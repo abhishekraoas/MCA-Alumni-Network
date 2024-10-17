@@ -1,7 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Light Mode Autofill */
 input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px white inset; 
-    -webkit-text-fill-color: rgba(25, 23, 23, 0.767) !important;
+  -webkit-box-shadow: 0 0 0 1000px white inset; 
+  -webkit-text-fill-color: rgba(25, 23, 23, 0.767) !important;
+}
+
+/* Dark Mode Autofill */
+.dark input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #1a202c inset; /* Dark background */
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.8) !important; /* Lighter text color */
 }
