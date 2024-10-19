@@ -13,7 +13,6 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import {
   FaFacebookF,
-  FaTwitter,
   FaLinkedin,
   FaInstagram,
   FaYoutube,
@@ -231,15 +230,25 @@ const Home = () => {
             rel="noopener noreferrer"
             className="social-icon"
             style={{
-              color: "#F5DEB3",
-              transition: "color 0.3s ease",
-              textDecoration: "none",
+            color: "#F5DEB3",
+            transition: "color 0.3s ease",
+            textDecoration: "none",
             }}
             onMouseOver={(e) => (e.currentTarget.style.color = "#1DA1F2")}
             onMouseOut={(e) => (e.currentTarget.style.color = "#F5DEB3")}
           >
-            <FaTwitter size={40} />
+            <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={40}
+            height={40}
+            fill="currentColor"
+            viewBox="0 0 16 16"
+            className="mx-auto h-full w-8"
+            >
+              <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+            </svg>
           </a>
+
           <a
             href="https://linkedin.com"
             target="_blank"
