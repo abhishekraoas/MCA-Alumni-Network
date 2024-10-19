@@ -72,9 +72,9 @@ const Register = () => {
       <form onSubmit={handleFormSubmit}>
         <MDBContainer fluid className="">
           <MDBCard className="text-black">
-            <MDBCardBody className="rounded-3xl bg-[#e0e5ec] p-[40px_30px] shadow-[8px_8px_16px_#b3b9c5,-8px_-8px_16px_#ffffff] w-full text-center ps-5">
-              <MDBRow className="justify-content-center items-center ps-5">
-                <MDBCol md="10" lg="6" className="order-2 order-lg-1 ps-5">
+            <MDBCardBody className="rounded-3xl bg-[#e0e5ec] p-[40px_30px] shadow-[8px_8px_16px_#b3b9c5,-8px_-8px_16px_#ffffff] w-full text-center ">
+              <MDBRow className="justify-content-center items-center ">
+                <MDBCol md="10" lg="6" className="order-2 order-lg-1 ">
                   <p className="text-center h3 fw-bold mx-1 mx-md-4 my-4 text-black font-bold">
                     Register As Alumni
                   </p>
@@ -219,8 +219,9 @@ const Register = () => {
                           required
                           className="w-full p-2 text-[1rem] border-none rounded-3xl bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
                           value={user.gender}
+                          onChange={handleInputChange}
                         >
-                          <option value="" disabled className="text-gray-400">
+                          <option value=""  className="text-gray-400 w-full">
                             Select Gender
                           </option>
                           <option value="male">Male</option>
