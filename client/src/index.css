@@ -1,7 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Prevents browser autofill background from affecting input */
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px white inset; 
     -webkit-text-fill-color: rgba(25, 23, 23, 0.767) !important;
 }
+
+/* Example CSS for Light and Dark Theme */
+body {
+    @apply bg-white text-black; /* Default Light Theme */
+}
+
+.dark body {
+    @apply bg-black text-white; /* Dark Theme */
+}
+
+/* Other custom styles can be added here */
