@@ -52,7 +52,7 @@ const Contact = () => {
 
   return (
     <div className="flex justify-center items-center h-screen bg-[#FFFFFF] font-['Roboto', sans-serif]" style={{ paddingTop: '-10px' }}>
-  <div className="bg-[linear-gradient(-225deg,#E3FDF5_0%,#FFE6FA_100%)]  rounded-[20px] p-[40px_30px] shadow-[8px_8px_16px_#b3b9c5,-8px_-8px_16px_#ffffff] max-w-[900px] w-full flex flex-col md:flex-row gap-10">
+  <div className="  rounded-[20px] p-[40px_30px] shadow-[8px_8px_16px_#b3b9c5,-8px_-8px_16px_#ffffff] max-w-[900px] w-full flex flex-col md:flex-row gap-10">
 
     {/* Left Side: Contact Form */}
     <div className="flex-1 p-1">
@@ -80,7 +80,7 @@ const Contact = () => {
     value={formData.name}
     onChange={handleChange}
     placeholder="Enter Your Name"
-    className="w-full p-[12px] mt-[4px] text-[1rem] border-none rounded-[30px] bg-[white]"
+    className="w-full p-[12px] mt-[4px] text-[1rem] border-none rounded-[30px] bg-[#f5f0fd]"
     required
   />
 </div>
@@ -99,7 +99,7 @@ const Contact = () => {
     value={formData.email}
     onChange={handleChange}
     placeholder="Enter Your Email"
-    className="w-full p-[12px] mt-[4px] text-[1rem] border-none rounded-[30px] bg-[#fff]"
+    className="w-full p-[12px] mt-[4px] text-[1rem] border-none rounded-[30px] bg-[#f5f0fd]"
     required
   />
 </div>
@@ -117,7 +117,7 @@ const Contact = () => {
     value={formData.message}
     onChange={handleChange}
     placeholder="Go ahead! We are listening..."
-    className="w-full p-[12px] mt-[4px] text-[1rem] border-none rounded-[30px] bg-[#fff]"
+    className="w-full p-[12px] mt-[4px] text-[1rem] border-none rounded-[30px] bg-[#f5f0fd]"
     required
   />
 </div>
