@@ -49,23 +49,30 @@ const Contact = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-[#e0e5ec] font-['Roboto', sans-serif]" style={{ paddingTop: '-10px' }}>
-  <div className="bg-[#e0e5ec] rounded-[20px] p-[40px_30px] shadow-[8px_8px_16px_#b3b9c5,-8px_-8px_16px_#ffffff] max-w-[900px] w-full flex flex-col md:flex-row">
+    <div className="relative flex justify-center items-center h-screen font-['Roboto', sans-serif]">
+   <div className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: `url(https://plus.unsplash.com/premium_photo-1672940671025-113a634f83d1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmxhY2slMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww)`,
+        }}>
+      <div className="absolute inset-0 bg-black opacity-60"></div>
+   </div>
+
+  <div className="realtive z-10 bg-black rounded-[5px] p-[40px_30px] max-w-[900px] w-full flex flex-col md:flex-row border-2 border-orange-600">
 
     {/* Left Side: Contact Form */}
     <div className="flex-1 p-1">
-      <h1 className="text-left text-3xl md:text-4xl mb-2" style={{ fontSize: '2.2rem', fontWeight: 600, fontFamily: "Georgia, serif" }}>
+      <h1 className="text-left text-3xl md:text-4xl text-white mb-2 font-Roboto, Helvetica, Arial, sans-serif" style={{ fontSize: '2.2rem', fontWeight: 600}}>
         Get in Touch
       </h1>
 
-      <p className="mb-5 text-base" style={{ fontSize: '1.2rem', fontWeight: 500, fontFamily: "Georgia, serif" }}>We are here for you. How can we help?</p>
+      <p className="mb-5 text-base text-orange-600" style={{ fontSize: '1.2rem', fontWeight: 500, fontFamily: "Roboto, Helvetica, Arial, sans-serif" }}>We are here for you. How can we help?</p>
 
       {responseMessage && <p className="text-green-500">{responseMessage}</p>}
       {error && <p className="text-red-500">{error}</p>}
 
       <form onSubmit={handleSubmit}>
-        <div className="mb-[20px] text-left">
-          <label htmlFor="name" className="text-[0.9rem] font-bold text-[#333] block">
+        <div className="mb-[20px] text-left " style={{fontFamily: "Roboto, Helvetica, Arial, sans-serif"}}>
+          <label htmlFor="name" className="text-[0.9rem] font-bold text-white block" >
             NAME
           </label>
           <input
@@ -75,13 +82,13 @@ const Contact = () => {
             value={formData.name}
             onChange={handleChange}
             placeholder="Enter Your Name"
-            className="w-full p-[12px] mt-[8px] text-[1rem] border-none rounded-[30px] bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
+            className="w-full p-[12px] mt-[8px] text-[1rem] border-none rounded-[5px] bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
             required
           />
         </div>
 
         <div className="mb-[20px] text-left">
-          <label htmlFor="email" className="text-[0.9rem] font-bold text-[#333] block">
+          <label htmlFor="email" className="text-[0.9rem] font-bold text-white block">
             EMAIL
           </label>
           <input
@@ -91,13 +98,13 @@ const Contact = () => {
             value={formData.email}
             onChange={handleChange}
             placeholder="Enter Your Email"
-            className="w-full p-[12px] mt-[8px] text-[1rem] border-none rounded-[30px] bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
+            className="w-full p-[12px] mt-[8px] text-[1rem] border-none rounded-[5px] bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
             required
           />
         </div>
 
         <div className="mb-[20px] text-left">
-          <label htmlFor="message" className="text-[0.9rem] font-bold text-[#333] block">
+          <label htmlFor="message" className="text-[0.9rem] font-bold text-white block">
             MESSAGE
           </label>
           <textarea
@@ -106,14 +113,14 @@ const Contact = () => {
             value={formData.message}
             onChange={handleChange}
             placeholder="Go ahead! We are listening..."
-            className="w-full p-[12px] mt-[8px] text-[1rem] border-none rounded-[30px] bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
+            className="w-full p-[12px] mt-[8px] text-[1rem] border-none rounded-[5px] bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
             required
           />
         </div>
 
         <button
           type="submit"
-          className="w-full p-[12px] border-none rounded-[30px] bg-[#e0e5ec] shadow-[8px_8px_16px_#b3b9c5,-8px_-8px_16px_#ffffff] text-[#333] text-[1rem] font-bold cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#d1d9e6] hover:shadow-[4px_4px_8px_#b3b9c5,-4px_-4px_8px_#ffffff]"
+          className="w-full p-[12px] rounded-[5px] bg-[#e0e5ec] text-black text-[1rem] font-bold cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#d1d9e6] hover:shadow-[4px_4px_4px_#b3b9c5,-4px_-4px_8px_#ffffff] border-2 border-orange-600" style={{fontFamily: "Roboto, Helvetica, Arial, sans-serif"}}
         >
           SEND MESSAGE
         </button>
@@ -126,29 +133,29 @@ const Contact = () => {
         <img src={abhi} alt="Your Name" className="w-full h-full object-cover" />
       </div>
 
-      <div className="bg-[#e0e5ec] w-full p-2 text-black flex flex-col items-center">
-        <h2 className="text-center text-xl font-bold mb-2 pb-2">Contact Us</h2>
-        <div className="flex flex-col items-start space-y-4">
+      <div className="text-white flex flex-col items-center">
+        <h2 className="text-center text-xl font-bold mb-2 pb-2 text-white">Contact Us</h2>
+        <div className="flex flex-col items-start space-y-4 text-white" style={{fontFamily: "Roboto, Helvetica, Arial, sans-serif"}}>
           <div className="flex items-center text-lg font-semibold">
-            <a href="mailto:mmmutmca@gmail.com" className="flex items-center text-black hover:underline">
+            <a href="mailto:mmmutmca@gmail.com" className="flex items-center text-white hover:underline">
               <FaEnvelope className="mr-3 text-2xl" />
               <span>mmmutmca@gmail.com</span>
             </a>
           </div>
           <div className="flex items-center text-lg font-semibold">
-            <a href="tel:+1234567890" className="flex items-center text-black hover:underline">
+            <a href="tel:+1234567890" className="flex items-center text-white hover:underline">
               <FaPhoneAlt className="mr-3 text-2xl" />
               <span>+123 456 7890</span>
             </a>
           </div>
           <div className="flex items-center text-lg font-semibold">
-            <a href="https://www.linkedin.com/abhishekraoas?_l=en_US" target="_blank" rel="noopener noreferrer" className="flex items-center text-black hover:underline">
+            <a href="https://www.linkedin.com/abhishekraoas?_l=en_US" target="_blank" rel="noopener noreferrer" className="flex items-center text-white hover:underline">
               <FaLinkedin className="mr-3 text-2xl" />
               <span>linkedin.com/in/abhi.</span>
             </a>
           </div>
           <div className="flex items-center text-lg font-semibold">
-            <a href="https://github.com/abhishekraoas" target="_blank" rel="noopener noreferrer" className="flex items-center text-black hover:underline">
+            <a href="https://github.com/abhishekraoas" target="_blank" rel="noopener noreferrer" className="flex items-center text-white hover:underline">
               <FaGithub className="mr-3 text-2xl" />
               <span>github.com/abhishek...</span>
             </a>
