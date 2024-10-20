@@ -112,68 +112,59 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-[#e0e5ec] font-['Roboto',sans-serif]">
-      <div className="bg-[#e0e5ec] rounded-[20px] p-[40px_30px] shadow-[8px_8px_16px_#b3b9c5,-8px_-8px_16px_#ffffff] max-w-[350px] w-full text-center">
-        <div className="mb-[30px]">
-          <FaUserCircle className="text-[80px] text-gray-500 mb-[10px] mx-auto" />
-          <h2 className="text-[1.8rem] font-bold text-[#333]">MCA Alumni</h2>
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 font-['Roboto',sans-serif] p-4">
+      <div className="bg-white rounded-3xl p-8 shadow-2xl max-w-md w-full text-center">
+        <div className="mb-4 ">
+          <FaUserCircle className="text-7xl text-black mb-4 mx-auto" />
+          <h2 className="text-3xl font-bold text-gray-800">MCA Alumni Login</h2>
         </div>
-
-        {error.general && <div className="text-red-500 text-center">{error.general}</div>}
-
-        <form onSubmit={handleLogin}>
-          <InputField
-            label="EMAIL"
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            error={error.email}
-            placeholder="Enter Your Email"
-          />
-          <InputField
-            label="PASSWORD"
-            type={showPassword ? "text" : "password"}
-            name="password"
-            value={formData.password}
-            onChange={handleInputChange}
-            error={error.password}
-            placeholder="Enter Your Password"
-          />
-          <div
-            className="relative top-[-52px] left-[265px] cursor-pointer"
-            onClick={handlePassword}
-          >
-            {showPassword ? (
-              <FaEyeSlash className="text-gray-500" />
-            ) : (
-              <FaEye className="text-gray-500" />
-            )}
-          </div>
-
-          <div className="flex items-center mb-[20px] text-left">
-            <input
-              type="checkbox"
-              id="rememberMe"
-              name="rememberMe"
-              checked={formData.rememberMe}
-              onChange={handleInputChange}
-              className="mr-[8px]"
-            />
-            <label htmlFor="rememberMe" className="text-[0.9rem] font-bold text-[#333]">
-              Remember Me
+        {error.general && (
+          <div className="text-red-500 text-center mb-4 bg-red-100 p-2 rounded-lg">{error.general}</div>
+        )}
+        <form onSubmit={handleLogin} className="space-y-6">
+          <div className="text-left">
+            <label htmlFor="email" className="text-sm font-semibold text-gray-700 block mb-1">
+              Email Address
             </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              placeholder="Enter your email"
+              className="w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-300 focus:border-blue-500 focus:bg-white focus:outline-none transition duration-200"
+              required
+            />
+            {error.email && <p className="text-red-500 text-xs mt-1">{error.email}</p>}
+          </div>
+          <div className="text-left">
+            <label htmlFor="password" className="text-sm font-semibold text-gray-700 block mb-1">
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleInputChange}
+              placeholder="Enter your password"
+              className="w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-300 focus:border-blue-500 focus:bg-white focus:outline-none transition duration-200"
+              required
+            />
+            {error.password && <p className="text-red-500 text-xs mt-1">{error.password}</p>}
           </div>
 
           <button
             type="submit"
-            className={`w-full p-[12px] border-none rounded-[30px] bg-[#e0e5ec] shadow-[8px_8px_16px_#b3b9c5,-8px_-8px_16px_#ffffff] text-[#333] text-[1rem] font-bold cursor-pointer transition-all duration-300 ease-in-out hover:bg-[#d1d9e6] ${isLoading ? "opacity-70 cursor-not-allowed" : ""
-              }`}
-            disabled={isLoading}
+            className="w-full bg-black text-white font-bold py-3 rounded-lg transition duration-300 ease-in-out hover:bg-blue-600 focus:outline-none focus:shadow-outline"
           >
             {isLoading ? <FaSpinner className="animate-spin mx-auto" /> : "LOGIN"}
           </button>
         </form>
+        <p className="mt-6 text-sm text-gray-600">
+          Don't have an account? <a href="/register" className="text-blue-500 hover:underline">Register here</a>
+        </p>
       </div>
     </div>
   );
