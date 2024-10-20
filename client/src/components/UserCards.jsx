@@ -1,5 +1,6 @@
 import React from 'react';
 import SocialMedia from './SocialMedia';
+import { FaFacebookF, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
 
 const UserCard = ({ user }) => {
   return (
@@ -7,6 +8,7 @@ const UserCard = ({ user }) => {
       <div className="flex flex-col items-center">
         <img
           className="h-28 w-28 rounded-full border-4 border-indigo-500"
+       main
           src={user.avatar}
           alt={`${user.name}'s avatar`}
         />
@@ -14,6 +16,7 @@ const UserCard = ({ user }) => {
         <h3 className="text-sm text-gray-600 leading-0">{user.role}</h3>
         <p className="text-xs text-gray-500 leading-0">{user.city} | {user.passOut}</p>
       </div>
+       main
 
       <div className="">
         <div className="flex flex-wrap justify-center mt-1">
@@ -26,7 +29,6 @@ const UserCard = ({ user }) => {
             </span>
           ))}
         </div>
-
         <p className="text-xs text-gray-500 text-center">{user.bio}</p>
         {user.worksAt && (
           <p className="text-xs text-gray-500 text-center">
@@ -44,6 +46,7 @@ const UserCard = ({ user }) => {
             View Profile
           </button>
         </div>
+         main
       </div>
     </div>
   );
