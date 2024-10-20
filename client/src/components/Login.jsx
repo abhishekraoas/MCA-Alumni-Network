@@ -157,7 +157,12 @@ const Login = () => {
 
           <button
             type="submit"
-            className="w-full bg-black text-white font-bold py-3 rounded-lg transition duration-300 ease-in-out hover:bg-blue-600 focus:outline-none focus:shadow-outline"
+            className={`w-full bg-black text-white font-bold py-3 rounded-lg transition duration-300 ease-in-out ${
+              isLoading
+                ? 'opacity-50 cursor-not-allowed'
+                : 'hover:bg-blue-600 focus:outline-none focus:shadow-outline'
+            }`}
+            disabled={isLoading}
           >
             {isLoading ? <FaSpinner className="animate-spin mx-auto" /> : "LOGIN"}
           </button>
