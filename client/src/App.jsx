@@ -17,36 +17,39 @@ import Jobs from "./pages/alumini/Jobs";
 import Events from "./pages/alumini/Events";
 import ProtectedRoute from "./middleware/ProtectedRoute"; // Ensure this is imported
 import ScrollToTop from "./components/ScrollToTop";
-import { Scrollbars } from 'react-custom-scrollbars';
+import { Scrollbars } from "react-custom-scrollbars";
+import ForgotPassword from "./components/ForgotPassword";
 export default function App() {
   return (
-    <> <Scrollbars
-      style={{ height: '100vh' }}
-      renderThumbVertical={({ style, ...props }) => (
-        <div
-          {...props}
-          style={{
-            ...style,
-            backgroundColor: '#717E8E',
-            borderRadius: '10px',
-          }}
-        />
-      )}
-    >
-     
+    <>
+      {" "}
+      <Scrollbars
+        style={{ height: "100vh" }}
+        renderThumbVertical={({ style, ...props }) => (
+          <div
+            {...props}
+            style={{
+              ...style,
+              backgroundColor: "#717E8E",
+              borderRadius: "10px",
+            }}
+          />
+        )}
+      >
         <Header />
         <Routes>
           {/* Public Routes */}
-          <Route path="/" element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/about-us" element={<About />} />
-          <Route path="/alumni" element={<OurAlumni />} />
-          <Route path="/contact-us" element={<Contact />} />
+          <Route path='/' element={<Home />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/forgot-password' element={<ForgotPassword />} />
+          <Route path='/about-us' element={<About />} />
+          <Route path='/alumni' element={<OurAlumni />} />
+          <Route path='/contact-us' element={<Contact />} />
 
           {/* User Protected Routes */}
           <Route
-            path="/user/dashboard"
+            path='/user/dashboard'
             element={
               <ProtectedRoute>
                 <DashboardLayout>
@@ -56,7 +59,7 @@ export default function App() {
             }
           />
           <Route
-            path="/user/jobs"
+            path='/user/jobs'
             element={
               <ProtectedRoute>
                 <DashboardLayout>
@@ -66,7 +69,7 @@ export default function App() {
             }
           />
           <Route
-            path="/user/events"
+            path='/user/events'
             element={
               <ProtectedRoute>
                 <DashboardLayout>
@@ -76,7 +79,7 @@ export default function App() {
             }
           />
           <Route
-            path="/user/profile"
+            path='/user/profile'
             element={
               <ProtectedRoute>
                 <DashboardLayout>
@@ -88,7 +91,7 @@ export default function App() {
 
           {/* Admin Protected Routes */}
           <Route
-            path="/admin/dashboard"
+            path='/admin/dashboard'
             element={
               <ProtectedRoute>
                 <AdminDashboard />
@@ -98,8 +101,7 @@ export default function App() {
         </Routes>
         <ScrollToTop></ScrollToTop>
         <Footer />
-
-    </Scrollbars>
+      </Scrollbars>
     </>
   );
 }

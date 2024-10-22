@@ -1,12 +1,19 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../middleware/AuthContext";
-import { FaUserCircle, FaEye, FaEyeSlash } from "react-icons/fa";
-import { FaSpinner } from "react-icons/fa";
+import { FaUserCircle, FaEye, FaEyeSlash, FaSpinner } from "react-icons/fa";
 
-const InputField = ({ label, type, name, value, onChange, error, placeholder }) => (
-  <div className="mb-[20px] text-left">
-    <label htmlFor={name} className="text-[0.9rem] font-bold text-[#333] block">
+const InputField = ({
+  label,
+  type,
+  name,
+  value,
+  onChange,
+  error,
+  placeholder,
+}) => (
+  <div className='mb-[20px] text-left'>
+    <label htmlFor={name} className='text-[0.9rem] font-bold text-[#333] block'>
       {label}
     </label>
     <input
@@ -16,10 +23,10 @@ const InputField = ({ label, type, name, value, onChange, error, placeholder }) 
       value={value}
       onChange={onChange}
       placeholder={placeholder}
-      className="w-full p-[12px] mt-[8px] text-[1rem] border-none rounded-[30px] bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]"
+      className='w-full p-[12px] mt-[8px] text-[1rem] border-none rounded-[30px] bg-[#e0e5ec] shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff] outline-none focus:shadow-[inset_8px_8px_16px_#b3b9c5,inset_-8px_-8px_16px_#ffffff,0_0_5px_rgba(81,203,238,1)]'
       required
     />
-    {error && <p className="text-red-500">{error}</p>}
+    {error && <p className='text-red-500'>{error}</p>}
   </div>
 );
 
@@ -48,7 +55,7 @@ const Login = () => {
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value });
+    setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
   };
 
   const validateForm = () => {
@@ -116,7 +123,7 @@ const Login = () => {
       <div className="bg-white rounded-3xl p-8 shadow-2xl max-w-md w-full text-center">
         <div className="mb-4 ">
           <FaUserCircle className="text-7xl text-black mb-4 mx-auto" />
-          <h2 className="text-3xl font-bold text-gray-800">MCA Alumni Login</h2>
+          <h2 className="text-3xl font-bold text-gray-800">MCA Alumni</h2>
         </div>
         {error.general && (
           <div className="text-red-500 text-center mb-4 bg-red-100 p-2 rounded-lg">{error.general}</div>
@@ -164,12 +171,26 @@ const Login = () => {
             }`}
             disabled={isLoading}
           >
-            {isLoading ? <FaSpinner className="animate-spin mx-auto" /> : "LOGIN"}
+            {isLoading ? (
+              <FaSpinner className='animate-spin mx-auto' />
+            ) : (
+              "LOGIN"
+            )}
           </button>
         </form>
         <p className="mt-6 text-sm text-gray-600">
           Don't have an account? <a href="/register" className="text-blue-500 hover:underline">Register here</a>
         </p>
+
+
+        <div className='mt-[20px]'>
+          <Link
+            to='/forgot-password'
+            className='text-[0.9rem] text-blue-500 hover:underline'
+          >
+            Forgot Password?
+          </Link>
+        </div>
       </div>
     </div>
   );
