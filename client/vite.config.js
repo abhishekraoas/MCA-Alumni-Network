@@ -9,3 +9,9 @@ export default {
   },
   plugins: [],
 }
+
+export const vitaConfig = {
+  eslint: {
+    ignoreDuringBuild: true,
+  },
+}
