@@ -1,0 +1,22 @@
+/* Instagram hover color*/
+.instagram-icon:hover{
+    background: linear-gradient(
+        to bottom,
+        #833ab4,#fd1d1d,#fcb045
+      );
+}
+
+/* LinkedIn hover color */
+.linkedin-icon:hover {
+    background-color: #0072b1;
+  }
+  
+  /* GitHub hover color */
+  .github-icon:hover {
+    background-color: #555555;
+  }
+  
+  /* Twitter hover color */
+  .twitter-icon:hover {
+    background-color: #1da1f2;
+  }
