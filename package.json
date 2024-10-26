@@ -1,0 +1,16 @@
+{
+  "name": "mca-alumni-network",
+  "version": "1.0.0",
+  "description": "Welcome to the **MMMUT MCA Alumni Network**, an exclusive platform that connects the alumni of the MCA department at Madan Mohan Malaviya University of Technology (MMMUT). This web application allows current students, alumni, and faculty members to communicate, share career opportunities, and stay updated with the latest events and achievements of the alumni network.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "i18next": "^23.16.4",
+    "i18next-browser-languagedetector": "^8.0.0",
+    "react-i18next": "^15.1.0"
+  }
+}
