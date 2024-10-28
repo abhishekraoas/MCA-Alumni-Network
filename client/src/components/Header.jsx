@@ -2,39 +2,34 @@ import React, { useState, useEffect } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../middleware/AuthContext";
 import ThemeToggle from "./ThemeToggle";
-import gsap from 'gsap'
-import { tl } from './gsap.js'
+import gsap from 'gsap';
+import { tl } from './gsap.js';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
-  //gsap starts
+  // GSAP animation
   useEffect(() => {
     const ctx = gsap.context(() => {
       tl.fromTo('.navGsap',
         {
-          y: -100, // Starting position (from)
-          opacity: 0, // Starting opacity (from)
+          y: -100,
+          opacity: 0,
         },
         {
-          y: 0, // Ending position (to)
-          opacity: 1, // Ending opacity (to)
-          duration: 0.5, // Animation duration
-          ease: "sine.in", // Easing function
+          y: 0,
+          opacity: 1,
+          duration: 0.5,
+          ease: "sine.in",
           stagger: 0.1,
-
         }
       );
     });
 
-    return () => ctx.revert(); // Cleanup when the component unmounts
+    return () => ctx.revert(); // Cleanup
   }, []);
-
-  //gsap ends
-
-
 
   const handleLogout = () => {
     logout();
@@ -46,48 +41,31 @@ const Header = () => {
       <div className="container mx-auto flex justify-between items-center px-6 py-4">
         {/* Logo */}
         <div className="navGsap">
-          <a href="/" className=" text-xl font-bold text-white">
+          <a href="/" className="text-xl font-bold text-white">
             MCA Alumni Network
           </a>
         </div>
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex space-x-4 lg:space-x-6 text-base font-medium">
-          <NavLink
-            to="/"
-            className={({isActive})=>`${isActive?"navGsap relative text-orange-600 px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110":"navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"}`}
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/about-us"
-            className={({isActive})=>`${isActive?"navGsap relative text-orange-600 px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110":"navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"}`}
-
-          >
-            About Us
-          </NavLink>
-          <NavLink
-            to="/alumni"
-            className={({isActive})=>`${isActive?"navGsap relative text-orange-600 px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110":"navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"}`}
-
-          >
-            Our Alumni
-          </NavLink>
-          <NavLink
-            to="/contact-us"
-            className={({isActive})=>`${isActive?"navGsap relative text-orange-600 px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110":"navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"}`}
-
-          >
-            Contact Us
-          </NavLink>
-
-          {/* Conditional Links */}
+          {['/', '/about-us', '/alumni', '/contact-us'].map((path) => (
+            <NavLink
+              key={path}
+              to={path}
+              className={({ isActive }) =>
+                `${isActive ? "navGsap relative text-orange-600" : "navGsap relative text-white"} px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110`
+              }
+            >
+              {path === '/' ? 'Home' : path.replace('/', '').replace('-', ' ')}
+            </NavLink>
+          ))}
           {user ? (
             <>
               <NavLink
                 to="/user/dashboard"
-                className={({isActive})=>`${isActive?"navGsap relative text-orange-600 px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110":"navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"}`}
-
+                className={({ isActive }) =>
+                  `${isActive ? "navGsap relative text-orange-600" : "navGsap relative text-white"} px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110`
+                }
               >
                 Dashboard
               </NavLink>
@@ -102,15 +80,17 @@ const Header = () => {
             <>
               <NavLink
                 to="/register"
-                className={({isActive})=>`${isActive?"navGsap relative text-orange-600 px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110":"navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"}`}
-
+                className={({ isActive }) =>
+                  `${isActive ? "navGsap relative text-orange-600" : "navGsap relative text-white"} px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110`
+                }
               >
                 Register as Alumni
               </NavLink>
               <NavLink
                 to="/login"
-                className={({isActive})=>`${isActive?"navGsap relative text-orange-600 px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110":"navGsap relative text-white px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110"}`}
-
+                className={({ isActive }) =>
+                  `${isActive ? "navGsap relative text-orange-600" : "navGsap relative text-white"} px-3 py-2 rounded-lg hover:text-gray-300 transition duration-300 ease-in-out hover:scale-110`
+                }
               >
                 Log In
               </NavLink>
@@ -150,32 +130,15 @@ const Header = () => {
       {isOpen && (
         <nav className="md:hidden bg-gray-800 text-white py-2">
           <div className="space-y-2 text-center text-lg font-semibold">
-            <Link
-              to="/"
-              className="block hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300"
-            >
-              Home
-            </Link>
-            <Link
-              to="/about-us"
-              className="block hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300"
-            >
-              About Us
-            </Link>
-            <Link
-              to="/alumni"
-              className="block hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300"
-            >
-              Our Alumni
-            </Link>
-            <Link
-              to="/contact-us"
-              className="block hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300"
-            >
-              Contact Us
-            </Link>
-
-            {/* Conditional Links for Mobile */}
+            {['/', '/about-us', '/alumni', '/contact-us'].map((path) => (
+              <Link
+                key={path}
+                to={path}
+                className="block hover:bg-gray-700 py-2 rounded transition ease-in-out duration-300"
+              >
+                {path === '/' ? 'Home' : path.replace('/', '').replace('-', ' ')}
+              </Link>
+            ))}
             {!user ? (
               <>
                 <Link
