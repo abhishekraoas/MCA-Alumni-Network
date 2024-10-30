@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./index.css";
 import Footer from "./components/Footer";
@@ -20,6 +20,27 @@ import ScrollToTop from "./components/ScrollToTop";
 import { Scrollbars } from "react-custom-scrollbars";
 import ForgotPassword from "./components/ForgotPassword";
 export default function App() {
+  useEffect(() => {
+    // Embed chatbot configuration
+    window.embeddedChatbotConfig = {
+      chatbotId: "",
+      chatbotId: "dQH5I7s2VhH8olxL6Cy3G",
+      domain: "www.chatbase.co",
+    };
+
+    // Load chatbot script
+    const script = document.createElement("script");
+    script.src = "https://www.chatbase.co/embed.min.js";
+    script.defer = true;
+    script.setAttribute("chatbotId", "dQH5I7s2VhH8olxL6Cy3G");
+    script.setAttribute("domain", "www.chatbase.co");
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script); // Cleanup script on unmount
+    };
+  }, []);
+
   return (
     <>
       {" "}
