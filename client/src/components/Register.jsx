@@ -53,7 +53,7 @@ const Register = () => {
 
       if (response.ok) {
         const result = await response.json();
-        console.log("User signed up successfully", result);
+        // console.log("User signed up successfully", result);
         alert("User signed up successfully");
         navigate("/login");
       } else {

@@ -4,26 +4,32 @@ const jwt = require("jsonwebtoken");
 const auth = require("../middlewares/auth.middlewares");
 const bcrypt = require("bcryptjs");
 
-const logger =require("../logger");
-const nodemailer = require('nodemailer');
-
+const logger = require("../logger");
+const nodemailer = require("nodemailer");
 
 // Creating User Account
 const handleUserSignUp = async (req, res) => {
   const user = req.body;
   try {
-    
     // Check if email already exists
-    const existingEmail = await userModel.findOne({ email: { $eq: user.email } });
+    const existingEmail = await userModel.findOne({
+      email: { $eq: user.email },
+    });
     if (existingEmail) {
-      logger.warn(`Signup attempt failed: Email already exists - ${user.email}`);
+      logger.warn(
+        `Signup attempt failed: Email already exists - ${user.email}`
+      );
       return res.status(400).json({ message: "Email already exists" });
     }
 
     // Check if roll number already exists
-    const existingRollNo = await userModel.findOne({ rollNo: { $eq: user.rollNo } });
+    const existingRollNo = await userModel.findOne({
+      rollNo: { $eq: user.rollNo },
+    });
     if (existingRollNo) {
-      logger.warn(`Signup attempt failed: Roll number already exists - ${user.rollNo}`);
+      logger.warn(
+        `Signup attempt failed: Roll number already exists - ${user.rollNo}`
+      );
       return res.status(400).json({ message: "Roll number already exists" });
     }
 
@@ -38,7 +44,7 @@ const handleUserSignUp = async (req, res) => {
     // Send success response
     res.status(201).json({ message: "User registered successfully", newUser });
   } catch (err) {
-    console.log(err,'###')
+    console.log(err, "###");
     logger.error(`Error during registration for ${user.email}: ${err.message}`);
     res.status(500).json({ message: "Server error" });
   }
@@ -49,18 +55,23 @@ const handleUserLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    // Check for email and password in request
+    if (!email || !password) {
+      return res.status(400).json({ message: "Email and password are required" });
+    }
+
     // Find user by email
-    const user = await userModel.findOne({ email: { $eq: email } });
+    const user = await userModel.findOne({ email });
     if (!user) {
-      logger.warn(`Failed login attempt: Invalid email - ${email}`);
-      return res.status(400).json({ message: "Invalid credentials" });
+      logger.warn("Failed login attempt: Invalid email");
+      return res.status(401).json({ message: "Invalid credentials" });
     }
 
     // Compare password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      logger.warn(`Failed login attempt: Incorrect password for email - ${email}`);
-      return res.status(400).json({ message: "Invalid credentials" });
+      logger.warn("Failed login attempt: Incorrect password");
+      return res.status(401).json({ message: "Invalid credentials" });
     }
 
     // Generate JWT token
@@ -68,19 +79,22 @@ const handleUserLogin = async (req, res) => {
       expiresIn: "1h",
     });
 
-    // Send success response
+    // Send JWT as an HttpOnly cookie
     res.cookie("jwt", token, {
       httpOnly: true,
       maxAge: 3600000,
+      secure: process.env.NODE_ENV === "production", // Only use 'secure' in production
+      sameSite: "Strict", // Prevent CSRF attacks
     });
-    
-    logger.info(`User logged in: ${email}`);
-    res.status(200).json({ message: "Logged in successfully", user, token });
+
+    logger.info("User logged in successfully");
+    res.status(200).json({ message: "Logged in successfully", user: { email: user.email } });
   } catch (err) {
-    logger.error(`Error during login for ${req.body.email}: ${err.message}`);
+    logger.error(`Error during login: ${err.message}`);
     res.status(500).json({ message: "Server error" });
   }
 };
+
 
 // Update Alumni Data
 async function updateUserById(req, res) {
@@ -89,11 +103,13 @@ async function updateUserById(req, res) {
     const user = await userModel.findOneAndUpdate({ rollNo }, req.body, {
       new: true,
     });
-    
+
     logger.info(`User data updated for Roll No: ${rollNo}`);
     res.send(user);
   } catch (err) {
-    logger.error(`Error updating user with Roll No: ${req.params.id}: ${err.message}`);
+    logger.error(
+      `Error updating user with Roll No: ${req.params.id}: ${err.message}`
+    );
     res.status(404).send(err);
   }
 }
@@ -104,14 +120,18 @@ async function deleteUserById(req, res) {
     const rollNo = req.params.id;
     const user = await userModel.findOneAndDelete({ rollNo });
     if (!user) {
-      logger.warn(`Delete attempt failed: User doesn't exist with Roll No: ${rollNo}`);
+      logger.warn(
+        `Delete attempt failed: User doesn't exist with Roll No: ${rollNo}`
+      );
       return res.status(404).send("User doesn't exist");
     }
 
     logger.info(`User deleted: Roll No - ${rollNo}`);
     res.send(user);
   } catch (err) {
-    logger.error(`Error deleting user with Roll No: ${req.params.id}: ${err.message}`);
+    logger.error(
+      `Error deleting user with Roll No: ${req.params.id}: ${err.message}`
+    );
     res.status(404).send(err);
   }
 }
@@ -122,14 +142,18 @@ async function getAlumniById(req, res) {
     const rollNo = req.params.id;
     const user = await userModel.findOne({ rollNo });
     if (!user) {
-      logger.warn(`Get attempt failed: User doesn't exist with Roll No: ${rollNo}`);
+      logger.warn(
+        `Get attempt failed: User doesn't exist with Roll No: ${rollNo}`
+      );
       return res.status(404).send("User doesn't exist");
     }
-    
+
     logger.info(`User data retrieved: Roll No - ${rollNo}`);
     res.send(user);
   } catch (err) {
-    logger.error(`Error retrieving user with Roll No: ${req.params.id}: ${err.message}`);
+    logger.error(
+      `Error retrieving user with Roll No: ${req.params.id}: ${err.message}`
+    );
     res.status(404).send(err);
   }
 }
@@ -138,7 +162,7 @@ async function getAlumniById(req, res) {
 async function logoutUser(req, res) {
   try {
     res.clearCookie("jwt");
-    logger.info(`User logged out: ${req.user?.email || 'Unknown user'}`);
+    logger.info(`User logged out: ${req.user?.email || "Unknown user"}`);
     res.send("Logged Out");
   } catch (err) {
     logger.error(`Error during logout: ${err.message}`);
@@ -146,25 +170,21 @@ async function logoutUser(req, res) {
   }
 }
 
-
-
-async function Sendcontactmail(req,res){
+async function Sendcontactmail(req, res) {
   const { name, email, message } = req.body;
   console.log(req.body);
   try {
-
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      service: "gmail",
       auth: {
         user: process.env.SMTP_EMAIL,
         pass: process.env.SMTP_PASSWORD,
       },
     });
 
-
     const mailOptions = {
-      from: email, 
-      to: "mmmutmca@gmail.com", 
+      from: email,
+      to: "mmmutmca@gmail.com",
       subject: `Contact Us Message from ${name}`,
       text: message,
       html: `
@@ -181,13 +201,17 @@ async function Sendcontactmail(req,res){
 
     await transporter.sendMail(mailOptions);
 
-    return res.status(200).json({ success: true, message: 'Message sent successfully!' });
+    return res
+      .status(200)
+      .json({ success: true, message: "Message sent successfully!" });
   } catch (error) {
-    console.error('Error sending email:', error);
+    console.error("Error sending email:", error);
 
-    return res.status(500).json({ success: false, message: 'Error sending email' });
+    return res
+      .status(500)
+      .json({ success: false, message: "Error sending email" });
   }
-};
+}
 
 module.exports = {
   handleUserSignUp,
@@ -196,5 +220,5 @@ module.exports = {
   deleteUserById,
   getAlumniById,
   logoutUser,
-  Sendcontactmail
+  Sendcontactmail,
 };
