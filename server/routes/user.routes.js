@@ -29,7 +29,10 @@ router.get("/", (req, res) => {
 
 // Creating User Account
 router.post("/alumni/register", handleUserSignUp);
+
+// Contact Us
 router.post("/contactus", Sendcontactmail);
+
 // Login User Account
 router.post("/alumni/login", handleUserLogin);
 
@@ -39,15 +42,6 @@ router.patch("/alumni/:id", updateUserById);
 // Delete Alumni Data
 router.delete("/alumni/:id", deleteUserById);
 
-// Get Alumni Data
-router.get("/alumni", async (req, res) => {
-  try {
-    const users = await userModel.find().sort({ rollNo: 1 });
-    res.send(users);
-  } catch (err) {
-    res.status(404).send("Data Not Found");
-  }
-});
 
 // Get Alumni Data by ID
 router.get("/alumni/:id", getAlumniById);

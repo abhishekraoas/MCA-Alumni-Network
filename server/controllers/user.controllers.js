@@ -42,7 +42,12 @@ const handleUserSignUp = async (req, res) => {
 
     logger.info(`New user registered: ${newUser?.email}`);
     // Send success response
-    res.status(201).json({ message: "User registered successfully", newUser });
+    res.status(201).json({
+      message: "User registered successfully",
+      newUser,
+      token: await newUser.generateAuthToken(),
+      userId: newUser._id.toString(),
+    });
   } catch (err) {
     console.log(err, "###");
     logger.error(`Error during registration for ${user.email}: ${err.message}`);
@@ -52,49 +57,42 @@ const handleUserSignUp = async (req, res) => {
 
 // Login User Account
 const handleUserLogin = async (req, res) => {
+  const { email, password } = req.body;
+  
   try {
-    const { email, password } = req.body;
-
     // Check for email and password in request
     if (!email || !password) {
-      return res.status(400).json({ message: "Email and password are required" });
+      return res
+        .status(400)
+        .json({ message: "Email and password are required" });
     }
 
     // Find user by email
-    const user = await userModel.findOne({ email });
-    if (!user) {
+    const userExist = await userModel.findOne({ email });
+    if (userExist) {
+      logger.info("User logged in successfully");
+      res.status(200).json({
+        message: "Login Successfully",
+        user: { email: userExist.email },
+        token: await userExist.generateAuthToken(),
+        userId: userExist._id.toString(),
+      });
+    } else {
       logger.warn("Failed login attempt: Invalid email");
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
     // Compare password
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, userExist.password);
     if (!isMatch) {
       logger.warn("Failed login attempt: Incorrect password");
       return res.status(401).json({ message: "Invalid credentials" });
     }
-
-    // Generate JWT token
-    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
-
-    // Send JWT as an HttpOnly cookie
-    res.cookie("jwt", token, {
-      httpOnly: true,
-      maxAge: 3600000,
-      secure: process.env.NODE_ENV === "production", // Only use 'secure' in production
-      sameSite: "Strict", // Prevent CSRF attacks
-    });
-
-    logger.info("User logged in successfully");
-    res.status(200).json({ message: "Logged in successfully", user: { email: user.email } });
   } catch (err) {
     logger.error(`Error during login: ${err.message}`);
     res.status(500).json({ message: "Server error" });
   }
 };
-
 
 // Update Alumni Data
 async function updateUserById(req, res) {

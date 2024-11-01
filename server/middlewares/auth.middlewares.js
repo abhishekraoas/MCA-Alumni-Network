@@ -8,7 +8,7 @@ const authMiddleware = (req, res, next) => {
 
   try {
     const token = req.cookies.jwt;
-    const userVerify = jwt.verify(token, process.env.SECRET_KEY);
+    const userVerify = jwt.verify(token, process.env.JWT_SECRET);
     req.user = userVerify;
     next();
   } catch (ex) {
