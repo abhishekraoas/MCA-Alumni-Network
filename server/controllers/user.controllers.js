@@ -1,9 +1,6 @@
 // authController.js
 const userModel = require("../models/user.model");
-const jwt = require("jsonwebtoken");
-const auth = require("../middlewares/auth.middlewares");
 const bcrypt = require("bcryptjs");
-
 const logger = require("../logger");
 const nodemailer = require("nodemailer");
 
@@ -58,39 +55,37 @@ const handleUserSignUp = async (req, res) => {
 // Login User Account
 const handleUserLogin = async (req, res) => {
   const { email, password } = req.body;
-  
+
   try {
-    // Check for email and password in request
     if (!email || !password) {
-      return res
-        .status(400)
-        .json({ message: "Email and password are required" });
+      return res.status(400).json({ message: "Email and password are required" });
     }
 
-    // Find user by email
     const userExist = await userModel.findOne({ email });
-    if (userExist) {
-      logger.info("User logged in successfully");
-      res.status(200).json({
+    
+    if (!userExist) {
+      logger.warn("Failed login attempt: User doesn't exist");
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
+
+    const isMatch = await bcrypt.compare(password, userExist.password);
+   
+    if (isMatch) {
+      const token = await userExist.generateAuthToken();
+      logger.info("User Login successfully");
+      return res.status(200).json({
         message: "Login Successfully",
         user: { email: userExist.email },
-        token: await userExist.generateAuthToken(),
+        token,
         userId: userExist._id.toString(),
       });
     } else {
-      logger.warn("Failed login attempt: Invalid email");
-      return res.status(401).json({ message: "Invalid credentials" });
-    }
-
-    // Compare password
-    const isMatch = await bcrypt.compare(password, userExist.password);
-    if (!isMatch) {
-      logger.warn("Failed login attempt: Incorrect password");
+      logger.warn("Failed login attempt: Invalid credentials");
       return res.status(401).json({ message: "Invalid credentials" });
     }
   } catch (err) {
-    logger.error(`Error during login: ${err.message}`);
-    res.status(500).json({ message: "Server error" });
+    logger.error('Error during login: ${err.message}');
+    return res.status(500).json({ message: "Server error" });
   }
 };
 
