@@ -40,7 +40,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Mount the user router on the /api/users path
-app.use("/api/users", userRouter);
+app.use("/", userRouter);
 
 /**
  * Health Check Endpoint

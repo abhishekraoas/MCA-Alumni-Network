@@ -72,11 +72,11 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
 
-    profilePhoto: {
-      type: String,
-      required: true,
-      default: '../public/profile.png', 
-    },
+    // profilePhoto: {
+    //   type: String,
+    //   required: true,
+    //   default: '../public/profile.png', 
+    // },
 
     tokens: [
       {
@@ -97,7 +97,8 @@ userSchema.methods.generateAuthToken = async function () {
   try {
     const token = jwt.sign(
       { _id: this._id.toString() },
-      process.env.SECRET_KEY
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" },
     );
     this.tokens = this.tokens.concat({ token });
     await this.save();

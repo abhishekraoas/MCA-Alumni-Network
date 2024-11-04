@@ -323,6 +323,8 @@ import {
 } from "react-icons/fa"; 
 import ImageWithCursorEffect from "./ImageWithCursorEffect";
 import Testimonials from "./Testimonial/Testimonial";
+import gsap from 'gsap'
+
 
 const Home = () => {
   const navigate = useNavigate();
@@ -330,6 +332,39 @@ const Home = () => {
   const [isTyping, setIsTyping] = useState(true);
   const descriptionText =
     "Empowering connections among MCA alumni to foster collaboration, mentorship, and professional growth within a dynamic and supportive community.";
+
+    useEffect(() => {
+      const ctx = gsap.context(() => {
+        // Ensure initial styles are set to scale 1 and opacity 1
+       
+  
+        // Timeline for animation
+        const tl = gsap.timeline();
+        tl.fromTo('.homeGsap',
+          {
+            scale: 0, // Starting position (from)
+            opacity: 0, // Starting opacity (from)
+          },
+          {
+            scale: 1, // Ending position (to)
+            opacity: 1, // Ending opacity (to)
+            duration: 1, // Animation duration
+            ease: "expo.inOut", // Easing function
+            stagger: 0.3, 
+           
+          }
+        );
+      });
+
+     
+  
+      // Cleanup GSAP context
+      return () => {
+        ctx.revert();
+      };
+    }, []); 
+
+
 
   useEffect(() => {
     const interval = setInterval(() => {

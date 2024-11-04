@@ -1,5 +1,5 @@
 import React from "react";
-
+import './style.css';
 const Footer = () => {
   return (
       <div>
@@ -55,7 +55,7 @@ const Footer = () => {
                   {/* Instagram */}
                   <a
                     href="#"
-                    className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+                    className="instagram-icon m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
                     aria-label="Instagram"
                   >
                     <svg
@@ -71,7 +71,7 @@ const Footer = () => {
                   {/* LinkedIn */}
                   <a
                     href="#"
-                    className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+                    className="linkedin-icon m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
                     aria-label="LinkedIn"
                   >
                     <svg
@@ -87,7 +87,7 @@ const Footer = () => {
                   {/* GitHub */}
                   <a
                     href="#"
-                    className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+                    className="github-icon m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
                     aria-label="GitHub"
                   >
                     <svg
@@ -103,7 +103,7 @@ const Footer = () => {
                   {/* Twitter */}
                   <a
                     href="#"
-                    className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+                    className="twitter-icon m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
                     aria-label="Twitter"
                   >
                     <svg
