@@ -17,13 +17,13 @@ const OurAlumni = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap -mx-4">
         <div className="w-full md:w-1/2 xl:w-1/3 p
-        x-4 mb-8">
+        x-4 mb-8 mt-10">
             <UserCards user={user} />
           </div>
-          <div className="w-full md:w-1/2 xl:w-1/3 px-4 mb-8">
+          <div className="w-full md:w-1/2 xl:w-1/3 px-4 mb-8 mt-10">
             <UserCards user={user} />
           </div>
-          <div className="w-full md:w-1/2 xl:w-1/3 px-4 mb-8">
+          <div className="w-full md:w-1/2 xl:w-1/3 px-4 mb-8 mt-10">
             <UserCards user={user} />
   
           </div>
