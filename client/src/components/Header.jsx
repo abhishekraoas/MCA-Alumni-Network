@@ -42,7 +42,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-black text-white shadow-lg">
+    <header className="bg-black text-white shadow-lg sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center px-6 py-4">
         {/* Logo */}
         <div className="navGsap">
