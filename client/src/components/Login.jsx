@@ -97,11 +97,20 @@ const Login = () => {
       const data = await response.json();
 
       if (response.ok) {
-        login(data.user, data.token);
-        setFormData({ email: "", password: "", rememberMe: false });
-        setTimeout(() => {
-          navigate("/user/dashboard");
-        }, 1000);
+        // Check if the password is valid
+        const isMatch = await bcrypt.compare(formData.password, data.user.password);
+        if (isMatch) {
+          login(data.user, data.token);
+          setFormData({ email: "", password: "", rememberMe: false });
+          setTimeout(() => {
+            navigate("/user/dashboard");
+          }, 1000);
+        } else {
+          setError((prevErrors) => ({
+            ...prevErrors,
+            general: "Invalid credentials",
+          }));
+        }
       } else {
         setError((prevErrors) => ({
           ...prevErrors,
