@@ -32,8 +32,7 @@ const ImageWithCursorEffect = () => {
                 src="https://astrorei.io/static/dedicated-dev-team-729a36b484a719fd20b200f39d614100.svg"
                 alt="MCA Alumni Network"
                 style={{
-                    maxWidth: '500px',
-                    // maxWidth: '550px',
+                    maxWidth: '550px',
                     boxShadow: '0',
                     marginRight: '90px',
                 }}

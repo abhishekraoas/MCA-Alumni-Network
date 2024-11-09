@@ -125,7 +125,7 @@ const AboutUs = () => {
           <motion.img
             src="https://bighostindia.in/wp-content/uploads/2023/08/Web-Design-Services-BigHost-India-Private-Limited.png" // Replace with your image URL
             alt="Hero Image"
-            style={{ width: "100%", borderRadius: "10px",}}
+            style={{ width: "100%", borderRadius: "10px" }}
             animate={{ scale: [1, 1.05, 1] }} // Simple scaling animation
             transition={{
               duration: 1,
