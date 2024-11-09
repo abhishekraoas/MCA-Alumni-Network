@@ -89,22 +89,17 @@ const OurAlumni = () => {
         <h1 className="text-3xl font-bold text-center mb-4">Our Alumni</h1>
         <Search onSearch={handleSearch} />
         <div className="flex flex-wrap -mx-4">
-        <div className="w-full md:w-1/2 xl:w-1/3 p
-        x-4 mb-8 mt-10">
-            <UserCards user={user} />
-          </div>
-          <div className="w-full md:w-1/2 xl:w-1/3 px-4 mb-8 mt-10">
-            <UserCards user={user} />
-          </div>
-          <div className="w-full md:w-1/2 xl:w-1/3 px-4 mb-8 mt-10">
-            <UserCards user={user} />
-  
-          </div>
-          </div>
-
-    </div>
-</>
-
+          {filteredUsers.length > 0 ? (
+            filteredUsers.map((user, index) => (
+              <div className="w-full md:w-1/2 xl:w-1/3 px-4 mb-8" key={index}>
+                <UserCard user={user} />
+              </div>
+            ))
+          ) : (
+            <p className="text-center w-full">No alumni found.</p>
+          )}
+        </div>
+      </div>
   );
 };
 
