@@ -3,6 +3,10 @@ const userModel = require("../models/user.model");
 const bcrypt = require("bcryptjs");
 const logger = require("../logger");
 const nodemailer = require("nodemailer");
+const multer = require("multer");
+const {storage} = require("./upload.controllers");
+const upload = multer({storage});
+
 
 // Creating User Account
 const handleUserSignUp = async (req, res) => {

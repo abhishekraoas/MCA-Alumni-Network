@@ -45,10 +45,12 @@ const Register = () => {
     try {
       const response = await fetch("http://localhost:3000/alumni/register", {
         method: "POST",
+        enctype:"multipart/form-data",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formUserData),
+        
       });
 
       if (response.ok) {
@@ -258,7 +260,23 @@ const Register = () => {
                         />
                       </div>
                     </MDBCol>
+
+                    <MDBCol md="6" className="mb-4">
+                      <div className="d-flex flex-row align-items-center">
+                        <MDBIcon fas icon="upload me-3" size="lg" />
+                        <input
+                          placeholder="Upload Profile Photo"
+                          id="profilePhoto"
+                          type="file"
+                          className="w-full p-2 text-[1rem] border-none rounded-3xl bg-[#e0e5ec] "
+                          value={user.profilePhoto}
+                          onChange={handleInputChange}
+                        />
+                      </div>
+                    </MDBCol>
                   </MDBRow>
+
+                  
                   <div className="flex items-center justify-center gap-x-4 my-4">
                     <button
                       type="submit"

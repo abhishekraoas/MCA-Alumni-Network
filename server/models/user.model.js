@@ -72,11 +72,11 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
 
-    // profilePhoto: {
-    //   type: String,
-    //   required: true,
-    //   default: '../public/profile.png', 
-    // },
+    profilePhoto: {
+      type: String,
+      required: true,
+      default: '../public/profile.png', 
+    },
 
     tokens: [
       {
