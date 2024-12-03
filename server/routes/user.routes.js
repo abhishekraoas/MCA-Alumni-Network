@@ -10,7 +10,8 @@ const {
   deleteUserById,
   logoutUser,
   getAlumniById,
-  Sendcontactmail
+  Sendcontactmail,
+  getAllUsers
 } = require("../controllers/user.controllers");
 // const jwt = require("jsonwebtoken");
 
@@ -23,9 +24,9 @@ const {
 //   console.log(userVerify);
 // }
 
-router.get("/", (req, res) => {
-  res.send("Welcome to MCA Alumni Network");
-});
+
+// Get All Alumni Data
+router.get("/api/alumni", getAllUsers);
 
 // Creating User Account
 router.post("/alumni/register", handleUserSignUp);
