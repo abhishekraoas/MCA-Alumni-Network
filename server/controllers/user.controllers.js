@@ -157,7 +157,7 @@ async function getAlumniById(req, res) {
 //Get all users
 async function getAllUsers(req, res) {
   try {
-    const users = await userModel.find()
+    const users = await userModel.find().select('-password').select('-tokens')
     logger.info(`All users retrieved`)
     res.send(users)
   } catch (err) {
