@@ -19,6 +19,7 @@ import ProtectedRoute from "./middleware/ProtectedRoute"; // Ensure this is impo
 import ScrollToTop from "./components/ScrollToTop";
 import { Scrollbars } from "react-custom-scrollbars";
 import ForgotPassword from "./components/ForgotPassword";
+import ThemeToggle from "./components/ThemeToggle";
 export default function App() {
   useEffect(() => {
     // Embed chatbot configuration
