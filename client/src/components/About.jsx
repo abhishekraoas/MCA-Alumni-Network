@@ -1,325 +1,67 @@
 import React from "react";
-import { Box, Typography, Container, Grid, Card, Button } from "@mui/material";
-import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
-import { MdStar, MdCheckCircle } from "react-icons/md";
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaLinkedin,
-  FaInstagram,
-  FaYoutube,
-} from "react-icons/fa";
+import "./about.css";
+import { FaGraduationCap } from "react-icons/fa6";
 
-// About Us Component
-const AboutUs = () => {
-  const navigate = useNavigate();
-
-  // Additional content
-  const additionalContent = [
-    {
-      title: "Our Goals",
-      content:
-        "We aim to create a vibrant and engaged alumni community that actively supports professional development and meaningful networking opportunities.",
-      icon: <MdStar size={40} color="#007FFF" />,
-    },
-    {
-      title: "Achievements",
-      content:
-        "Over the past year, we have successfully hosted multiple events, including workshops, networking sessions, and guest lectures, enhancing the alumni experience.",
-      icon: <MdCheckCircle size={40} color="#007FFF" />,
-    },
-  ];
-
+const About = () => {
   return (
-    <div>
-      {/* Hero Section */}
-      <Box
-        sx={{
-          height: "90vh",
-          backgroundImage: `url('https://plus.unsplash.com/premium_photo-1672940671025-113a634f83d1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmxhY2slMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          display: "flex",
-          alignItems: "center",
-          color: "#fff",
-          position: "relative",
-        }}
-      >
-        <Box
-          sx={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: "rgba(0, 0, 0, 0.6)",
-          }}
-        />
-        <Box
-          sx={{
-            zIndex: 2,
-            textAlign: "left",
-            padding: "20px",
-            marginLeft: "150px",
-            maxWidth: "42%",
-            marginTop: "150px",
-          }}
-        >
-          <Typography variant="h3" sx={{ fontWeight: "bold" }}>
-            MCA Alumini Network
-          </Typography>
-          <Typography variant="h4" >
-            About Us
-          </Typography>
-          <Typography sx={{ mb: 20, fontSize: 18 }}>
-            The MCA Alumni Network connects graduates, fostering relationships
-            that promote shared success and professional growth across diverse
-            fields. Through mentorship and collaboration, experienced alumni
-            guide recent graduates, while celebrating alumni achievements
-            inspires a supportive community, enriching both personal and
-            professional development...
-             {/* Buttons */}
-             <Box sx={{ display: 'flex', gap: 3, mt: 2 }}>
-              <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.3 }}>
-                <Button
-                  variant="contained"
-                  sx={{
-                    backgroundColor: 'orange',
-                    borderRadius: 3,
-                    color: '#fff',
-                    '&:hover': { backgroundColor: '#e91e63' },
-                  }}
-                  onClick={() => navigate('/contact-us')}
-                >
-                  Contact Us
-                </Button>
-              </motion.div>
-              
-              <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.3 }}>
-                <Button
-                  variant="contained"
-                  sx={{
-                    backgroundColor: 'orange',
-                    borderRadius: 3,
-                    color: '#fff',
-                    '&:hover': { backgroundColor: '#e91e63' },
-                  }}
-                  onClick={() => navigate('/register')}
-                >
-                  Become a Member
-                </Button>
-              </motion.div>
-            </Box>
-          </Typography>
-        </Box>
-        <Box
-          sx={{
-            position: "absolute",
-            right: 100,
-            top: 100,
-            zIndex: 2,
-            maxWidth: "500px",
-          }}
-        >
-          <motion.img
-            src="https://bighostindia.in/wp-content/uploads/2023/08/Web-Design-Services-BigHost-India-Private-Limited.png" // Replace with your image URL
-            alt="Hero Image"
-            style={{ width: "100%", borderRadius: "10px" }}
-            animate={{ scale: [1, 1.05, 1] }} // Simple scaling animation
-            transition={{
-              duration: 1,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-          />
-        </Box>
-
-        <Box
-          sx={{
-            position: "fixed",
-            top: "45%",
-            right: 20,
-            transform: "translateY(-50%)",
-            display: "flex",
-            flexDirection: "column",
-            gap: 4,
-          }}
-        >
-          {/* Each anchor has its own inline styles for hover effects */}
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-            style={{
-              color: "#F5DEB3",
-              transition: "color 0.3s ease",
-              textDecoration: "none",
-            }}
-            onMouseOver={(e) => (e.currentTarget.style.color = "#4267B2")}
-            onMouseOut={(e) => (e.currentTarget.style.color = "#F5DEB3")}
-          >
-            <FaFacebookF size={40} />
-          </a>
-          <a
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-            style={{
-              color: "#F5DEB3",
-              transition: "color 0.3s ease",
-              textDecoration: "none",
-            }}
-            onMouseOver={(e) => (e.currentTarget.style.color = "#1DA1F2")}
-            onMouseOut={(e) => (e.currentTarget.style.color = "#F5DEB3")}
-          >
-            <FaTwitter size={40} />
-          </a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-            style={{
-              color: "#F5DEB3",
-              transition: "color 0.3s ease",
-              textDecoration: "none",
-            }}
-            onMouseOver={(e) => (e.currentTarget.style.color = "#0077B5")}
-            onMouseOut={(e) => (e.currentTarget.style.color = "#F5DEB3")}
-          >
-            <FaLinkedin size={40} />
-          </a>
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-            style={{
-              color: "#F5DEB3",
-              transition: "color 0.3s ease",
-              textDecoration: "none",
-            }}
-            onMouseOver={(e) => (e.currentTarget.style.color = "#E1306C")}
-            onMouseOut={(e) => (e.currentTarget.style.color = "#F5DEB3")}
-          >
-            <FaInstagram size={40} />
-          </a>
-          <a
-            href="https://youtube.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-            style={{
-              color: "wheat",
-              transition: "color 0.3s ease",
-              textDecoration: "none",
-            }}
-            onMouseOver={(e) => (e.currentTarget.style.color = "#FF0000")}
-            onMouseOut={(e) => (e.currentTarget.style.color = "#F5DEB3")}
-          >
-            <FaYoutube size={40} />
-          </a>
-        </Box>
-      </Box>
-
-      {/* Content Sections */}
-      <Container sx={{ mt: 4, mb: 4 }}>
-        <Grid container spacing={4} justifyContent="center">
-          <Grid item xs={12} sm={6}>
-            <motion.div whileHover={{ scale: 1.05 }}>
-              <Card sx={{ p: 4, boxShadow: 3, borderRadius: 2 }}>
-                <Typography variant="h4" align="center" gutterBottom>
-                  Our Mission
-                </Typography>
-                <Typography variant="body1" align="center">
-                  We aim to empower connections among MCA alumni to foster
-                  collaboration, mentorship, and professional growth within a
-                  dynamic and supportive community.
-                </Typography>
-              </Card>
-            </motion.div>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <motion.div whileHover={{ scale: 1.05 }}>
-              <Card sx={{ p: 4, boxShadow: 3, borderRadius: 2 }}>
-                <Typography variant="h4" align="center" gutterBottom>
-                  Our Values
-                </Typography>
-                <Typography variant="body1" align="center">
-                  We believe in the power of community, integrity, and lifelong
-                  learning. Our network is built on trust, respect, and shared
-                  knowledge.
-                </Typography>
-              </Card>
-            </motion.div>
-          </Grid>
-        </Grid>
-
-        <Grid container spacing={4} justifyContent="center" sx={{ mt: 4 }}>
-          {additionalContent.map((item, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <motion.div whileHover={{ scale: 1.05 }}>
-                <Card
-                  sx={{
-                    p: 4,
-                    boxShadow: 3,
-                    borderRadius: 2,
-                    textAlign: "center",
-                  }}
-                >
-                  <Box sx={{ mb: 2 }}>{item.icon}</Box>
-                  <Typography variant="h5" gutterBottom>
-                    {item.title}
-                  </Typography>
-                  <Typography variant="body2">{item.content}</Typography>
-                </Card>
-              </motion.div>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-
-      {/* Call to Action Section */}
-      <Container sx={{ mb: 4, textAlign: "center" }}>
-        <Typography variant="h5" gutterBottom>
-          Join us in our mission to strengthen alumni relations.
-        </Typography>
-
-        <Box sx={{ display: "flex", gap: 3, mt: 2, justifyContent: "center" }}>
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            transition={{ duration: 0.2 }}
-          >
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => navigate("/contact-us")}
-              sx={{ mt: 2, borderRadius: 20 }}
+    <div className="flex justify-center items-center h-screen bg-[#e0e5ec] font-['Roboto',sans-serif]">
+      <div className="bg-[#e0e5ec] rounded-[20px] p-[40px_30px] shadow-[8px_8px_16px_#b3b9c5,-8px_-8px_16px_#ffffff] w-auto m-8 h-[700px] text-center">
+        <h1 className="text-5xl font-semibold text-[#000] mb-4">About Us</h1>
+        <section>
+          <div className="flex items-center space-x-4">
+            <FaGraduationCap />
+            <h2
+              className="text-2xl font-semibold text-[#000] mb-2 text-left font-sans [animation:8s_typewriter_infinite_steps(50,end)] w-0 overflow-x-hidden inline-flex whitespace-nowrap"
+              style={{ direction: "ltr" }}
             >
-              Contact Us
-            </Button>
-          </motion.div>
+              {`About Our Alumni :`}
+            </h2>
+          </div>
 
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            transition={{ duration: 0.2 }}
-          >
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => navigate("/register")}
-              sx={{ mt: 2, borderRadius: 20 }}
+          <p className="text-lg text-[#333] mb-4 ml-7 text-left">
+            Our alumni network is a vibrant and diverse community of
+            professionals who have graduated from our MCA program. They are
+            leaders in their fields, making significant contributions to the
+            industry and society. We are proud of their achievements and the
+            positive impact they have on the world. Our alumni have gone on to
+            achieve great things, from starting their own companies to working
+            for top tech firms. They are a testament to the quality of our
+            program and the potential of our students.
+          </p>
+        </section>
+
+        <section>
+          <div className="flex items-center space-x-4">
+            <FaGraduationCap />
+            <h2
+              className="text-2xl font-semibold text-[#000] mb-2 text-left font-sans [animation:8s_typewriter_infinite_steps(50,end)] w-0 overflow-x-hidden inline-flex whitespace-nowrap"
+              style={{ direction: "ltr" }}
             >
-              Become a Member
-            </Button>
-          </motion.div>
-        </Box>
-      </Container>
+              {`About MCA Department :`}
+            </h2>
+          </div>
+
+          <p className="text-lg text-[#333] mb-4 ml-7 text-left">
+            The MCA department is dedicated to providing a comprehensive
+            education in computer applications. Our curriculum is designed to
+            equip students with the skills and knowledge needed to excel in the
+            ever-evolving tech industry. We foster a collaborative and
+            innovative learning environment, preparing our students for
+            successful careers. Our faculty members are experienced
+            professionals with a strong background in computer applications,
+            ensuring that our students receive the best possible guidance and
+            mentorship. We also invite industry experts to share their insights
+            and experiences, providing our students with a well-rounded
+            education that prepares them for the challenges of the real world.
+            Additionally, our state-of-the-art infrastructure and cutting-edge
+            technology enable our students to gain hands-on experience with the
+            latest tools and technologies, making them industry-ready from day
+            one.
+          </p>
+        </section>
+      </div>
     </div>
   );
 };
 
-export default AboutUs;
+export default About;
