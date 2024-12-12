@@ -97,7 +97,8 @@ userSchema.methods.generateAuthToken = async function () {
   try {
     const token = jwt.sign(
       { _id: this._id.toString() },
-      process.env.SECRET_KEY
+      process.env.JWT_SECRET,
+      { expiresIn: "5m" },
     );
     this.tokens = this.tokens.concat({ token });
     await this.save();
@@ -107,6 +108,9 @@ userSchema.methods.generateAuthToken = async function () {
     throw new Error("Error generating token");
   }
 };
+
+
+
 
 // Model
 const User = mongoose.model("User", userSchema);

@@ -10,7 +10,8 @@ const {
   deleteUserById,
   logoutUser,
   getAlumniById,
-  Sendcontactmail
+  Sendcontactmail,
+  getAllUsers
 } = require("../controllers/user.controllers");
 // const jwt = require("jsonwebtoken");
 
@@ -23,13 +24,16 @@ const {
 //   console.log(userVerify);
 // }
 
-router.get("/", (req, res) => {
-  res.send("Welcome to MCA Alumni Network");
-});
+
+// Get All Alumni Data
+router.get("/api/alumni", getAllUsers);
 
 // Creating User Account
 router.post("/alumni/register", handleUserSignUp);
+
+// Contact Us
 router.post("/contactus", Sendcontactmail);
+
 // Login User Account
 router.post("/alumni/login", handleUserLogin);
 
@@ -39,15 +43,6 @@ router.patch("/alumni/:id", updateUserById);
 // Delete Alumni Data
 router.delete("/alumni/:id", deleteUserById);
 
-// Get Alumni Data
-router.get("/alumni", async (req, res) => {
-  try {
-    const users = await userModel.find().sort({ rollNo: 1 });
-    res.send(users);
-  } catch (err) {
-    res.status(404).send("Data Not Found");
-  }
-});
 
 // Get Alumni Data by ID
 router.get("/alumni/:id", getAlumniById);
