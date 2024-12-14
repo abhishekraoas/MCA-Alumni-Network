@@ -28,12 +28,12 @@ const userSchema = new mongoose.Schema(
 
     linkedin: {
       type: String,
-      required: true, 
+      required: true,
     },
 
     github: {
       type: String,
-      required: true, 
+      required: true,
     },
 
     passOutYear: {
@@ -49,12 +49,12 @@ const userSchema = new mongoose.Schema(
 
     jobRole: {
       type: String,
-      required: true, 
+      required: true,
     },
 
     currentCompany: {
       type: String,
-      required: true, 
+      required: true,
     },
 
     gender: {
@@ -75,7 +75,7 @@ const userSchema = new mongoose.Schema(
     profilePhoto: {
       type: String,
       required: true,
-      default: '../public/profile.png', 
+      default: "../public/profile.png",
     },
 
     tokens: [
@@ -88,7 +88,7 @@ const userSchema = new mongoose.Schema(
     ],
   },
   {
-    timestamps: true, 
+    timestamps: true,
   }
 );
 
@@ -98,7 +98,7 @@ userSchema.methods.generateAuthToken = async function () {
     const token = jwt.sign(
       { _id: this._id.toString() },
       process.env.JWT_SECRET,
-      { expiresIn: "1h" },
+      { expiresIn: "5m" },
     );
     this.tokens = this.tokens.concat({ token });
     await this.save();
@@ -109,13 +109,8 @@ userSchema.methods.generateAuthToken = async function () {
   }
 };
 
-// Hashing Password
-userSchema.pre("save", async function (next) {
-  if (this.isModified("password")) {
-    this.password = await bcrypt.hash(this.password, 10);
-  }
-  next();
-});
+
+
 
 // Model
 const User = mongoose.model("User", userSchema);
