@@ -23,7 +23,6 @@ export default function App() {
   useEffect(() => {
     // Embed chatbot configuration
     window.embeddedChatbotConfig = {
-      chatbotId: "",
       chatbotId: "dQH5I7s2VhH8olxL6Cy3G",
       domain: "www.chatbase.co",
     };

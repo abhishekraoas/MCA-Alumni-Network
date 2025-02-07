@@ -1,7 +1,6 @@
-const mongoose = require("mongoose");
-const validator = require("validator");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+const mongoose = require('mongoose')
+const validator = require('validator')
+const jwt = require('jsonwebtoken')
 
 const userSchema = new mongoose.Schema(
   {
@@ -16,7 +15,7 @@ const userSchema = new mongoose.Schema(
       unique: true, // Ensure email is unique
       validate: {
         validator: (value) => validator.isEmail(value),
-        message: "Invalid Email",
+        message: 'Invalid Email',
       },
     },
 
@@ -57,6 +56,11 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
 
+    skills: {
+      type: [String],
+      required: true,
+    },
+
     gender: {
       type: String,
       required: true,
@@ -74,8 +78,7 @@ const userSchema = new mongoose.Schema(
 
     profilePhoto: {
       type: String,
-      required: true,
-      default: "../public/profile.png",
+      default: 'https://res.cloudinary.com/dkts9xt5a/image/upload/v1738318511/alumniPhotos/zjbrr4lgkrrxqt4pwuud.png',
     },
 
     tokens: [
@@ -90,7 +93,7 @@ const userSchema = new mongoose.Schema(
   {
     timestamps: true,
   }
-);
+)
 
 // Generating Token
 userSchema.methods.generateAuthToken = async function () {
@@ -98,20 +101,17 @@ userSchema.methods.generateAuthToken = async function () {
     const token = jwt.sign(
       { _id: this._id.toString() },
       process.env.JWT_SECRET,
-      { expiresIn: "5m" },
-    );
-    this.tokens = this.tokens.concat({ token });
-    await this.save();
-    return token;
+      { expiresIn: '5m' }
+    )
+    this.tokens = this.tokens.concat({ token })
+    await this.save()
+    return token
   } catch (err) {
-    console.error("Error generating token:", err);
-    throw new Error("Error generating token");
+    console.error('Error generating token:', err)
+    throw new Error('Error generating token')
   }
-};
-
-
-
+}
 
 // Model
-const User = mongoose.model("User", userSchema);
-module.exports = User;
+const User = mongoose.model('User', userSchema)
+module.exports = User

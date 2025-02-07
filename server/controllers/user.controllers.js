@@ -1,55 +1,127 @@
-// authController.js
 const userModel = require('../models/user.model')
 const bcrypt = require('bcryptjs')
 const logger = require('../logger')
 const nodemailer = require('nodemailer')
-const multer = require('multer')
-const { storage } = require('./upload.controllers')
-const upload = multer({ storage })
+const cloudinary = require('cloudinary').v2 // Import Cloudinary
 
-// Creating User Account
+// Creating User Account with Cloudinary Upload
 const handleUserSignUp = async (req, res) => {
-  const user = req.body
   try {
+
+    // console.log("📩 Incoming Request Body:", req.body);
+    // console.log("📂 Incoming File:", req.file);
+
+    const {
+      fullName,
+      email,
+      rollNo,
+      password,
+      jobRole,
+      city,
+      state,
+      passOutYear,
+      gender,
+      github,
+      linkedin,
+      currentCompany,
+      skills,
+    } = req.body
+
+    // Convert email & rollNo to lowercase for consistency
+    const lowerCaseEmail = email.toLowerCase()
+    const lowerCaseRollNo = rollNo.toLowerCase()
+
     // Check if email already exists
-    const existingEmail = await userModel.findOne({
-      email: { $eq: user.email },
-    })
+    const existingEmail = await userModel.findOne({ email: lowerCaseEmail })
     if (existingEmail) {
-      logger.warn(`Signup attempt failed: Email already exists - ${user.email}`)
+      logger.warn(`Signup failed: Email already exists - ${lowerCaseEmail}`)
       return res.status(400).json({ message: 'Email already exists' })
     }
 
     // Check if roll number already exists
-    const existingRollNo = await userModel.findOne({
-      rollNo: { $eq: user.rollNo },
-    })
+    const existingRollNo = await userModel.findOne({ rollNo: lowerCaseRollNo })
     if (existingRollNo) {
       logger.warn(
-        `Signup attempt failed: Roll number already exists - ${user.rollNo}`,
+        `Signup failed: Roll number already exists - ${lowerCaseRollNo}`
       )
       return res.status(400).json({ message: 'Roll number already exists' })
     }
 
     // Hash the password
-    const hashedPassword = await bcrypt.hash(user.password, 10)
+    const hashedPassword = await bcrypt.hash(password, 10)
 
-    // Create new user
-    const newUser = new userModel({ ...user, password: hashedPassword })
+    // Process Profile Photo Upload to Cloudinary
+    let profilePhotoUrl = ''
+    if (req.file) {
+      try {
+        const uploadResponse = await cloudinary.uploader.upload(req.file.path, {
+          folder: 'alumniPhotos',
+          transformation: [{ width: 300, height: 300, crop: 'fill' }],
+        })
+        profilePhotoUrl = uploadResponse.secure_url // Cloudinary URL
+        console.log('Uploaded Profile Photo:', profilePhotoUrl)
+      } catch (error) {
+        console.error('Error uploading profile photo:', error)
+        return res
+          .status(500)
+          .json({ message: 'Error uploading profile photo' })
+      }
+    }
+
+    // Ensure `skills` is an array
+    const skillsArray = Array.isArray(skills) ? skills : skills.split(',')
+
+    // Create new user instance
+    const newUser = new userModel({
+      fullName,
+      email: lowerCaseEmail,
+      rollNo: lowerCaseRollNo,
+      password: hashedPassword,
+      jobRole,
+      city,
+      state,
+      gender,
+      github,
+      linkedin,
+      passOutYear,
+      currentCompany,
+      skills: skillsArray,
+      profilePhoto: profilePhotoUrl, // Save Cloudinary URL
+    })
+
+    // Save user to database
     await newUser.save()
 
-    logger.info(`New user registered: ${newUser?.email}`)
+    // Generate Auth Token
+    const token = await newUser.generateAuthToken()
+
+    logger.info(`New user registered: ${lowerCaseEmail}`)
+
     // Send success response
-    res.status(201).json({
+    return res.status(201).json({
       message: 'User registered successfully',
-      newUser,
-      token: await newUser.generateAuthToken(),
-      userId: newUser._id.toString(),
+      user: {
+        id: newUser._id,
+        fullName: newUser.fullName,
+        email: newUser.email,
+        jobRole: newUser.jobRole,
+        city: newUser.city,
+        state: newUser.state,
+        gender: newUser.gender,
+        passOutYear: newUser.passOutYear,
+        github: newUser.github,
+        linkedin: newUser.linkedin,
+        currentCompany: newUser.currentCompany,
+        skills: newUser.skills,
+        profilePhoto: newUser.profilePhoto, // Return Cloudinary URL
+      },
+      token,
     })
   } catch (err) {
-    console.log(err, '###')
-    logger.error(`Error during registration for ${user.email}: ${err.message}`)
-    res.status(500).json({ message: 'Server error' })
+    logger.error(
+      `Error during registration for ${req.body.email}: ${err.message}`
+    )
+    return res.status(500).json({ message: 'Server error', error: err.message })
   }
 }
 
@@ -104,7 +176,7 @@ async function updateUserById(req, res) {
     res.send(user)
   } catch (err) {
     logger.error(
-      `Error updating user with Roll No: ${req.params.id}: ${err.message}`,
+      `Error updating user with Roll No: ${req.params.id}: ${err.message}`
     )
     res.status(404).send(err)
   }
@@ -117,7 +189,7 @@ async function deleteUserById(req, res) {
     const user = await userModel.findOneAndDelete({ rollNo })
     if (!user) {
       logger.warn(
-        `Delete attempt failed: User doesn't exist with Roll No: ${rollNo}`,
+        `Delete attempt failed: User doesn't exist with Roll No: ${rollNo}`
       )
       return res.status(404).send("User doesn't exist")
     }
@@ -126,7 +198,7 @@ async function deleteUserById(req, res) {
     res.send(user)
   } catch (err) {
     logger.error(
-      `Error deleting user with Roll No: ${req.params.id}: ${err.message}`,
+      `Error deleting user with Roll No: ${req.params.id}: ${err.message}`
     )
     res.status(404).send(err)
   }
@@ -139,7 +211,7 @@ async function getAlumniById(req, res) {
     const user = await userModel.findOne({ rollNo })
     if (!user) {
       logger.warn(
-        `Get attempt failed: User doesn't exist with Roll No: ${rollNo}`,
+        `Get attempt failed: User doesn't exist with Roll No: ${rollNo}`
       )
       return res.status(404).send("User doesn't exist")
     }
@@ -148,7 +220,7 @@ async function getAlumniById(req, res) {
     res.send(user)
   } catch (err) {
     logger.error(
-      `Error retrieving user with Roll No: ${req.params.id}: ${err.message}`,
+      `Error retrieving user with Roll No: ${req.params.id}: ${err.message}`
     )
     res.status(404).send(err)
   }
@@ -157,7 +229,13 @@ async function getAlumniById(req, res) {
 //Get all users
 async function getAllUsers(req, res) {
   try {
-    const users = await userModel.find().select('-password').select('-tokens')
+    const users = await userModel
+      .find()
+      .select('-password')
+      .select('-tokens')
+      .select('-__v')
+      .select('-createdAt')
+      .select('-updatedAt')
     logger.info(`All users retrieved`)
     res.send(users)
   } catch (err) {
